@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "654970",
+    "ThreadId": "268322",
+    "Html": "\r\n<p>Is there a way to determine whether a precompiled template exists in the cache before calling Run()? &nbsp;I'm using RazorEngine to generate email content, and I have templates customized for particular brands. &nbsp;However, if a customized template doesn't\r\n exist for a given brand, I want to fall back on the default email template. &nbsp;At the moment, the only way I can see to do this is to call Run() and catch the exception that is thrown when the template can't be found in the cache. &nbsp;Is there a better\r\n way to do this?</p>\r\n",
+    "PostedDate": "2011-08-09T00:09:56.46-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

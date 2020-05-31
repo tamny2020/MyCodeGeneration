@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "692493",
+    "ThreadId": "277977",
+    "Html": "\r\n<p>I've been reading some of the v2.1 code, and it seems to me that the service is basically not threadsafe at all. Is that reasonably accurate, or am I missing something here?&nbsp;</p>\r\n<p>In particular, I'm looking at the <em>TemplateService.Run&lt;T&gt;(T model, string name) &nbsp;</em>method. It looks to me like nearly anything could potentially get mixed up there. Since the Service and Model are set as properties on the ITemplate object,\r\n they could really be anything when the Execute() method actually runs, so the caller could get back nearly anything.&nbsp;</p>\r\n<p>Am I reading this correctly?&nbsp;</p>\r\n",
+    "PostedDate": "2011-11-01T18:44:49.763-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "694645",
+    "ThreadId": "277977",
+    "Html": "<p>Hi,</p>\r\n<p>To be honest, it's not worth looking at the thread safety of v2.1. It has been completely redesigned for v3 (https://github.com/Antaris/RazorEngine). I'm hoping to push this out the door by the end of the week.</p>",
+    "PostedDate": "2011-11-07T02:32:06.24-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

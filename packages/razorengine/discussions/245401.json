@@ -1,0 +1,170 @@
+[
+  {
+    "Id": "563776",
+    "ThreadId": "245401",
+    "Html": "\r\n<p>Simple question :)</p>\r\n<p>We're looking at the featureset to introduce as part of the v2.2 build. &nbsp;What features would you like to see? Either reply here, or tweet #razorengine.</p>\r\n",
+    "PostedDate": "2011-02-10T00:29:27.783-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564069",
+    "ThreadId": "245401",
+    "Html": "\r\n<p>I would be very interested to see built-in support for child templates, and a number of helper methods, as seen in\r\n<a href=\"http://razorengine.codeplex.com/Thread/View.aspx?ThreadId=240558\">this topic</a>.</p>\r\n<p>Another one at the top of my list is recompiling modified templates (see <a href=\"http://razorengine.codeplex.com/Thread/View.aspx?ThreadId=244527\">\r\nhere</a>).</p>\r\n<p>Also, I came across some problems regarding thread safety when running the same compiled template multiple times.&nbsp;I wrapped your code a bit to allow registering templates, but in my unit tests I basically created two templates that render some text\r\n and a value passed in the model. The output was garbled in such way that sometimes multiple values were inserted in the same rendering after each other.<br>\r\nI solved it for me in my own code by putting a lock around the &quot;RazorEngine.Razor.Run(model, templateName)&quot; call based on the templatename (which I store in a list of known templates in my wrapper), but it would be more correct if this was handled in your code.\r\n Here's what my unit test roughly looks like:</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:green\">// My template is very basic and looks like this. I use String.Format</span>\r\n<span style=\"color:green\">// in order to supply two templates with a different base text.</span>\r\n<span style=\"color:blue\">var</span> templateText = <span style=\"color:#a31515\">&quot;This is template '{0}' with value '@(Model.Value)'&quot;</span>;\r\n\r\n<span style=\"color:green\">// I do some wrapping in my code, but two templates get registered.</span>\r\nRazorEngine.Razor.CompileWithAnonymous(templateA, <span style=\"color:#a31515\">&quot;a&quot;</span>);\r\nRazorEngine.Razor.CompileWithAnonymous(templateB, <span style=\"color:#a31515\">&quot;b&quot;</span>);\r\n\r\n<span style=\"color:green\">// I prepare an action.</span>\r\n<span style=\"color:blue\">var</span> action = <span style=\"color:blue\">new</span> Action&lt;<span style=\"color:blue\">object</span>&gt;( o =&gt; {\r\n    <span style=\"color:blue\">var</span> iteration = (<span style=\"color:blue\">string</span>) o;\r\n    <span style=\"color:blue\">var</span> result = RazorEngine.Razor.Run(<span style=\"color:blue\">new</span> {Value = iteration}, <span style=\"color:#a31515\">&quot;a&quot;</span>);\r\n    Assert.IsTrue(result.Contains(<span style=\"color:#a31515\">&quot;Template 'A'&quot;</span>));\r\n    Assert.IsTrue(result.EndsWith(<span style=\"color:#a31515\">&quot;value '&quot;</span> &#43; iteration &#43; <span style=\"color:#a31515\">&quot;'&quot;</span>, result));\r\n\r\n    result = RazorEngine.Razor.Run(<span style=\"color:blue\">new</span> {Value = iteration}, <span style=\"color:#a31515\">&quot;b&quot;</span>);\r\n    Assert.IsTrue(result.Contains(<span style=\"color:#a31515\">&quot;Template 'B'&quot;</span>));\r\n    Assert.IsTrue(result.EndsWith(<span style=\"color:#a31515\">&quot;value '&quot;</span> &#43; iteration &#43; <span style=\"color:#a31515\">&quot;'&quot;</span>, result));\r\n});\r\n\r\n<span style=\"color:green\">// I create tasks.</span>\r\n<span style=\"color:blue\">var</span> tasks = <span style=\"color:blue\">new</span> List&lt;Task&gt;();\r\n<span style=\"color:blue\">for</span> (<span style=\"color:blue\">int</span> i = 0; i &lt; 5000; i&#43;&#43;)\r\n    tasks.Add(<span style=\"color:blue\">new</span> Task(action, i.ToString()));\r\n\r\n<span style=\"color:green\">// I start the tasks. (Separated from the definition, because I</span>\r\n<span style=\"color:green\">// want to start a stopwatch right before starting the rendering.)</span>\r\ntasks.ForEach(t =&gt; t.Start());\r\n\r\n<span style=\"color:blue\">try</span> {\r\n    Task.WaitAll(tasks.ToArray());\r\n}\r\n<span style=\"color:blue\">catch</span>(AggregateException ex){\r\n    <span style=\"color:green\">// An exception gets thrown, and you can investigate the </span>\r\n    <span style=\"color:green\">// .InnerExceptions property for all faulty threads.</span>\r\n    ex.InnerExceptions.ToList().ForEach(inner =&gt; console.WriteLine(inner));\r\n    <span style=\"color:blue\">throw</span>;\r\n}\r\n</pre>\r\n</div>\r\n<p>My output often contained '1'1'3', '3984'3983' or similar, or sometimes only the wrong value at the location of the model value.</p>\r\n",
+    "PostedDate": "2011-02-10T09:33:21.54-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564444",
+    "ThreadId": "245401",
+    "Html": "<p>Could you clarify what you mean by child templates? v2 supports injecting subtemplates using @Include(templateName, model), etc. Is this what you mean?</p>\r\n<p>The thread safety issue is a good point. Currently when a template executes in writes the result to a Result property of the template, which is then read. These are two distinct operations. What we may have to do is wrap both calls in a GetResult method which we can make thread safe. This is a breaking change as it means redefining our interface ITemplate. Very possible to do though! :)</p>",
+    "PostedDate": "2011-02-11T00:27:40.21-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564452",
+    "ThreadId": "245401",
+    "Html": "<blockquote style=\"border: solid .1em #ccc; font-style: italic; margin: .25em 1em 0 1em; padding: 0 .25em 0 .25em;\"><strong>AntarisZX wrote:</strong><br />\r\n<p>Could you clarify what you mean by child templates? v2 supports injecting subtemplates using @Include(templateName, model), etc. Is this what you mean?</p>\r\n</blockquote>\r\n<p>I guess so. :) Sorry, it's a bit hard to figure without real documentation and basing myself on partly out-of-date discussions. <br />I took a look at the code itself now (TemplateBase), and noticed the available properties and functions. Thanks.</p>",
+    "PostedDate": "2011-02-11T00:40:17.6-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585193",
+    "ThreadId": "245401",
+    "Html": "<p>Been loving Razor so far. I have one caveat I would like to point out: use of the &lt;text/&gt; markup feels like a hack to me.</p>\r\n<p>I would rather use this: @text { My text is here. }</p>\r\n<p>Than this: &lt;text&gt;My text is here.&lt;/text&gt;</p>\r\n<p>Since the &lt;text/&gt; markup is removed and not rendered, why use HTML markup for a specific need of Razor?</p>\r\n<p>Stay consistent with the Razor syntax to reduce confusion.</p>\r\n<p>You can leave &lt;text/&gt; support in there, but please add @text{} ... then we can pick which style we want to use.</p>",
+    "PostedDate": "2011-03-23T10:42:54.043-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585217",
+    "ThreadId": "245401",
+    "Html": "<p>Hi,</p>\r\n<p>The &lt;text&gt; stems from Razors inherit support for xml-like markup languages. As it's parsing content, it transitions between code and markup states. In certain scenarios, it is difficult for the parser to know whether the section is code or text. The &lt;text&gt; element is actually part of the core Razor library, written by Microsoft, not anything we've added in ourselves. &nbsp;Luckily they've introduced and alternative 1-line syntax:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>@<span style=\"color: blue;\">foreach</span> (<span style=\"color: blue;\">var</span> item <span style=\"color: blue;\">in</span> Model.Items) {\r\n    @: Some Text\r\n}\r\n</pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-03-23T11:19:34.67-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585260",
+    "ThreadId": "245401",
+    "Html": "<p>Okay, should I contact Scott Gu or someone else with the suggestion?</p>\r\n<p>I saw the @: syntax, but again, that's only useful for 1 line at a time... not so great for multiple lines.</p>",
+    "PostedDate": "2011-03-23T13:00:18.217-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585811",
+    "ThreadId": "245401",
+    "Html": "<p>Ok, I have implemented a test syntax with your suggested @text { }. I'm not sure how well it works, as of yet, but it does work. Additionally it allows for code within the block. I'm going to do more testing before I submit a patch so don't hold your breath  just yet :)</p>\n<p>&nbsp;</p>\n<p>\n<div style=\"color: black; background-color: white;\">\n<pre>&lt;html&gt;\n&lt;body&gt;\n    @text {\n        This <span style=\"color: blue;\">is</span> going to be output <span style=\"color: blue;\">as</span> plain text\n    }\n\n    @text {\n        &lt;li&gt;@DateTime.Now.ToString()&lt;/li&gt;\n    }\n\n    @<span style=\"color: blue;\">if</span>(<span style=\"color: blue;\">true</span>) {\n        @text { This will be output because it's <span style=\"color: blue;\">true</span> }\n    } <span style=\"color: blue;\">else</span> {\n        @text { This won't be output }\n    }\n\n    @text {\n         <span style=\"color: blue;\">this</span> <span style=\"color: blue;\">is</span> a \n         multi-line\n         text block\n    }\n&lt;/body&gt;\n&lt;/html&gt;\n</pre>\n</div>\n</p>",
+    "PostedDate": "2011-03-24T09:18:15.593-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585818",
+    "ThreadId": "245401",
+    "Html": "<p>Whoa, awesomeness! Thanks dude.</p>",
+    "PostedDate": "2011-03-24T09:25:03.523-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585826",
+    "ThreadId": "245401",
+    "Html": "<p>Not a problem :) I was glad to do it...I don't get to work on this project as much as I'd like to anymore. Once I confer with Antaris we'll see if there are any changes to be made to the code and then I think I'll push it out as a patch by next week. One problem I see is that if you want to output { or } it seems to throw an error (even when wrapped in a html element or &lt;text&gt; element...Something I'll have to fix :)</p>",
+    "PostedDate": "2011-03-24T09:36:20.707-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585830",
+    "ThreadId": "245401",
+    "Html": "<p>Is your patch just for RazorEngine are is it something you're going to submit to&nbsp;<a href=\"http://aspnet.codeplex.com/\">http://aspnet.codeplex.com</a>&nbsp;as well? I'm confused about the core engine versus this project, etc.</p>",
+    "PostedDate": "2011-03-24T09:41:30.727-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585833",
+    "ThreadId": "245401",
+    "Html": "<p>It's only for RazorEngine. According to Phil Haack they don't accept patches for aspnet. (it might have been Jon Galloway that said that)</p>",
+    "PostedDate": "2011-03-24T09:46:59.423-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "587678",
+    "ThreadId": "245401",
+    "Html": "<p>I sent the suggestion to Scott Guthrie and he replied. Just FYI:</p>\r\n<p><em><span style=\"color: #1f497d;\"></span></em></p>\r\n<pre>Thanks for the suggestion Jonathan.\r\n\r\nI'm looping in some folks from the Razor team so that they can see the feedback as well and comment on it.\r\n\r\nThanks!\r\n\r\nScott</pre>\r\n<p><em><span style=\"font-size: 11pt; color: #1f497d;\"></span></em></p>",
+    "PostedDate": "2011-03-28T09:14:48.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "587877",
+    "ThreadId": "245401",
+    "Html": "<p>Cool, I mentioned it to Andrew Nurse (who works on the parser) and he said he doubted they would do anything. So we'll see...Scott is higher in the food chain! :)</p>",
+    "PostedDate": "2011-03-28T14:31:57.203-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "588773",
+    "ThreadId": "245401",
+    "Html": "<p>Hello! I've tested the RazorEngine a bit to see if it could be used for a project I'm involved in.</p>\r\n<p>One thing that came up, was that I wanted to set&nbsp;some properties on the template-instance, before executing the template.<br />But since both Parse and Run returns strings, and not the actual ITemplate this was not possible.<br /><br />I found the IActivator interface, that seemed perfect for my purpose. <br />But since the IActivator is non-typed and my TemplateBase class is typed i couldn't typecast it (without workarounds).</p>\r\n<p>Would it be possible to add a second method to the IActivator interface that is typed? Something like this:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">interface</span> IActivator \r\n{\r\n   ITemplate CreateInstance(Type type);\r\n   ITemplate&lt;T&gt; CreateInstance&lt;T&gt;(Type type);\r\n}</pre>\r\n</div>\r\n<div style=\"color: black; background-color: white;\">﻿﻿﻿﻿﻿That way it will be typed all way through, and I can cast it to TemplateBase&lt;T&gt; after creating the template instance from the type.</div>\r\n<div style=\"color: black; background-color: white;\">Also, it would be nice to add some kind of state somewhere, that is sent to the CreateInstance-method.</div>\r\n<div style=\"color: black; background-color: white;\">This state could be used to set properties on the template-instance before Execute is called.</div>\r\n<div style=\"color: black; background-color: white;\">These properties is things that I want to have access to in my TemplateBase, but don't want to add to my model.</div>\r\n<div style=\"color: black; background-color: white;\">The interface then would look like this:</div>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">interface</span> IActivator \r\n{\r\n   ITemplate CreateInstance(Type type, <span style=\"color: blue;\">object</span> state);\r\n   ITemplate&lt;T&gt; CreateInstance&lt;T&gt;(Type type, <span style=\"color: blue;\">object</span> state);\r\n}\r\n</pre>\r\n</div>\r\n<p>and my activator could look something like:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> MyActivator : DefaultActivator\r\n{\r\n   <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">override</span> ITemplate&lt;T&gt; CreateInstance&lt;T&gt;(Type t, <span style=\"color: blue;\">object</span> state)\r\n   {\r\n       <span style=\"color: blue;\">var</span> template = (MyTemplateBase&lt;T&gt;)<span style=\"color: blue;\">base</span>.CreateInstance(t);\r\n       template.MyContext = (MyContext)state;\r\n       <span style=\"color: blue;\">return</span> ﻿template;\r\n   }\r\n}\r\n</pre>\r\n</div>\r\n<p>This is only suggestions, alternative ways of ﻿achieving what I want is very welcomed.</p>\r\n<p>Cheers, and thank you for a very nice library!</p>",
+    "PostedDate": "2011-03-30T05:19:49.337-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "589602",
+    "ThreadId": "245401",
+    "Html": "<p>Verran, @Text support patch has been uploaded and is patched against the most recent source versions. Please feel free to test it - note, you *can't* have any {} within the block or it will break. This includes @for(;;) {} or anything similar. I will continue to look at this to see where the problem lies.</p>",
+    "PostedDate": "2011-03-31T09:06:01.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "602065",
+    "ThreadId": "245401",
+    "Html": "<p>@model and multi-line @text are great extensions, thanks.</p>",
+    "PostedDate": "2011-04-24T02:00:51.4-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "602134",
+    "ThreadId": "245401",
+    "Html": "<p>About new features for 2.2, I would like to know if template includes, or shared template patterns are part of the expected Layout mechanism?</p>\r\n<p>Also, could you explain (or give me a pointer to) the difference between RazorEngine, System.Web.Razor and MSVC 3 Razor... It's confusing, as I don't fully understand what features are part of each?</p>\r\n<p>Thanks</p>",
+    "PostedDate": "2011-04-24T09:39:22.69-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "602754",
+    "ThreadId": "245401",
+    "Html": "<p>Hi,</p>\r\n<p>The first thing to remember is that RazorEngine is not the same as the Razor View Engine bundled with ASP.NET MVC3. We specifically wanted to differentiate between the services support by both to highlight this fact. So when you are expecting methods such as @Url, @Html, @RenderBody etc, these are not supported by default with RazorEngine as you would need to implement a customised base template to handle this for you. We currently support @Include as an alternative to MVC3's @Partial method, and we are looking to bring support for Layouts (Master Templates) in the next revision of RazorEngine.</p>\r\n<p>As far as the relationship between the three technologies, its a little like this:</p>\r\n<ul>\r\n<li>System.Web.Razor contains the Razor parser, which is used to actually parse through a stream of text to generate code for templates.</li>\r\n<li>MVC3's Razor View Engine is a layer that sits on top of the Razor parser to handle the conversion of .cshtml and .vbhtml files into executable web pages.</li>\r\n<li>RazorEngine is also a layer that sits on top of the Razor parser, but is geared up for text templating, in a similar vein to NVelocity, StringTemplate, etc.</li>\r\n</ul>\r\n<p>I hope that answers your questions.</p>",
+    "PostedDate": "2011-04-26T00:49:58.583-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "602774",
+    "ThreadId": "245401",
+    "Html": "<blockquote style=\"border: solid .1em #ccc; font-style: italic; margin: .25em 1em 0 1em; padding: 0 .25em 0 .25em;\"><strong>AntarisZX wrote:</strong> I hope that answers your questions.</blockquote>\r\n<p>Thanks for your detailed answer. If RazorEngine is targeting to provide a general purpose templating engine, that's perfect.</p>\r\n<p>Keep up the good work!</p>",
+    "PostedDate": "2011-04-26T01:30:41.267-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "603474",
+    "ThreadId": "245401",
+    "Html": "<p>After using it more intensively, there is a feature that might be great to enhance sharing building blocks of helpers.</p>\r\n<p>I'm looking for a way to import helpers methods defined from other template files (kind of helpers library). In MVC3 Razor View Engine, they have a App_Code solution, but I don't feel like It's a robust solution (you can only share to the whole application).</p>\r\n<p>I was thinking about a kind of @inherits that would take a template name. It would be possible to use several inherits, like this:</p>\r\n<p>@inherits(\"global_template_lib\")</p>\r\n<p>@inherits(\"local_template_lib\")</p>\r\n<p>It's seems feasible technically in RazorEngine (using inheritance from other generated templates instead of directly inheriting from TemplateBase&lt;T&gt;.</p>\r\n<p>What do you think? I would like to try it, where do you suggest me to start into RazorEngine code for this particular case?</p>",
+    "PostedDate": "2011-04-27T03:45:02.557-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

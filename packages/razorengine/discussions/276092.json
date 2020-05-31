@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "684984",
+    "ThreadId": "276092",
+    "Html": "<p>Hi,</p>\n<p>I'm having trouble parsing a template which in turn parses a second template. &nbsp;For example, given this template:</p>\n<div style=\"color: black; background-color: white;\">\n<pre><span style=\"color: blue;\">string</span> innerTemplate = <span style=\"color: #a31515;\">\"Nested Template!\"</span>;\n<span style=\"color: blue;\">string</span> template = String.Format(<span style=\"color: #a31515;\">\"Parent Template! @RazorEngine.Razor.Parse(\\\"{0}\\\") This text comes after the nested template.\"</span>, innerTemplate);\n<span style=\"color: blue;\">string</span> result = Razor.Parse(template);\n</pre>\n</div>\n<p>&nbsp;</p>\n<p>I would expect the result to be:</p>\n<p><strong>Parent Template! Nested Template! This text comes after the nested template.</strong></p>\n<p>&nbsp;</p>\n<p>However, the actual result is:</p>\n<p><strong>Nested Template!Nested Template! This text comes after the nested template.</strong></p>\n<p>&nbsp;</p>\n<p>And if I include multiple nested templates:</p>\n<p>&nbsp;</p>\n<div style=\"color: black; background-color: white;\">\n<pre><span style=\"color: blue;\">string</span> innerTemplate = <span style=\"color: #a31515;\">\"Nested Template!\"</span>;\n<span style=\"color: blue;\">string</span> innerTemplate2 = <span style=\"color: #a31515;\">\"Another Template!\"</span>;\n<span style=\"color: blue;\">string</span> template = String.Format(<span style=\"color: #a31515;\">\"Parent Template! @RazorEngine.Razor.Parse(\\\"{0}\\\")... and another: @RazorEngine.Razor.Parse(\\\"{1}\\\") This text comes after the nested templates.\"</span>, innerTemplate, innerTemplate2);\n<span style=\"color: blue;\">string</span> result = Razor.Parse(template);\n</pre>\n</div>\n<p>&nbsp;</p>\n<p>Then only the last template is included in the result:</p>\n<p><strong>Another Template!Another Template! This text comes after the nested templates.</strong></p>\n<p>&nbsp;</p>\n<p>It seems like each nested template clears the buffer of the previous templates and includes itself in the result twice. &nbsp;Is there a way to execute nested templates like these?</p>\n<p>Thanks,</p>\n<p>Glen</p>",
+    "PostedDate": "2011-10-16T19:26:11.113-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "691602",
+    "ThreadId": "276092",
+    "Html": "<p>Hi,</p>\r\n<p>Includes, Layouts and Sections are now supported in the upcoming v3 build. We are no longer pushing to Codeplex, instead we are pushing to Github (https://www.github.com/Antaris/RazorEngine)<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-10-31T05:48:10.327-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

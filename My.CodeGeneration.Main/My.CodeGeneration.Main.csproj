@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A88DCF3-F29D-4F64-9A79-D02B1B3AF25C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>My.CodeGeneration.Main</RootNamespace>
+    <AssemblyName>My.CodeGeneration.Main</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.0.8.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.0.8\lib\net40\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RazorEngine.3.0.8\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="XPTable, Version=1.6.1.15, Culture=neutral, PublicKeyToken=24950705800d2198, processorArchitecture=MSIL">
+      <HintPath>..\packages\XPTable.1.6.1.15\lib\net20\XPTable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form_AddServerMySql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddServerMySql.Designer.cs">
+      <DependentUpon>Form_AddServerMySql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_AddServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddServer.Designer.cs">
+      <DependentUpon>Form_AddServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_AddServerSqlServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddServerSqlServer.Designer.cs">
+      <DependentUpon>Form_AddServerSqlServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Base.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuilderSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuilderSelect.Designer.cs">
+      <DependentUpon>Form_BuilderSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ExportWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ExportWord.Designer.cs">
+      <DependentUpon>Form_ExportWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_TableDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_TableDetail.Designer.cs">
+      <DependentUpon>Form_TableDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_TableDetailDemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_TableDetailDemo.Designer.cs">
+      <DependentUpon>Form_TableDetailDemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShellExtension.cs" />
+    <Compile Include="Tools\Form_ClassConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Form_ClassConvert.Designer.cs">
+      <DependentUpon>Form_ClassConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Code.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Code.Designer.cs">
+      <DependentUpon>Form_Code.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Database.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Database.Designer.cs">
+      <DependentUpon>Form_Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DirectorySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DirectorySettings.Designer.cs">
+      <DependentUpon>Form_DirectorySettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Home.Designer.cs">
+      <DependentUpon>Form_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Form_JsonConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Form_JsonConvert.Designer.cs">
+      <DependentUpon>Form_JsonConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_AddServerMySql.resx">
+      <DependentUpon>Form_AddServerMySql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddServer.resx">
+      <DependentUpon>Form_AddServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddServerSqlServer.resx">
+      <DependentUpon>Form_AddServerSqlServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Base.resx">
+      <DependentUpon>Form_Base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BuilderSelect.resx">
+      <DependentUpon>Form_BuilderSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ExportWord.resx">
+      <DependentUpon>Form_ExportWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_TableDetail.resx">
+      <DependentUpon>Form_TableDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_TableDetailDemo.resx">
+      <DependentUpon>Form_TableDetailDemo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Form_ClassConvert.resx">
+      <DependentUpon>Form_ClassConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Code.resx">
+      <DependentUpon>Form_Code.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Database.resx">
+      <DependentUpon>Form_Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DirectorySettings.resx">
+      <DependentUpon>Form_DirectorySettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Home.resx">
+      <DependentUpon>Form_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Form_JsonConvert.resx">
+      <DependentUpon>Form_JsonConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Configs\Servers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Configs\App.json" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\xqd\Add_html.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\xqd\BLL_cs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\xqd\DAL_cs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\xqd\Model_cs.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\xqd\List_html.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Query_html.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\My.CodeGeneration.Business\My.CodeGeneration.Business.csproj">
+      <Project>{6c3384e2-a35b-4e80-a317-0481e2fd98c5}</Project>
+      <Name>My.CodeGeneration.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Common\My.CodeGeneration.Common.csproj">
+      <Project>{4a948297-363f-452e-bd7e-af11b65f529f}</Project>
+      <Name>My.CodeGeneration.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Model\My.CodeGeneration.Model.csproj">
+      <Project>{4ea4fd0c-325d-42aa-928c-3e1562a987d5}</Project>
+      <Name>My.CodeGeneration.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.MySql\My.CodeGeneration.MySql.csproj">
+      <Project>{9bcfd567-d05e-4e37-a248-1f935e46f050}</Project>
+      <Name>My.CodeGeneration.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Oracle\My.CodeGeneration.Oracle.csproj">
+      <Project>{08b4665c-e414-412c-ada2-b364254786de}</Project>
+      <Name>My.CodeGeneration.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Sqlite\My.CodeGeneration.Sqlite.csproj">
+      <Project>{d5e03db1-5d0c-475b-b742-6153210a81cf}</Project>
+      <Name>My.CodeGeneration.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.SqlServer\My.CodeGeneration.SqlServer.csproj">
+      <Project>{03057a63-6c18-47b7-b205-db3dded7335f}</Project>
+      <Name>My.CodeGeneration.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
+    <Content Include="Resources\XPTable32x32.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

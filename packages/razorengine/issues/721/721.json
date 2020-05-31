@@ -1,0 +1,56 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Created a new MVC4 web application using the mobile template. I added a controller based on a EF entity which resulted in some code being generated and a view which has JavaScript representing the client API at the end. The JavaScript contains a method \"deleteRow\" which gets rendered incorrectly by the Razor view engine.\n \nThe problem seems to be that the Razor view engine does not recognise the inserted commands (e.g. \"'@Html.Raw(Url.Action(\"Delete\", new { id = \"__ID__\" }))'\") under certain conditions. I have attached the full view file.\n \nThe method is as follow:\n \n        function deleteRow(row) {\n            if (confirm('Are you sure you want to delete this row?')) {\n                $.post('@Html.Raw(Url.Action(\"Delete\", new { id = \"__ID__\" }))'.replace(/__ID__/, row.data('pkey')))\n                    .done(function() {\n                        row.remove();\n                        totalRowCount--;\n                    })\n                    .fail(function() {\n                        alert('Row deletion failed.');\n                    });\n            }\n        }\n \nChanging the method to the following results in the view being rendered correctly:\n \n        function deleteRow(row) {\n            if (confirm('Are you sure you want to delete this row?')) {\n                var url = '@Html.Raw(Url.Action(\"Delete\", new { id = \"__ID__\" }))';\n                $.post(url.replace(/__ID__/, row.data('pkey')))\n                    .done(function() {\n                        row.remove();\n                        totalRowCount--;\n                    })\n                    .fail(function() {\n                        alert('Row deletion failed.');\n                    });\n            }\n        }",
+    "LastUpdatedDate": "2013-02-21T17:16:57.667-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2012-05-08T12:47:43.697-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Razor and JavaScript parsing issue",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 721
+  },
+  "FileAttachments": [
+    {
+      "FileId": 317,
+      "FileName": "Index.cshtml",
+      "DownloadUrl": ".\\317"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "Please ignore, coincidently posted to wrong project",
+      "PostedDate": "2012-05-08T13:02:18.217-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:57.667-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

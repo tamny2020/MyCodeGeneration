@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "572883",
+    "ThreadId": "247777",
+    "Html": "\r\n<p>I have a static JsonHelper class in Numina.SiteBuilder.Logic namespace. In my template I call</p>\r\n<p>&nbsp;</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">dynamic</span> data = JsonHelper.NewObject();\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>&nbsp;</p>\r\n<p>which throws an error. This is whats in the list of errors...</p>\r\n<p>&nbsp;</p>\r\n<p></p>\r\n<pre>ErrorText = &quot;The name 'JsonHelper' does not exist in the current context&quot;</pre>\r\n<p></p>\r\n<p>&nbsp;</p>\r\n<p>in my config I have this... I cut out some stuff for simplicity</p>\r\n<p>&nbsp;</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>  <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">configSections</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">section</span> <span style=\"color:red\">name</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">razorEngine</span><span style=\"color:black\">&quot;</span> <span style=\"color:red\">type</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">RazorEngine.Configuration.RazorEngineConfigurationSection, RazorEngine</span><span style=\"color:black\">&quot;</span> <span style=\"color:red\">requirePermission</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">false</span><span style=\"color:black\">&quot;</span> <span style=\"color:blue\">/&gt;</span>\r\n  <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">configSections</span><span style=\"color:blue\">&gt;</span>\r\n  <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">razorEngine</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">namespaces</span><span style=\"color:blue\">&gt;</span>\r\n      <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">add</span> <span style=\"color:red\">namespace</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">Numina.SiteBuilder.Logic</span><span style=\"color:black\">&quot;</span> <span style=\"color:blue\">/&gt;</span>\r\n    <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">namespaces</span><span style=\"color:blue\">&gt;</span>\r\n  <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">razorEngine</span><span style=\"color:blue\">&gt;</span>\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>Is this not right?</p>\r\n",
+    "PostedDate": "2011-02-27T12:21:16.153-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "572884",
+    "ThreadId": "247777",
+    "Html": "<p>If I use the full path it works...</p>\r\n<pre>Numina.SiteBuilder.Logic.JsonHelper.NewObject();\r\n</pre>",
+    "PostedDate": "2011-02-27T12:25:03.54-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "573980",
+    "ThreadId": "247777",
+    "Html": "<p>I suspect it should be the following:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">dynamic</span> data = Logic.JsonHelper.NewObject();\r\n</pre>\r\n</div>\r\n<pre>  <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">configSections</span><span style=\"color: blue;\">&gt;</span><br />    <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">section</span> <span style=\"color: red;\">name</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">razorEngine</span><span style=\"color: black;\">\"</span> <span style=\"color: red;\">type</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">RazorEngine.Configuration.RazorEngineConfigurationSection, RazorEngine</span><span style=\"color: black;\">\"</span> <span style=\"color: red;\">requirePermission</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">false</span><span style=\"color: black;\">\"</span> <span style=\"color: blue;\">/&gt;</span><br />  <span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">configSections</span><span style=\"color: blue;\">&gt;</span><br />  <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">razorEngine</span><span style=\"color: blue;\">&gt;</span><br />    <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">namespaces</span><span style=\"color: blue;\">&gt;</span><br />      <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">add</span> <span style=\"color: red;\">namespace</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">Numina.SiteBuilder</span><span style=\"color: black;\">\"</span> <span style=\"color: blue;\">/&gt;</span><br />    <span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">namespaces</span><span style=\"color: blue;\">&gt;</span><br />  <span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">razorEngine</span><span style=\"color: blue;\">&gt;</span><br /><br />But I can't tell without seeing the objects. <br /></pre>\r\n<p>&nbsp;</p>",
+    "PostedDate": "2011-03-01T10:31:20.75-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574019",
+    "ThreadId": "247777",
+    "Html": "<p>This is what the class looks like</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">namespace</span> Numina.SiteBuilder.Logic\r\n{\r\n    usings...\r\n\r\n    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">class</span> JsonHelper\r\n    {\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">string</span> FixQuotes(<span style=\"color: blue;\">string</span> s) { ... }\r\n\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">dynamic</span> NewObject() { ... }\r\n\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">dynamic</span> NewArray(<span style=\"color: blue;\">int</span> size) { ... }\r\n\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">string</span> ToJson(<span style=\"color: blue;\">dynamic</span> d) { ... }\r\n\r\n    }\r\n}\r\n</pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-03-01T11:44:14.617-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574034",
+    "ThreadId": "247777",
+    "Html": "<p>It looks like the Namespaces are only added on custom TemplateBase implementations. I'm not sure if Antaris did this on purpose or not - Hopefully he'll see this thread and chime in. :)</p>",
+    "PostedDate": "2011-03-01T11:55:14.113-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574246",
+    "ThreadId": "247777",
+    "Html": "<p>lolwhoops, this is indeed a mistake. I've checked in a change, that won't be released until RazorEngine v2.2 is ready for release (which I haven't started yet). You could either download that changeset (7636), or you could make this temporary change to your configuration:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">razorEngine</span><span style=\"color: blue;\">&gt;</span>\r\n  <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">namespaces</span><span style=\"color: blue;\">&gt;</span>\r\n    <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">add</span> <span style=\"color: red;\">namespace</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">Numina.SiteBuilder</span><span style=\"color: black;\">\"</span> <span style=\"color: blue;\">/&gt;</span>\r\n  <span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">namespaces</span><span style=\"color: blue;\">&gt;</span>\r\n  <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">templateServices</span> <span style=\"color: red;\">default</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">Default</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">&gt;</span>\r\n    <span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">add</span> <span style=\"color: red;\">name</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">Default</span><span style=\"color: black;\">\"</span> <span style=\"color: red;\">language</span><span style=\"color: blue;\">=</span><span style=\"color: black;\">\"</span><span style=\"color: blue;\">CSharp</span><span style=\"color: black;\">\"</span> <span style=\"color: blue;\">/&gt;</span>\r\n  <span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">templateServices</span><span style=\"color: blue;\">&gt;</span>\r\n<span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">razorEngine</span><span style=\"color: blue;\">&gt;</span>\r\n</pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-03-02T00:47:50.89-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574630",
+    "ThreadId": "247777",
+    "Html": "<p>updating the web.config worked. I will get latest and test that as well. thanks for taking a look at it.</p>",
+    "PostedDate": "2011-03-02T13:30:09.263-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

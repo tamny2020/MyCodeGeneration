@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "920641",
+    "ThreadId": "397716",
+    "Html": "\r\n<p>Hi,</p>\r\n<p><span style=\"white-space:pre\">I</span>s there any other reference for RazorEngine in addition to the Documentation on this codeplex project?</p>\r\n<p>I've seen comments on stackoverflow&nbsp;</p>\r\n<p>Thanks&nbsp;</p>\r\n<p>Mark&nbsp;</p>\r\n",
+    "PostedDate": "2012-10-02T08:18:50.097-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "920683",
+    "ThreadId": "397716",
+    "Html": "<p>The project has moved to GitHub (https://github.com/Antaris/RazorEngine).</p>",
+    "PostedDate": "2012-10-02T09:29:26.84-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "921156",
+    "ThreadId": "397716",
+    "Html": "<blockquote style=\"border: solid .1em #ccc; font-style: italic; margin: .25em 1em 0 1em; padding: 0 .25em 0 .25em;\"><strong>zythra wrote:</strong><br />\r\n<p>The project has moved to GitHub (https://github.com/Antaris/RazorEngine).</p>\r\n</blockquote>\r\n<p>Awesome! Thanks a lot. Wasn't clear on here or I totally missed it</p>\r\n<p>Mark&nbsp;</p>",
+    "PostedDate": "2012-10-03T03:23:24.747-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

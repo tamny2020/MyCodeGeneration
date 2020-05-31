@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "657865",
+    "ThreadId": "269000",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>Sorry about my english. I have this block of code:</p>\r\n<p></p>\r\n<pre>@foreach(var stream in Model.Streams) {<br></pre>\r\n<pre>&lt;a href=&quot;#&quot; onclick=&quot;server.send('Post', { Id: @stream.Id }); return false;&quot;&gt;@stream.Title&lt;/a&gt;<br></pre>\r\n<pre>}</pre>\r\n<pre>and the result is:</pre>\r\n<pre><br></pre>\r\n<p></p>\r\n<pre>&lt;a href=&quot;#&quot; onclick=&quot;server.send('Post', ); return false;&quot;&gt;Title&lt;/a&gt;</pre>\r\n<p></p>\r\n<pre><br></pre>\r\n<pre>How do I escape the &quot;{&quot; char?</pre>\r\n<pre><br></pre>\r\n<pre>Thank you.</pre>\r\n<p></p>\r\n",
+    "PostedDate": "2011-08-13T16:10:27.493-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

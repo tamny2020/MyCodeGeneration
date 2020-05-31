@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "654770",
+    "ThreadId": "268273",
+    "Html": "\r\n<p>What does the compile function actually do? Is there a way to compile the cshtml to a dll for use in other apps?&nbsp;</p>\r\n",
+    "PostedDate": "2011-08-08T13:00:42.803-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "654794",
+    "ThreadId": "268273",
+    "Html": "<p>The \"Compile\" method is there to pre-compile the razor file without running it. It is useful when you want to pre-cache the razor files so that the first call to them isn't delayed. By default when you call \"parse\" it compiles the resulting razor file and then runs it. After that initial call it just runs it once. However that initial compile takes a second or two. Compile puts you in control of where the razor file is first compiled. Like on loading the application or in the Init of the website.</p>",
+    "PostedDate": "2011-08-08T13:58:23.377-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "654843",
+    "ThreadId": "268273",
+    "Html": "<p>Thanks, I was getting worried about the 2 second compile time for each parse call. Is the name&nbsp;parameter&nbsp;used for the cache key for the pre-compiled code?</p>",
+    "PostedDate": "2011-08-08T15:32:42.133-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "654847",
+    "ThreadId": "268273",
+    "Html": "<p>I found the answer, thanks. The name param is the cache key. Sweet!</p>",
+    "PostedDate": "2011-08-08T15:41:09.293-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

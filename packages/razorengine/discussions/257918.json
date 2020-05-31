@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "613887",
+    "ThreadId": "257918",
+    "Html": "\r\n<p>I've been looking around the forum and the documentation but can't work out a simple way to use Razor templates by loading the templates from a file.</p>\r\n<p>I have a Web Forms app and want to store my Razor templates in files (.cshtml) and then call them from a code behind page to send an email.</p>\r\n<p>Could anyone point me in the right direction?</p>\r\n",
+    "PostedDate": "2011-05-17T05:59:10.15-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "613944",
+    "ThreadId": "257918",
+    "Html": "<p>The simplest way is just to load the file as a string and then use the razor engine to parse that.</p>\r\n<p>&nbsp;</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">string</span> template = System.IO.File.ReadAllText(filename);\r\n\r\n<span style=\"color: blue;\">string</span> output = Razor.Parse(template);\r\n</pre>\r\n</div>\r\n</p>\r\n<p>&nbsp;</p>\r\n<p>From there it's just a matter of passing in your model and setting your filename properly.</p>",
+    "PostedDate": "2011-05-17T07:15:56.78-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

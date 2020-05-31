@@ -1,0 +1,45 @@
+Index: D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/RazorBuildProviderBase.cs
+===================================================================
+--- D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/RazorBuildProviderBase.cs	(revision 6)
++++ D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/RazorBuildProviderBase.cs	(revision 7)
+@@ -17,6 +17,7 @@
+         #region Fields
+         private TypeContext TypeContext;
+         private readonly CompilerServiceBase CompilerService;
++        internal static readonly System.Collections.Concurrent.ConcurrentDictionary<string, TypeContext> TypeContexts = new System.Collections.Concurrent.ConcurrentDictionary<string, TypeContext>();
+         #endregion
+ 
+         #region Constructor
+@@ -43,7 +44,12 @@
+             string className = VirtualPath.Substring(VirtualPath.LastIndexOf('/') + 1);
+             className = className.Substring(0, className.LastIndexOf('.'));
+ 
+-            TypeContext = (TypeContext)HttpContext.Current.Items[className];
++            // Running on a background thread will not have a current HttpContext.
++            // Use an alternative means of getting the TypeContext to the build provider in that case.
++            if (HttpContext.Current != null)
++                TypeContext = (TypeContext)HttpContext.Current.Items[className];
++            else
++                TypeContext = TypeContexts[className];
+ 
+             assemblyBuilder.AddCodeCompileUnit(
+                 this,
+Index: D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/WebCompilerServiceBase.cs
+===================================================================
+--- D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/WebCompilerServiceBase.cs	(revision 6)
++++ D:/projects/Faredge-Templates/MVC3/Mvc3Template/Lib/RazorEngine/Core/RazorEngine.Web/WebCompilerServiceBase.cs	(revision 7)
+@@ -46,7 +46,13 @@
+         public override Type CompileType(TypeContext context)
+         {
+             string virtualFile = "~/__razor/" + context.ClassName + "." + VirtualFileExtension;
+-            HttpContext.Current.Items.Add(context.ClassName, context);
++            
++            // Running on a background thread will not have a current HttpContext.
++            // Use an alternative means of getting the TypeContext to the build provider in that case.
++            if (HttpContext.Current != null)
++                HttpContext.Current.Items.Add(context.ClassName, context);
++            else
++                RazorBuildProviderBase.TypeContexts[context.ClassName] = context;
+ 
+             return BuildManager.GetCompiledType(virtualFile);
+         }

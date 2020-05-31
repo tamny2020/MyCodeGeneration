@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "902049",
+    "ThreadId": "392502",
+    "Html": "\r\n<p>I have spent more time then I should be trying to figure this out.</p>\r\n<p>I downloaded the razorengine and added both DLLS to my project.</p>\r\n<p>In the controller everything looks correct and seems to work.&nbsp; I am currently just using the exact code from the tutorial.</p>\r\n<p>When I compile everything, I get this error:</p>\r\n<p>{warning CS1685: The predefined type 'System.Func' is defined in multiple assemblies in the global alias; using definition from 'c:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorlib.dll'}</p>\r\n<p>&nbsp;</p>\r\n<p>I have been looking online, and all the normal fixes do not apply, Has anyone had this issue?</p>\r\n",
+    "PostedDate": "2012-08-21T10:24:17.387-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

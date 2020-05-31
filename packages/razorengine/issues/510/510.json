@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I seem to have problems running RazorEngine in a thread pool, even using the latest version from source I still get a bunch of errors parsing templates, my only hack for now is to put a lock around any code that uses RazorEngine. \n \nIs there intended future support for a scenario like mine?",
+    "LastUpdatedDate": "2013-02-21T17:16:59.737-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-10-11T18:26:40.34-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Threadpool",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 5,
+    "Id": 510
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "There is not a great deal of thread-safe code in v2.1.  We've made extensive changes to the codebase for v3 which I am hoping to push to GitHub soon.",
+      "PostedDate": "2011-10-12T09:56:44.19-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.737-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

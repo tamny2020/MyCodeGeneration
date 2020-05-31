@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "654826",
+    "ThreadId": "268288",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I'm not quite sure with loading another assemblies,</p>\r\n<p>Basically, if i put my code on the same files, on the same solution that use Razor engine</p>\r\n<p>the razor engine will recognize it, nice</p>\r\n<p>&nbsp;</p>\r\n<p>so, how can i load an assembly, and thats it, the razor engine will recognize, no configuration, no adding namespace manually</p>\r\n<p>something like, Razor.Load(&quot;abc.dll&quot;);</p>\r\n",
+    "PostedDate": "2011-08-08T15:06:10.927-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

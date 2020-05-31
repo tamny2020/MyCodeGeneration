@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "675803",
+    "ThreadId": "273600",
+    "Html": "\r\n<p>Most important: Is there any news on support for removing / updating compiled templates?&nbsp;</p>\r\n<p>Once compiled , currently a template can not be updated anymore.</p>\r\n<p>Also removing compiled templates is missing.</p>\r\n<p>&nbsp;</p>\r\n<p>Less important (because workaround possible with typed model) support for nested anonymous types? It keeps telling me, that property X is unknown, but when I define a class for it, everything works fine.</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-09-23T06:02:41.543-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "677048",
+    "ThreadId": "273600",
+    "Html": "<p>I had the same problem, but found a way to fix it. I have upload a Patch. Hope you can use it.</p>",
+    "PostedDate": "2011-09-27T01:58:56.313-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,274 @@
+[
+  {
+    "Id": 97,
+    "Title": "Add Event Support through ITemplate"
+  },
+  {
+    "Id": 99,
+    "Title": "Strong name for Razor Engine libraries"
+  },
+  {
+    "Id": 100,
+    "Title": "Fix for referencing dynamic assemblies"
+  },
+  {
+    "Id": 101,
+    "Title": "Japanese(or multi-bytes) characters in template are garbled."
+  },
+  {
+    "Id": 154,
+    "Title": "Templates fail to compile when run through NUnit"
+  },
+  {
+    "Id": 327,
+    "Title": "MissingMethodException in v2.1.4039.23635 (Installed via NuGet)"
+  },
+  {
+    "Id": 330,
+    "Title": "Correct reference of Microsoft.CSharp assembly."
+  },
+  {
+    "Id": 331,
+    "Title": "Disable caching check when using Compile/CompileWithAnonymous"
+  },
+  {
+    "Id": 332,
+    "Title": "Add Master Template Support"
+  },
+  {
+    "Id": 333,
+    "Title": "Address thread-safety of Execute/Result relationship"
+  },
+  {
+    "Id": 351,
+    "Title": "Add global namespace imports to default TemplateService"
+  },
+  {
+    "Id": 365,
+    "Title": "Correct behaviour of RazorVirtualPathProvider when registered alongside other VPPs"
+  },
+  {
+    "Id": 366,
+    "Title": "Improvement: @\"...\"@ or @'...'@ as alias for <text>...</text>"
+  },
+  {
+    "Id": 368,
+    "Title": "razor throw an error while the model is a dynamic-generated object from entityframework"
+  },
+  {
+    "Id": 371,
+    "Title": "Add compile-to-assembly option."
+  },
+  {
+    "Id": 372,
+    "Title": "Correct GetCacheDependency behaviour for chained VPPs"
+  },
+  {
+    "Id": 398,
+    "Title": "Bug with @include directive"
+  },
+  {
+    "Id": 407,
+    "Title": "Add non-generic overload of Parse"
+  },
+  {
+    "Id": 408,
+    "Title": "error CS0518: Predefined type 'Microsoft.CSharp.RuntimeBinder.Binder' is not defined or imported"
+  },
+  {
+    "Id": 409,
+    "Title": "Support for anonymous lists in anonymous objects"
+  },
+  {
+    "Id": 411,
+    "Title": "Caching @Include Model data."
+  },
+  {
+    "Id": 412,
+    "Title": "Calling Run or Parse with Interface or Abstract Type"
+  },
+  {
+    "Id": 413,
+    "Title": "TemplateWriter and IHtmlString"
+  },
+  {
+    "Id": 420,
+    "Title": "Cannot use Generic Class as Model"
+  },
+  {
+    "Id": 425,
+    "Title": "using custom template base causes exception"
+  },
+  {
+    "Id": 429,
+    "Title": "add ReCompile to Razor"
+  },
+  {
+    "Id": 448,
+    "Title": "More ThreadStatic required"
+  },
+  {
+    "Id": 449,
+    "Title": "TemplateService should cache Template types, not instances"
+  },
+  {
+    "Id": 450,
+    "Title": "TemplateService should be extensible (or allow access to ITemplate)"
+  },
+  {
+    "Id": 461,
+    "Title": "WebCompilerServiceBase throws NullRef when running on background thread"
+  },
+  {
+    "Id": 462,
+    "Title": "Configuration templateServices/templateBase doesn't work"
+  },
+  {
+    "Id": 472,
+    "Title": "Failure to compile"
+  },
+  {
+    "Id": 482,
+    "Title": "Errors when using Razor.Parse with task parallel library"
+  },
+  {
+    "Id": 488,
+    "Title": "Advise for performance and multithreading"
+  },
+  {
+    "Id": 491,
+    "Title": "Bug in @Include() ?"
+  },
+  {
+    "Id": 492,
+    "Title": "Razor.Parse does not detect template file change"
+  },
+  {
+    "Id": 493,
+    "Title": "Razor in Asp net site"
+  },
+  {
+    "Id": 501,
+    "Title": "Error when attempting to parse in F#"
+  },
+  {
+    "Id": 510,
+    "Title": "Threadpool"
+  },
+  {
+    "Id": 532,
+    "Title": "An assembly with the same simple name  has already been imported"
+  },
+  {
+    "Id": 535,
+    "Title": "Needs better error reporting when there are compilation errors"
+  },
+  {
+    "Id": 559,
+    "Title": "MVC4 Razor ending a section early from JS }"
+  },
+  {
+    "Id": 591,
+    "Title": ".NET 4.5 / MVC4 compatibility. Method not found exception"
+  },
+  {
+    "Id": 597,
+    "Title": "TemplateBase._Layout"
+  },
+  {
+    "Id": 706,
+    "Title": "Error with dynamically loaded assembly"
+  },
+  {
+    "Id": 713,
+    "Title": "The type or namespace name 'RazorEngine' could not be found"
+  },
+  {
+    "Id": 721,
+    "Title": "Razor and JavaScript parsing issue"
+  },
+  {
+    "Id": 742,
+    "Title": "Does not contain a definition for 'First'"
+  },
+  {
+    "Id": 745,
+    "Title": "Caching templates like ASP MVC VIews"
+  },
+  {
+    "Id": 850,
+    "Title": "Error when using a base template in the global namespace"
+  },
+  {
+    "Id": 910,
+    "Title": "RazorEngine and specials characters"
+  },
+  {
+    "Id": 1023,
+    "Title": "Exception of type 'System.OutOfMemoryException' was thrown"
+  },
+  {
+    "Id": 1030,
+    "Title": "Method not found: 'System.Web.Razor.GeneratorResults System.Web.Razor.RazorTemplateEngine.GenerateCode(System.IO.TextReader)'"
+  },
+  {
+    "Id": 1110,
+    "Title": "Inheritance security rules violated by type: 'System.Web.WebPages.Razor.WebPageRazorHost'. Derived types must either match the security accessibility of the base type or be less accessible."
+  },
+  {
+    "Id": 1193,
+    "Title": "(Bug) HtmlHelper Not Working"
+  },
+  {
+    "Id": 1194,
+    "Title": "(Bug) MvcWebRazorHostFactory not executing"
+  },
+  {
+    "Id": 1195,
+    "Title": "(bug) Everything gets encoded"
+  },
+  {
+    "Id": 1204,
+    "Title": "RazorEngine.Parse fails with large base64 encoded images"
+  },
+  {
+    "Id": 1211,
+    "Title": "Error parsing razor when text is preceded by \"<\""
+  },
+  {
+    "Id": 1268,
+    "Title": "in WCF Service using RazorEngin"
+  },
+  {
+    "Id": 1270,
+    "Title": "RazorEngine.Razor.Parse cached"
+  },
+  {
+    "Id": 1292,
+    "Title": "@Model not recognized when there is no space"
+  },
+  {
+    "Id": 1293,
+    "Title": "Incorrect Caching behaviour for the layout"
+  },
+  {
+    "Id": 1304,
+    "Title": "utf8 symbols issue"
+  },
+  {
+    "Id": 1306,
+    "Title": "RazorEngine.Templating.TemplateCompilationException"
+  },
+  {
+    "Id": 1349,
+    "Title": "Issues with temporary dll files in 3.6.1"
+  },
+  {
+    "Id": 1358,
+    "Title": "Package Published in Debug mode"
+  },
+  {
+    "Id": 1360,
+    "Title": "Doesn't Play Well With Umbraco 7"
+  }
+]

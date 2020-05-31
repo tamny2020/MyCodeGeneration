@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "558615",
+    "ThreadId": "244121",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>How I can to set the master page using the Razor Parse method?</p>\r\n",
+    "PostedDate": "2011-02-01T04:46:04.53-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558676",
+    "ThreadId": "244121",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>RazorEngine does not currently support template layouts, but will do in future releases. Don't be confused with our RazorEngine project and ASP.NET MVC/WebPages &#43; Razor. They are different things.<span style=\"white-space:pre\">\r\n</span></p>\r\n<p><span style=\"white-space:pre\"><br>\r\n</span></p>\r\n",
+    "PostedDate": "2011-02-01T06:39:44.58-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558681",
+    "ThreadId": "244121",
+    "Html": "\r\n<p>So the solution is to write the content of the layout within the body template.</p>\r\n",
+    "PostedDate": "2011-02-01T06:44:38.323-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "558769",
+    "ThreadId": "244121",
+    "Html": "\r\n<p>As of v2 (current release is v2.1) we do support @Include which allows you to include subtemplates in the main template. &nbsp;I'm currently looking at how to implement master templates in RazorEngine.\r\n</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">string</span> template1 = <span style=\"color:#a31515\">&quot;Hello @Model!&quot;</span>;\r\nRazor.CompileWithAnonymous(template1, <span style=\"color:#a31515\">&quot;template1&quot;</span>);\r\n\r\n<span style=\"color:blue\">string</span> template2 = <span style=\"color:#a31515\">&quot;@Include(\\&quot;template1\\&quot;, @Model.Name) Welcome to Razor&quot;</span>;\r\n<span style=\"color:blue\">string</span> result = Razor.Parse(template2, <span style=\"color:blue\">new</span> { Name = <span style=\"color:#a31515\">&quot;World&quot;</span> });\r\n</pre>\r\n<pre><br></pre>\r\n</div>\r\n<p></p>\r\n",
+    "PostedDate": "2011-02-01T08:50:02.557-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

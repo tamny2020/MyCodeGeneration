@@ -1,0 +1,13 @@
+Index: Razor Templating Engine/RazorEngine.Core/Compilation/RazorCompiler.cs
+===================================================================
+--- Razor Templating Engine/RazorEngine.Core/Compilation/RazorCompiler.cs	(revision 2607)
++++ Razor Templating Engine/RazorEngine.Core/Compilation/RazorCompiler.cs	(working copy)
+@@ -271,7 +271,7 @@
+         /// <param name="visitor">The parser visitor.</param>
+         private static void ParseTemplate(string template, RazorParser parser, ParserVisitor visitor)
+         {
+-            using (var reader = new StreamReader(new MemoryStream(Encoding.ASCII.GetBytes(template))))
++            using (var reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(template))))
+             {
+                 parser.Parse(reader, visitor);
+             }

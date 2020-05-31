@@ -1,0 +1,125 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I've started getting this in my web application that makes use of RazorEngine.  It started after an update in which I copied in some new DLLs.  It's not always the same DLL it's failing on - sometimes it's one of my library DLLs and sometimes it's the web app's DLL.  There are not multiple copies of the DLLs.  The template has previously been parsed and compiled (prior to the app restart from updating the /bin folder).  Do the cached copies of the compiled templates get persisted somewhere that would cause problems when an app restart occurs?\n \nError Parsing Template: RazorEngine.Templating.TemplateCompilationException: Unable to compile template. An assembly with the same simple name 'MyAssembly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null has already been imported. Try removing one of the references or sign them to enable side-by-side. Other compilation errors may have occurred. Check the Errors property for more information. at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Compilation\\DirectCompilerServiceBase.cs:line 106 at RazorEngine.Templating.TemplateService.CreateTemplateType(String razorTemplate, Type modelType) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 287 at RazorEngine.Templating.TemplateService.GetTemplate[T](String razorTemplate, T model, String name) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 459 at RazorEngine.Templating.TemplateService.Parse[T](String razorTemplate, T model, String name) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 628",
+    "LastUpdatedDate": "2014-01-29T17:02:51.833-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-11-02T06:45:47.803-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "An assembly with the same simple name  has already been imported",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 7,
+    "Id": 532
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Still getting this error a week later...",
+      "PostedDate": "2011-11-09T06:06:29.303-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Here's the latest stacktrace - somehow the template is trying to import every file in my /bin folder, it looks like, in alphabetical order:\r\nSystem.ApplicationException: Error Parsing Template: RazorEngine.Templating.TemplateCompilationException: Unable to compile template. An assembly with the same identity 'AutoMapper, Version=1.1.0.188, Culture=neutral, PublicKeyToken=be96cd2c38ef1005' has already been imported. Try removing one of the duplicate references. Other compilation errors may have occurred. Check the Errors property for more information. at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Compilation\\DirectCompilerServiceBase.cs:line 106 at RazorEngine.Templating.TemplateService.CreateTemplateType(String razorTemplate, Type modelType) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 287 at RazorEngine.Templating.TemplateService.GetTemplate[T](String razorTemplate, T model, String name) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 459 at RazorEngine.Templating.TemplateService.Parse[T](String razorTemplate, T model, String name) in C:\\Dev\\RazorEngine\\src\\Core\\RazorEngine.Core\\Templating\\TemplateService.cs:line 628 at MailQueue.Infrastructure.Impl.RazorTemplateParser.Parse[T](String template, T model, String name) in C:\\Dev\\_Work\\_Mailer\\apps.LakeQuincy.com\\src\\Infrastructure\\Impl\\RazorTemplateParser.cs:line 28\r\nerror CS1703: An assembly with the same identity 'AutoMapper, Version=1.1.0.188, Culture=neutral, PublicKeyToken=be96cd2c38ef1005' has already been imported. Try removing one of the duplicate references.\r\nerror CS1703: An assembly with the same identity 'Argotic.Extensions, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' has already been imported. Try removing one of the duplicate references.\r\nerror CS1703: An assembly with the same identity 'Argotic.Common, Version=2008.0.2.0, Culture=neutral, PublicKeyToken=84b2ce808fb02469' has already been imported. Try removing one of the duplicate references. ",
+      "PostedDate": "2011-11-09T06:17:07.61-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "You're still getting this error a week later because I haven't look at it yet.\r\n\r\nv3 is nearing beta stage, and will be hopefully pushed out later this week, but we're no longer pushing changes to CodePlex, they are being pushed to Github (https://github.com/Antaris/RazorEngine)",
+      "PostedDate": "2011-11-10T05:55:37.353-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Sorry, didn't mean to sound demanding, was just noting that it was still an issue.  I got the latest from GitHub yesterday, built locally, fixed a couple of minor API changes that affected my code, and redeployed.  The issue did not recur.  I don't know that it's totally gone, but at least for now it's not impacting me.  Glad to hear v3 is coming soon!",
+      "PostedDate": "2011-11-10T07:11:39.487-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "This issue should be resolved with v3. We're performing a .Distinct() on the assembly references before compiling the template. References are aggregated two ways:\r\n\r\n1. We get all the assemblies in the current AppDomain that aren't dynamic.\r\n2. A CompilerService can provide a separate set of assemblies that must be referenced (e.g. the CSharpDirectCompilerService references the Microsoft.CSharp lib for dynamic support).\r\n\r\nWe combine these and compare using Upper case to ensure that no duplicate assemblies are loaded.",
+      "PostedDate": "2011-11-11T08:28:34.87-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-01-17T03:49:10.843-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "What is the status of this issue? I keep getting this error too.",
+      "PostedDate": "2012-01-17T03:50:14.323-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "P.S.: I use v3.0.7",
+      "PostedDate": "2012-01-17T03:52:27.57-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-02-21T07:49:40.41-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "using v3.0.7 still getting error....  this time its when running in a resharper unit test session.. its trying to load the same nunit framework dll more than once. ",
+      "PostedDate": "2012-02-21T07:55:57.493-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "I have this error as well :(",
+      "PostedDate": "2012-04-06T05:39:48.813-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-04-12T01:06:11.24-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-10-23T04:09:27.38-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-10-31T11:51:16.403-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.553-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Is this resolved? I am having the same issue.",
+      "PostedDate": "2013-07-15T14:48:32.883-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2014-01-29T17:02:51.833-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I'm trying to do the following:\n\nstring template = \"Hello@Model.Name\";  \nstring result = Razor.Parse(template, new {  Name = \"World\" });\n\nI expect to get the following result: HelloWorld, instead I get Hello@Model.Name\n@Model.Name is not recognized.\n\nIs there a way to do this?",
+    "LastUpdatedDate": "2015-04-24T12:33:40.53-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-10-08T03:16:34.563-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "@Model not recognized when there is no space",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1292
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Try string template = \"Hello@(Model.Name)\";",
+      "PostedDate": "2015-04-24T12:33:40.53-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

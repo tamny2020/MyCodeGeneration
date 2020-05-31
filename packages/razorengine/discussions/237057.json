@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "530755",
+    "ThreadId": "237057",
+    "Html": "\r\n<p>I'm trying to use the RazorEngine in a medium trust environment but it's throwing the following exception:</p>\r\n<p>System.Security.SecurityException: Request failed. at RazorEngine.Compilation.RazorCompiler.CompileTemplate(String className, String template, Type modelType) at RazorEngine.Compilation.RazorCompiler.CreateTemplate(String template, Type modelType) at RazorEngine.Templating.TemplateService.GetTemplate(String\r\n template, Type modelType, String name) at RazorEngine.Templating.TemplateService.Parse[T](String template, T model, String name) at RazorEngine.Razor.Parse[T](String template, T model, String name)</p>\r\n",
+    "PostedDate": "2010-12-03T09:22:29.003-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "531500",
+    "ThreadId": "237057",
+    "Html": "\r\n<p>Will look into it :) strikes me as strange seeing as we are essentially just doing what the ASP.NET MVC Razor ViewEngine would be doing.<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-12-05T17:15:59.413-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "531989",
+    "ThreadId": "237057",
+    "Html": "\r\n<p>It's fails on &quot;var parameters = new CompilerParameters();&quot;</p>\r\n<p><a title=\"http://msdn2.microsoft.com/en-us/library/microsoft.csharp.csharpcodeprovider.aspx\" href=\"http://msdn2.microsoft.com/en-us/library/microsoft.csharp.csharpcodeprovider.aspx\">http://msdn2.microsoft.com/en-us/library/microsoft.csharp.csharpcodeprovider.aspx</a></p>\r\n<p>This class contains a link demand and an inheritance demand at the class level that applies to all members. A\r\n<a href=\"http://msdn2.microsoft.com/en-us/library/yx0zh807.aspx\">SecurityException</a> is thrown when either the immediate caller or the derived class does not have full-trust permission. For details about security demands, see\r\n<a href=\"http://msdn2.microsoft.com/en-us/library/hzsc022c.aspx\">Link Demands</a> and\r\n<a href=\"http://msdn2.microsoft.com/en-us/library/x4yx82e6.aspx\">Inheritance Demands</a>.</p>\r\n<p>I have no clue how Razor can get around this and we can't.</p>\r\n",
+    "PostedDate": "2010-12-06T14:37:24.027-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "535169",
+    "ThreadId": "237057",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>Just to let you know that this is still on the cards to be resolved, I just haven't had a lot of time as of late. &nbsp;Hopefully we'll be able to address it in the coming weeks.<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-12-13T12:31:36.207-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "535185",
+    "ThreadId": "237057",
+    "Html": "\r\n<p>That would be great, thanks for the update</p>\r\n",
+    "PostedDate": "2010-12-13T13:08:48-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

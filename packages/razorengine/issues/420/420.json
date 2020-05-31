@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-15T04:18:33.523-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have Holder<T> as the class for the model, but it won't compile, keeps complaining about < and > in class definition.",
+    "LastUpdatedDate": "2013-05-16T04:38:18.017-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-20T13:22:08.14-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Cannot use Generic Class as Model",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 420
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This works for me.\r\n\r\n    public class B<T> : TemplateBase<T>\r\n    {\r\n        public String TEST\r\n        {\r\n            get { return \"HELLO WORLD\"; }\r\n        }\r\n    }\r\n    public class Program\r\n    {\r\n        public static void Main(String[] args)\r\n        {\r\n            Razor.SetTemplateBase(typeof (B<>));\r\n            A data = new A();\r\n\r\n            var template = DefaultTemplate.GetResource();\r\n            Razor.Parse(template, data, \"template\");\r\n            Razor.Run(\"template\");\r\n        }\r\n    }\r\n\r\nGetResource returns a string from an embedded file in this example.\r\n\r\n\r\n@Test\r\n\r\n",
+      "PostedDate": "2011-08-13T23:07:28.44-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Ok, I think I misread what you said. This should serve as a good example for anyone looking to use a custom baseclass<T>",
+      "PostedDate": "2011-08-13T23:10:32.017-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "When we are defining the base type, we need the open generic type, not the closed generic type, e.g. typeof(B<>) not typeof(B<T>).  I'll update the documentation at some point to advice this.  This may be changing in v3.",
+      "PostedDate": "2011-08-15T04:18:26.303-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-15T04:18:33.523-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:02.553-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:18.017-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

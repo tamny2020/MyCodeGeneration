@@ -1,0 +1,627 @@
+[
+  {
+    "Id": "234548",
+    "Title": "Unit Testing",
+    "LatestDate": "2010-11-13T01:27:44.243-08:00"
+  },
+  {
+    "Id": "235751",
+    "Title": "Error trying out the sample code",
+    "LatestDate": "2010-12-25T00:22:52.257-08:00"
+  },
+  {
+    "Id": "235959",
+    "Title": "Change to Releases",
+    "LatestDate": "2010-11-25T05:20:42.97-08:00"
+  },
+  {
+    "Id": "236067",
+    "Title": "Using Razor in Parallel",
+    "LatestDate": "2010-11-26T00:44:14.917-08:00"
+  },
+  {
+    "Id": "237057",
+    "Title": "Doesn't work in Medium Trust",
+    "LatestDate": "2010-12-13T13:08:48-08:00"
+  },
+  {
+    "Id": "237581",
+    "Title": "Compiling Templates",
+    "LatestDate": "2010-12-08T13:49:59.5-08:00"
+  },
+  {
+    "Id": "238110",
+    "Title": "Generating OpenXml documents",
+    "LatestDate": "2010-12-15T10:29:42.633-08:00"
+  },
+  {
+    "Id": "239281",
+    "Title": "Does not run correctly in VB.net",
+    "LatestDate": "2010-12-25T13:37:01.89-08:00"
+  },
+  {
+    "Id": "239799",
+    "Title": "Including System Namespace by Default",
+    "LatestDate": "2010-12-29T02:15:28.36-08:00"
+  },
+  {
+    "Id": "239852",
+    "Title": "Version 1.2, NuGet",
+    "LatestDate": "2010-12-29T13:25:00.897-08:00"
+  },
+  {
+    "Id": "241161",
+    "Title": "@model Type support for .cshtml",
+    "LatestDate": "2011-04-06T07:17:54.34-07:00"
+  },
+  {
+    "Id": "242409",
+    "Title": "Inline Helper Example",
+    "LatestDate": "2011-01-21T14:04:20.763-08:00"
+  },
+  {
+    "Id": "242597",
+    "Title": "Razor RTW?",
+    "LatestDate": "2011-01-20T07:48:59.357-08:00"
+  },
+  {
+    "Id": "242605",
+    "Title": "TemplateCompilationException thrown when using anonymous types with version 2.0",
+    "LatestDate": "2011-05-06T01:14:51.053-07:00"
+  },
+  {
+    "Id": "242805",
+    "Title": "ExpandoObject Support",
+    "LatestDate": "2011-01-21T16:06:56.077-08:00"
+  },
+  {
+    "Id": "243580",
+    "Title": "Sandbox support",
+    "LatestDate": "2011-01-28T10:33:21.543-08:00"
+  },
+  {
+    "Id": "244121",
+    "Title": "masterpage",
+    "LatestDate": "2011-02-01T08:50:02.557-08:00"
+  },
+  {
+    "Id": "244527",
+    "Title": "Re-compiling of existing templates",
+    "LatestDate": "2011-10-12T09:47:17.783-07:00"
+  },
+  {
+    "Id": "244831",
+    "Title": "RazorEngine.Configuration",
+    "LatestDate": "2011-02-11T04:08:52.193-08:00"
+  },
+  {
+    "Id": "245169",
+    "Title": "Why?",
+    "LatestDate": "2011-02-21T13:12:53.817-08:00"
+  },
+  {
+    "Id": "245401",
+    "Title": "What would you like to see?",
+    "LatestDate": "2011-04-27T03:45:02.557-07:00"
+  },
+  {
+    "Id": "245523",
+    "Title": "HtmlTemplateBase",
+    "LatestDate": "2015-12-26T01:39:21.597-08:00"
+  },
+  {
+    "Id": "245873",
+    "Title": "Error line numbers",
+    "LatestDate": "2012-05-02T13:31:43.413-07:00"
+  },
+  {
+    "Id": "246692",
+    "Title": "need hook between GetTemplate() and instance.Execute()",
+    "LatestDate": "2011-02-21T10:46:22.537-08:00"
+  },
+  {
+    "Id": "246851",
+    "Title": "Error on QuickStart Sample Code - Method Not Found...",
+    "LatestDate": "2011-03-07T02:26:57.4-08:00"
+  },
+  {
+    "Id": "247062",
+    "Title": "Enhancements ideas",
+    "LatestDate": "2011-02-23T14:49:03.473-08:00"
+  },
+  {
+    "Id": "247067",
+    "Title": "Testing web compiler service",
+    "LatestDate": "2011-02-26T23:35:51.55-08:00"
+  },
+  {
+    "Id": "247706",
+    "Title": "Classes in template",
+    "LatestDate": "2011-02-27T09:01:02.957-08:00"
+  },
+  {
+    "Id": "247777",
+    "Title": "namespaces not working",
+    "LatestDate": "2011-03-02T13:30:09.263-08:00"
+  },
+  {
+    "Id": "247778",
+    "Title": "What are the restrictions on using DynamicObjects?",
+    "LatestDate": "2011-03-07T01:00:10.857-08:00"
+  },
+  {
+    "Id": "248040",
+    "Title": "Access to template generated source code",
+    "LatestDate": "2011-03-03T13:43:29.56-08:00"
+  },
+  {
+    "Id": "248337",
+    "Title": "Url.Content( doesn't work.  ",
+    "LatestDate": "2011-06-20T17:23:51.83-07:00"
+  },
+  {
+    "Id": "248593",
+    "Title": "The very first sample does not work",
+    "LatestDate": "2011-07-20T02:33:14.74-07:00"
+  },
+  {
+    "Id": "248703",
+    "Title": "Does a foreach loop work?",
+    "LatestDate": "2011-03-07T10:41:32.75-08:00"
+  },
+  {
+    "Id": "248952",
+    "Title": "dynamic collection",
+    "LatestDate": "2011-03-09T13:39:33.467-08:00"
+  },
+  {
+    "Id": "250006",
+    "Title": "RazorVirtualPathProvider issue",
+    "LatestDate": "2011-03-17T07:15:32.577-07:00"
+  },
+  {
+    "Id": "252776",
+    "Title": "Why is the Razor class static?",
+    "LatestDate": "2011-04-06T10:10:18.077-07:00"
+  },
+  {
+    "Id": "252903",
+    "Title": "Performance question",
+    "LatestDate": "2011-04-08T00:20:59.11-07:00"
+  },
+  {
+    "Id": "254383",
+    "Title": "What, out there, is using the Razor Engine?",
+    "LatestDate": "2011-04-18T11:10:28.167-07:00"
+  },
+  {
+    "Id": "254991",
+    "Title": "In asp.net with forms authentication",
+    "LatestDate": "2011-04-25T10:33:57.493-07:00"
+  },
+  {
+    "Id": "255238",
+    "Title": "Need help with very simple implementation",
+    "LatestDate": "2011-04-28T08:51:12.13-07:00"
+  },
+  {
+    "Id": "255474",
+    "Title": "@import directive for helpers",
+    "LatestDate": "2015-01-03T18:54:53.867-08:00"
+  },
+  {
+    "Id": "255680",
+    "Title": "Include debug and #line directive for compilation errors?",
+    "LatestDate": "2011-04-29T12:50:49.307-07:00"
+  },
+  {
+    "Id": "255756",
+    "Title": "Which is the right syntax?",
+    "LatestDate": "2011-05-02T08:06:28.323-07:00"
+  },
+  {
+    "Id": "257441",
+    "Title": "Caching @Include Model data.",
+    "LatestDate": "2011-10-31T05:46:24.663-07:00"
+  },
+  {
+    "Id": "257918",
+    "Title": "Using files as templates",
+    "LatestDate": "2011-05-17T07:15:56.78-07:00"
+  },
+  {
+    "Id": "258980",
+    "Title": "Duplicate Assemblies at Dynamic Compile Time",
+    "LatestDate": "2011-05-25T09:24:36.81-07:00"
+  },
+  {
+    "Id": "259688",
+    "Title": "How to get Intellisense in your templates",
+    "LatestDate": "2011-08-13T23:59:13.297-07:00"
+  },
+  {
+    "Id": "261953",
+    "Title": "How to implement LayoutPage?",
+    "LatestDate": "2011-06-19T16:39:14.493-07:00"
+  },
+  {
+    "Id": "261960",
+    "Title": "Sections are not supported in this code generation environment?",
+    "LatestDate": "2012-03-06T10:15:46.03-08:00"
+  },
+  {
+    "Id": "262788",
+    "Title": "Disabling .cshtml extension",
+    "LatestDate": "2011-06-27T07:04:15.1-07:00"
+  },
+  {
+    "Id": "263420",
+    "Title": "Unable to compile template",
+    "LatestDate": "2011-07-06T11:45:43.317-07:00"
+  },
+  {
+    "Id": "263903",
+    "Title": "How to set new line in RazorEngine",
+    "LatestDate": "2011-07-06T11:43:58.457-07:00"
+  },
+  {
+    "Id": "264585",
+    "Title": "why not to add TryParse method",
+    "LatestDate": "2011-07-14T14:38:19.127-07:00"
+  },
+  {
+    "Id": "266556",
+    "Title": "Omitting @Model",
+    "LatestDate": "2011-07-26T18:52:46.19-07:00"
+  },
+  {
+    "Id": "267227",
+    "Title": "Failing to Load Assembly",
+    "LatestDate": "2011-08-01T00:34:53.117-07:00"
+  },
+  {
+    "Id": "267436",
+    "Title": "Compilation errors, when you use CustomTemplateBase.",
+    "LatestDate": "2011-08-02T05:31:28.227-07:00"
+  },
+  {
+    "Id": "267728",
+    "Title": "Debugging information and avoiding errors",
+    "LatestDate": "2011-08-04T06:16:55.65-07:00"
+  },
+  {
+    "Id": "268273",
+    "Title": "Compile to dll",
+    "LatestDate": "2011-08-08T15:41:09.293-07:00"
+  },
+  {
+    "Id": "268288",
+    "Title": "Loading another assemblies",
+    "LatestDate": "2011-08-08T15:06:10.927-07:00"
+  },
+  {
+    "Id": "268322",
+    "Title": "Determine whether a precompiled template exists in the cache",
+    "LatestDate": "2011-08-09T00:09:56.46-07:00"
+  },
+  {
+    "Id": "268466",
+    "Title": "Any way to use the Visual Studio Razor Editor with csrzr files?",
+    "LatestDate": "2011-08-09T18:27:10.913-07:00"
+  },
+  {
+    "Id": "269000",
+    "Title": "Problem with javascript",
+    "LatestDate": "2011-08-13T16:10:27.493-07:00"
+  },
+  {
+    "Id": "270474",
+    "Title": "ArgumentNullException when using Assembly.LoadFrom",
+    "LatestDate": "2013-02-28T03:46:38.017-08:00"
+  },
+  {
+    "Id": "270651",
+    "Title": "Razor in asp net site ",
+    "LatestDate": "2011-08-27T17:19:48.81-07:00"
+  },
+  {
+    "Id": "273600",
+    "Title": "Removing/Updating compiled templates + anonymous types",
+    "LatestDate": "2011-09-27T01:58:56.313-07:00"
+  },
+  {
+    "Id": "273964",
+    "Title": "Problem compiling using RazorEngine in asp.net site",
+    "LatestDate": "2011-09-27T04:01:40.083-07:00"
+  },
+  {
+    "Id": "275680",
+    "Title": "@using declaration no longer working.",
+    "LatestDate": "2011-10-12T19:21:34.737-07:00"
+  },
+  {
+    "Id": "276092",
+    "Title": "Are nested templates supported?",
+    "LatestDate": "2011-10-31T05:48:10.327-07:00"
+  },
+  {
+    "Id": "277977",
+    "Title": "Thread Safety",
+    "LatestDate": "2011-11-07T02:32:06.24-08:00"
+  },
+  {
+    "Id": "278266",
+    "Title": "System.Dynamic.DynamicObject does not contain a definition for 'PropertyName'.",
+    "LatestDate": "2011-11-03T13:26:10.403-07:00"
+  },
+  {
+    "Id": "282328",
+    "Title": "Error when using Razor.Parse",
+    "LatestDate": "2011-12-16T02:12:13.153-08:00"
+  },
+  {
+    "Id": "282488",
+    "Title": "EF Entities - Does not exist in current context",
+    "LatestDate": "2011-12-16T05:45:03.487-08:00"
+  },
+  {
+    "Id": "283384",
+    "Title": "Small coding tip needed with RazorEngine",
+    "LatestDate": "2011-12-20T17:59:17.167-08:00"
+  },
+  {
+    "Id": "283387",
+    "Title": "Is it possible to prohibit use of the directives @using, @model, @inherits etc?",
+    "LatestDate": "2011-12-18T13:32:02.393-08:00"
+  },
+  {
+    "Id": "285013",
+    "Title": "The type initializer for 'RazorEngine.Razor' threw an exception.",
+    "LatestDate": "2012-01-09T15:14:49.737-08:00"
+  },
+  {
+    "Id": "285376",
+    "Title": "Can I \"Escape\" C# Keywords?",
+    "LatestDate": "2012-01-08T18:40:33.777-08:00"
+  },
+  {
+    "Id": "285937",
+    "Title": "Razor.SetTemplateBase Missing",
+    "LatestDate": "2012-02-01T08:13:37.547-08:00"
+  },
+  {
+    "Id": "287358",
+    "Title": "Passing a dynamic object without a property that template is expecting gives the following error : 'System.Dynamic.DynamicObject' does not contain a ",
+    "LatestDate": "2012-02-01T08:08:25.83-08:00"
+  },
+  {
+    "Id": "291011",
+    "Title": "Disregard this thread",
+    "LatestDate": "2012-02-03T15:42:31.417-08:00"
+  },
+  {
+    "Id": "335528",
+    "Title": "MVC3: The model or inherits keywords can only appear once.",
+    "LatestDate": "2012-02-21T02:37:55.437-08:00"
+  },
+  {
+    "Id": "347829",
+    "Title": "Object '/xxxx/xxxx.rem' has been disconnected or does not exist at the server.  ",
+    "LatestDate": "2012-03-08T06:44:21.08-08:00"
+  },
+  {
+    "Id": "349182",
+    "Title": "Is RazorEngine thread safe?",
+    "LatestDate": "2012-08-09T23:44:20.977-07:00"
+  },
+  {
+    "Id": "349883",
+    "Title": "Is razorengine still active?",
+    "LatestDate": "2012-03-24T10:37:41.58-07:00"
+  },
+  {
+    "Id": "351274",
+    "Title": "webgrid helper and razor parse",
+    "LatestDate": "2012-04-05T01:46:55.693-07:00"
+  },
+  {
+    "Id": "351455",
+    "Title": "Error with dynamically loaded assembly",
+    "LatestDate": "2012-04-06T07:44:59.027-07:00"
+  },
+  {
+    "Id": "354603",
+    "Title": "HTML Problems",
+    "LatestDate": "2012-06-27T03:33:47.6-07:00"
+  },
+  {
+    "Id": "355682",
+    "Title": "SerializationException: Type 'RazorEngine.Templating.ExecuteContext' is not marked as serializable.",
+    "LatestDate": "2016-01-26T04:21:55.863-08:00"
+  },
+  {
+    "Id": "355687",
+    "Title": "Run templates in sandbox with minimal trust",
+    "LatestDate": "2012-05-14T05:31:16.227-07:00"
+  },
+  {
+    "Id": "357949",
+    "Title": "System.OutOfMemoryException from Razor.Parse(...)",
+    "LatestDate": "2012-06-01T01:25:11.073-07:00"
+  },
+  {
+    "Id": "362581",
+    "Title": "Timing for next Nuget Release",
+    "LatestDate": "2012-08-08T09:41:57.57-07:00"
+  },
+  {
+    "Id": "362787",
+    "Title": "NuGet package includes System.Web.Razor.dll",
+    "LatestDate": "2012-08-08T09:39:19.777-07:00"
+  },
+  {
+    "Id": "388888",
+    "Title": "HTML Parser Issues",
+    "LatestDate": "2012-08-09T01:32:20.533-07:00"
+  },
+  {
+    "Id": "390594",
+    "Title": "expression builders",
+    "LatestDate": "2012-08-07T08:03:48.18-07:00"
+  },
+  {
+    "Id": "392447",
+    "Title": "Why is the generic argument needed on Parse<T>?",
+    "LatestDate": "2012-08-21T03:03:13.197-07:00"
+  },
+  {
+    "Id": "392502",
+    "Title": "Compile Error warning CS1685:",
+    "LatestDate": "2012-08-21T10:24:17.387-07:00"
+  },
+  {
+    "Id": "392560",
+    "Title": "Load the RazorTemplate from Database",
+    "LatestDate": "2012-08-21T23:44:37.237-07:00"
+  },
+  {
+    "Id": "395619",
+    "Title": "Load View to RazorEngine",
+    "LatestDate": "2012-09-14T18:12:00.293-07:00"
+  },
+  {
+    "Id": "397190",
+    "Title": "Is there any way to list leftover substitution placeholders?",
+    "LatestDate": "2012-10-03T03:30:29.37-07:00"
+  },
+  {
+    "Id": "397321",
+    "Title": "strongly typed views?",
+    "LatestDate": "2012-10-03T07:37:27.26-07:00"
+  },
+  {
+    "Id": "397716",
+    "Title": "Documentation? Reference? Wiki?",
+    "LatestDate": "2012-10-03T03:23:24.747-07:00"
+  },
+  {
+    "Id": "399363",
+    "Title": "Usage of BaseTemplateType",
+    "LatestDate": "2012-10-15T02:32:45.437-07:00"
+  },
+  {
+    "Id": "406301",
+    "Title": "foreach with a single item",
+    "LatestDate": "2012-12-10T12:38:21.5-08:00"
+  },
+  {
+    "Id": "428452",
+    "Title": "Are there any plans to release this for System.Web.Razor Version 2.0.0.0",
+    "LatestDate": "2013-01-03T20:28:09.543-08:00"
+  },
+  {
+    "Id": "431620",
+    "Title": "RazorEngine and shared @helpers",
+    "LatestDate": "2013-01-31T18:27:01.16-08:00"
+  },
+  {
+    "Id": "433799",
+    "Title": "Do I have to use dynamic models?",
+    "LatestDate": "2013-07-02T04:55:20.647-07:00"
+  },
+  {
+    "Id": "436068",
+    "Title": "Performance Issue when using RazorEngine.Razor.SetTemplateService",
+    "LatestDate": "2013-03-11T05:25:44.38-07:00"
+  },
+  {
+    "Id": "439936",
+    "Title": "'object' does not contain a definition for 'Header'",
+    "LatestDate": "2013-09-16T06:38:20.48-07:00"
+  },
+  {
+    "Id": "449998",
+    "Title": "Shared / Common templates using RazorEngine library",
+    "LatestDate": "2013-07-15T01:00:01.357-07:00"
+  },
+  {
+    "Id": "470902",
+    "Title": "Recursive helper",
+    "LatestDate": "2013-11-23T02:11:21.927-08:00"
+  },
+  {
+    "Id": "474422",
+    "Title": "The name 'Html' does  not exist in current context.",
+    "LatestDate": "2013-12-18T08:10:43.373-08:00"
+  },
+  {
+    "Id": "479370",
+    "Title": "VS debugging of cshtml files",
+    "LatestDate": "2014-01-02T14:54:21.823-08:00"
+  },
+  {
+    "Id": "483799",
+    "Title": "really battling to compile a template with a custom model.",
+    "LatestDate": "2015-12-23T18:52:13.46-08:00"
+  },
+  {
+    "Id": "535192",
+    "Title": "Print and/or modify the c# version that the razor compiler service uses to compile cshtml",
+    "LatestDate": "2014-02-25T00:33:15.967-08:00"
+  },
+  {
+    "Id": "542559",
+    "Title": "Compiling RazorEngine views at build time",
+    "LatestDate": "2014-04-17T11:55:40.09-07:00"
+  },
+  {
+    "Id": "543577",
+    "Title": "Is it possible to avoid having to recompile the template after the application restarts? ",
+    "LatestDate": "2014-04-28T05:03:06.543-07:00"
+  },
+  {
+    "Id": "545549",
+    "Title": "RazorEngine.Razor.Parse clear cache",
+    "LatestDate": "2014-05-16T05:57:29.637-07:00"
+  },
+  {
+    "Id": "545902",
+    "Title": "Web.config error, templateServices: Unrecognized element 'add'",
+    "LatestDate": "2014-05-19T21:13:10.667-07:00"
+  },
+  {
+    "Id": "549562",
+    "Title": "razorengine not recognizing @Code content",
+    "LatestDate": "2014-06-24T11:46:07.22-07:00"
+  },
+  {
+    "Id": "571693",
+    "Title": "Unable to compile template. The name 'Url' does not exist in the current context",
+    "LatestDate": "2014-11-10T06:21:34.567-08:00"
+  },
+  {
+    "Id": "595062",
+    "Title": "Cannot debug template - when using @helper DoSmth(){}",
+    "LatestDate": "2015-03-22T16:32:17.403-07:00"
+  },
+  {
+    "Id": "649221",
+    "Title": "@Html.TextBoxFor(m => m.Name) is not working in razorengine",
+    "LatestDate": "2015-12-23T18:23:37.783-08:00"
+  },
+  {
+    "Id": "649313",
+    "Title": "Razor.Parse(template, model); is not working",
+    "LatestDate": "2015-12-26T01:36:28.283-08:00"
+  },
+  {
+    "Id": "649915",
+    "Title": "Converting old RazorEngine to version 3",
+    "LatestDate": "2016-01-12T03:37:42.083-08:00"
+  },
+  {
+    "Id": "658677",
+    "Title": "Binding Error with _@ character combination.",
+    "LatestDate": "2016-10-12T07:03:25.21-07:00"
+  }
+]

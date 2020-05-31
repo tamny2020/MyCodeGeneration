@@ -1,0 +1,101 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "User environment issue.",
+    "ClosedDate": "2011-02-09T14:27:51.59-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Installed RazorEngine via NuGet.  Attempted code:\n \nclass Program\n    {\n        static void Main(string[] args)\n        {\n            string template = \"Hello @Model.Name! Welcome to Razor!\";\n            string result = Razor.Parse(template, new Temp { Name = \"World\" });\n \n            Console.WriteLine(result);\n        }\n    }\n \n    public class Temp\n    {\n        public string Name { get; set; }\n    }\n \nGot Exception:\n \nUnhandled Exception: System.MissingMethodException: Method not found: 'System.Web.Razor.GeneratorResults System.Web.Razor.RazorTemplateEngine.Generate\nCode(System.IO.TextReader)'.\n   at RazorEngine.Compilation.CompilerServiceBase.GetCodeCompileUnit(String className, String template, ISet`1 namespaceImports, Type templateType, Ty\npe modelType)\n   at RazorEngine.Compilation.DirectCompilerServiceBase.Compile(TypeContext context)\n   at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context)\n   at RazorEngine.Templating.TemplateService.CreateTemplate(String template, Type modelType)\n   at RazorEngine.Templating.TemplateService.GetTemplate(String template, Type modelType, String name)\n   at RazorEngine.Templating.TemplateService.Parse[T](String template, T model, String name)\n   at RazorEngine.Razor.Parse[T](String template, T model, String name)\n   at Scratch.ConRazor.Program.Main(String[] args) in C:\\Users\\Darren\\Documents\\Visual Studio 2010\\Projects\\Scratch.ConRazor\\Scratch.ConRazor\\Program.\ncs:line 14\nPress any key to continue . . .",
+    "LastUpdatedDate": "2013-05-16T04:38:19.99-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-02-09T10:51:37.707-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "MissingMethodException in v2.1.4039.23635 (Installed via NuGet)",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 327
+  },
+  "FileAttachments": [
+    {
+      "FileId": 128,
+      "FileName": "Scratch.ConRazor.zip",
+      "DownloadUrl": ".\\128"
+    },
+    {
+      "FileId": 129,
+      "FileName": "BuildResult.jpg",
+      "DownloadUrl": ".\\129"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "Can you attach a sample project?",
+      "PostedDate": "2011-02-09T10:55:52.207-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-02-09T11:05:12.17-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "attaching project.",
+      "PostedDate": "2011-02-09T11:05:12.737-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-02-09T11:27:01.237-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Hmm, I can't seem to replicate, your example ran fine on my machine (screenshot attached). Can you double check things like you have using a .NET 4.0 (or 4.0 Client Profile) and that you haven't referenced an older version of the System.Web.Razor assembly? ",
+      "PostedDate": "2011-02-09T11:27:01.7-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "I had about 3 System.Web.Razor.dll's floating around my machine.  Uninstalled the MVC3, cleared out the other Razor DLL's then re-installed the MVC3.  Works after that.\r\n\r\nIt is not a good thing that all the System.Web.Razor.dll version numbers were the same, had to go by dates.",
+      "PostedDate": "2011-02-09T13:18:31.627-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "RazorEngine is using the RTW (release to web) version (the same one bundled with MVC3).",
+      "PostedDate": "2011-02-09T14:27:31.217-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-02-09T14:27:51.59-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:05.807-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:19.99-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

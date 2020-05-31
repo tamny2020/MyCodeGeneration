@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Today, TemplateService caches instances of the ITemplate type. This introduces a rash of problems if TemplateService is used concurrently. I believe the new [ThreadStatic] additions are attempts to solve this. This implies that instances of ITemplate should be thread-safe, which is not documented in the interface. A simpler (and probably more efficient) solution is to simply to have TemplateService create new instances of the template for each invocation. Template instantiation should be incredibly cheap, and allows for simpler implementations",
+    "LastUpdatedDate": "2013-02-21T17:17:01.863-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-06-27T10:41:47.89-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "TemplateService should cache Template types, not instances",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 449
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Hi,\r\n\r\nWe're currently rearchitecting the framework for v3, thead-safety is one of our top features. With Razor, templates that are generated (and executed ala MVC) run in the context of a single request, and therefore single thread, so concurrency has never been an issue. We need to refactor how templates are executed to essentially make them immutable to allow for thread safe execution.\r\n\r\nThe TemplateService is also being refactored to support this.",
+      "PostedDate": "2011-06-28T07:35:04.627-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:01.863-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

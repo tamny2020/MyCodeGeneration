@@ -1,0 +1,47 @@
+<div class="wikidoc">
+<h1><strong>RazorEngine has been moved to Github&nbsp;</strong></h1>
+<h1><strong><a href="http://github.com/Antaris/RazorEngine">http://github.com/Antaris/RazorEngine</a></strong></h1>
+<p><strong>Update - An early look at RazorEngine v3</strong><br>
+New blog post - <a href="http://www.fidelitydesign.net/?p=473">http://www.fidelitydesign.net/?p=473</a><br>
+<br>
+<strong>Project Description</strong><br>
+A templating engine built upon Microsoft's Razor parsing technology. The RazorEngine allows you to use Razor syntax to build robust templates. Currently we have integrated the vanilla Html &#43; Code support, but we hope to support other markup languages in future.<br>
+<br>
+Using the templating engine couldn't be easier, using a simple syntax, we can do the following:<br>
+<br>
+</p>
+<div style="color:black; background-color:white">
+<pre>  <span style="color:blue">string</span> template = <span style="color:#a31515">&quot;Hello @Model.Name! Welcome to Razor!&quot;</span>;
+  <span style="color:blue">string</span> result = Razor.Parse(template, <span style="color:blue">new</span> { Name = <span style="color:#a31515">&quot;World&quot;</span> });
+</pre>
+</div>
+<p><br>
+The templating engine supports strict and anonymous types, as well as customised base templates, for instance:<br>
+<br>
+</p>
+<div style="color:black; background-color:white">
+<pre>  Razor.SetTemplateBase(<span style="color:blue">typeof</span>(HtmlTemplateBase&lt;&gt;));
+  
+  <span style="color:blue">string</span> template = 
+  <span style="color:#a31515">@&quot;&lt;html&gt;
+      &lt;head&gt;
+        &lt;title&gt;Hello @Model.Name&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        Email: @Html.TextBoxFor(m =&gt; m.Email)
+      &lt;/body&gt;
+    &lt;/html&gt;&quot;</span>;
+    
+  <span style="color:blue">var</span> model = <span style="color:blue">new</span> PageModel { Name = <span style="color:#a31515">&quot;World&quot;</span>, Email = <span style="color:#a31515">&quot;someone@somewhere.com&quot;</span> };
+  <span style="color:blue">string</span> result = Razor.Parse(template, model);
+</pre>
+</div>
+<h2>NuGet Distribution</h2>
+<p>The Razor Templating Engine is available through Nuget (<a href="/wikipage?title=http%3a%2f%2fnuget.codeplex.com%2f&referringTitle=Home">http://nuget.codeplex.com/</a>) in Visual Studio. Simply search for RazorEngine in the package manager, or:</p>
+<pre>    Install-Package RazorEngine</pre>
+<h2>Support Us</h2>
+<p>Donations are always welcome and very appreciated :-), please <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FWWGE42V4XWUN">
+send donations via Paypal</a></p>
+<p><br>
+Hope you enjoy, feedback is welcome!</p>
+</div><div class="ClearBoth"></div>

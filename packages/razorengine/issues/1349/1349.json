@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi,\n\nWe've been using Razor for hosting a web interface for a service successfully so far, but since upgrading from 3.3.0 to 3.6.1 we've run into an issue - we get a ton of System.UnauthorizedAccessException at the end of the program when the finalizers are called. Basically Razor complains about not being able to delete files like C:\\Users\\user\\AppData\\Local\\Temp\\RazorEngine_becmcjic.mja\\CompiledRazorTemplates.Dynamic.RazorEngine_69ed0018c26e44dca13eba07dcb6bfd6.dll, this happens inf the CompilationData finalizer:\n\n>\tmscorlib.dll!System.IO.__Error.WinIOError(int errorCode, string maybeFullPath) + 0xd8 bytes\t\n \tmscorlib.dll!System.IO.File.InternalDelete(string path, bool checkHost) + 0xd6 bytes\t\n \tRazorEngine.dll!RazorEngine.Compilation.CompilationData.DeleteAll() + 0x10f bytes\t\n \tRazorEngine.dll!RazorEngine.Compilation.CompilationData.Dispose(bool disposing) + 0x3b bytes\t\n \tRazorEngine.dll!RazorEngine.Compilation.CompilationData.Finalize() + 0x3d bytes\t\n\nBefore the upgrade no such issues were present. The biggest change during the upgrade was that now we precompile all the templates before firing up the web interface:\n\n           TemplateServiceConfiguration templateConfig = new TemplateServiceConfiguration();\n            templateConfig.TemplateManager = new DelegateTemplateManager(name =>\n            {\n                string resourcePath = string.Format(viewPathTemplate, name);\n                var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourcePath);\n                using (StreamReader reader = new StreamReader(stream))\n                {\n                    return reader.ReadToEnd();\n                }\n            });\n            RazorEngineService.Create((ITemplateServiceConfiguration)templateConfig);\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Layout.cshtml\");\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Cameras.cshtml\", typeof(Model));\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Diagnostics.cshtml\", typeof(Model));\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Index.cshtml\", null);\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"LiveView.cshtml\", typeof(Model));\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Servers.cshtml\", typeof(Model));\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Service.cshtml\", typeof(Model));\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Subjects.cshtml\", typeof(Model));\n\nSince previously Razor was working quite nice already out of the box I actually haven't been digging very deep into the internals and have no idea how to approach this issue. Can anyone provide any suggestions or tell what additional information from my side would help to understand the issue? From my point of view, if the dll's are still loaded by the engine of course it won't be able to delete them, but that is just my two cents. Is there any way to make the engine unload everything?",
+    "LastUpdatedDate": "2015-03-05T03:08:24.797-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2015-03-04T09:50:19.807-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Issues with temporary dll files in 3.6.1",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1349
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I've narrowed it down to a standalone sample:\n```\nusing System;\nusing RazorEngine;\nusing RazorEngine.Templating;\nusing RazorEngine.Configuration;\nusing System.Reflection;\nusing System.IO;\r\n\r\nnamespace RazorTest\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            TemplateServiceConfiguration templateConfig = new TemplateServiceConfiguration();\n            templateConfig.TemplateManager = new DelegateTemplateManager(name =>\n            {\n                return \"<html><head></head><body><label>Hello World!</label></body></html>\";\n            });\n            var razorEngineService = RazorEngineService.Create((ITemplateServiceConfiguration)templateConfig);\n            RazorEngineServiceExtensions.Compile(razorEngineService, \"Index.cshtml\");\n         }\n    }\n}\n```\r\n\r\nThis triggers the System.UnauthorizedAccessException on exit. Has nobody else experienced this issue?",
+      "PostedDate": "2015-03-05T03:08:24.797-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

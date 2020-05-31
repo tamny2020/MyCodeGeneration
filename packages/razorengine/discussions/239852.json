@@ -1,0 +1,106 @@
+[
+  {
+    "Id": "541525",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>thanks for the new version.</p>\r\n<p>I don't know if it's somehow related to this new release, but i can't either update nor install it with NuGet.</p>\r\n<p>I get following error:</p>\r\n<p>PM&gt; Update-Package RazorEngine<br>\r\nUpdate-Package : The remote server returned an error: (500) Internal Server Error.<br>\r\nAt line:1 char:15<br>\r\n&#43; Update-Package &lt;&lt;&lt;&lt;&nbsp; RazorEngine<br>\r\n&nbsp;&nbsp;&nbsp; &#43; CategoryInfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : NotSpecified: (:) [Update-Package], WebException<br>\r\n&nbsp;&nbsp;&nbsp; &#43; FullyQualifiedErrorId : NuGet.VisualStudio.Cmdlets.UpdatePackageCmdlet</p>\r\n<p>Btw. the new release dll is still versioned as 1.1.0.0 (1.1.4015.1704)</p>\r\n<p>Best regards</p>\r\n",
+    "PostedDate": "2010-12-29T00:18:27.217-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541573",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>I'm wondering if this is to do with the removal of the RazorEngine.Templates library from the core distribution. &nbsp;Can you try removing the references manually and re-add RazorEngine v1.2?<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-12-29T02:14:31.623-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541577",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Doesn't work. Tried adding it to an unrelated blank project with no previous references to RazorEngine.</p>\r\n<p>Install-Package : The remote server returned an error: (500) Internal Server Error.<br>\r\nAt line:1 char:16<br>\r\n&#43; Install-Package &lt;&lt;&lt;&lt;&nbsp; RazorEngine<br>\r\n&nbsp;&nbsp;&nbsp; &#43; CategoryInfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : NotSpecified: (:) [Install-Package], WebException<br>\r\n&nbsp;&nbsp;&nbsp; &#43; FullyQualifiedErrorId : NuGet.VisualStudio.Cmdlets.InstallPackageCmdlet</p>\r\n",
+    "PostedDate": "2010-12-29T02:22:18.693-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541864",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Could you try running fiddler so you can catch the 500 error and get more info on it?</p>\r\n<p>Also, make sure you're running the latest NuGet, and have it pointed to the latest feed (http://go.microsoft.com/fwlink/?LinkID=206669)</p>\r\n",
+    "PostedDate": "2010-12-29T12:53:03.49-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541873",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Strangely enough it the 500 server error is the only one that doesn't show up :)</p>\r\n<p>twitter reply from davidebbo: Darn, moving #nuget server from EFCTP4 to EFCTP5 is proving harder then we were hoping. The EF team is on top of it, so I'm hopeful!</p>\r\n",
+    "PostedDate": "2010-12-29T13:06:18.17-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541875",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>The EF thing is unrelated, as the live server is still on EFCTP4 :)</p>\r\n<p>Try&nbsp;clearing&nbsp;your IE cache. &nbsp;There is a button in Fiddler to do this. &nbsp;Also, did you verify that you're pointing to the right feed?</p>\r\n",
+    "PostedDate": "2010-12-29T13:08:36.897-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541876",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Also, type&nbsp;$Host.Version from the NuGet console to check what build you're running.</p>\r\n",
+    "PostedDate": "2010-12-29T13:09:21.83-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541878",
+    "ThreadId": "239852",
+    "Html": "\r\n<p><span>&nbsp;</span></p>\r\n<p>Snippet</p>\r\n<pre style=\"font-family:consolas\">Major&nbsp;&nbsp;Minor&nbsp;&nbsp;Build&nbsp;&nbsp;Revision<br>-----&nbsp;&nbsp;-----&nbsp;&nbsp;-----&nbsp;&nbsp;--------<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11217&nbsp;&nbsp;102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>\r\n<h1></h1>\r\n<h1>Server Error in '/GalleryServer' Application.</h1>\r\n<h1>\r\n<hr size=\"1\">\r\n</h1>\r\n<h2><em>Could not find a part of the path 'C:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\App_Data\\Packages\\RazorEngine\\'.</em></h2>\r\n<p><span style=\"font-family:Arial,Helvetica,Geneva,SunSans-Regular,sans-serif\"><strong>Description:\r\n</strong>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.\r\n<br>\r\n<br>\r\n<strong>Exception Details: </strong>System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\App_Data\\Packages\\RazorEngine\\'.<br>\r\n<br>\r\n<strong>Source Error:</strong> <br>\r\n<br>\r\n</span></p>\r\n<p>&nbsp;</p>\r\n<table width=\"100%\" bgcolor=\"#ffffcc\">\r\n<tbody>\r\n<tr>\r\n<td>\r\n<pre>Line 36:                 string packageDirectory = GetPackageDirectory(packageId, packageVersion);<br>Line 37: <br><span style=\"color:red\">Line 38:                 FileInfo fileInfo = new DirectoryInfo(packageDirectory).GetFiles(string.Format(&quot;{0}-{1}.*&quot;, packageId, packageVersion)).Single();<br></span>Line 39:                 string fileExtension = fileInfo.Name.GetFileExtension();<br>Line 40:                 string packageFileName = string.Format(&quot;{0}-{1}.{2}&quot;, packageId, packageVersion, fileExtension);</pre>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p><span style=\"font-family:Arial,Helvetica,Geneva,SunSans-Regular,sans-serif\"><br>\r\n<strong>Source File: </strong>c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs<strong> &nbsp;&nbsp; Line:\r\n</strong>38 <br>\r\n<br>\r\n<strong>Stack Trace:</strong> <br>\r\n<br>\r\n</span></p>\r\n<table width=\"100%\" bgcolor=\"#ffffcc\">\r\n<tbody>\r\n<tr>\r\n<td>\r\n<pre>[DirectoryNotFoundException: Could not find a part of the path 'C:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\App_Data\\Packages\\RazorEngine\\'.]<br>   System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath) &#43;216<br>   System.IO.FileSystemEnumerableIterator`1.CommonInit() &#43;386<br>   System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler) &#43;798<br>   System.IO.DirectoryInfo.InternalGetFiles(String searchPattern, SearchOption searchOption) &#43;86<br>   Gallery.Core.Impl.PackageFileGetter.GetPackagePath(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:38<br><br>[PackageFileDoesNotExistException: Package with ID 'RazorEngine' and Version '1.2' does not have a corresponding file.]<br>   Gallery.Core.Impl.PackageFileGetter.GetPackagePath(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:48<br>   Gallery.Core.Impl.PackageFileGetter.GetPackageStream(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:23<br>   Gallery.Server.Controllers.PackageController.Download(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\Controllers\\PackageController.cs:56<br>   lambda_method(Closure , ControllerBase , Object[] ) &#43;179<br>   System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) &#43;248<br>   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) &#43;39<br>   System.Web.Mvc.&lt;&gt;c__DisplayClassd.&lt;InvokeActionMethodWithFilters&gt;b__a() &#43;125<br>   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation) &#43;640<br>   System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters) &#43;312<br>   System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName) &#43;691<br>   System.Web.Mvc.Controller.ExecuteCore() &#43;162<br>   System.Web.Mvc.&lt;&gt;c__DisplayClass8.&lt;BeginProcessRequest&gt;b__4() &#43;58<br>   System.Web.Mvc.Async.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0() &#43;20<br>   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() &#43;453<br>   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) &#43;371<br></pre>\r\n</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p><span style=\"font-family:Arial,Helvetica,Geneva,SunSans-Regular,sans-serif\"><br>\r\n</span></p>\r\n<hr size=\"1\">\r\n<p><strong>Version Information:</strong>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.0.30319.1</p>\r\n<p>&nbsp;</p>\r\n<p>&lt;!-- [DirectoryNotFoundException]: Could not find a part of the path 'C:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\App_Data\\Packages\\RazorEngine\\'. at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)\r\n at System.IO.FileSystemEnumerableIterator`1.CommonInit() at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler) at System.IO.DirectoryInfo.InternalGetFiles(String\r\n searchPattern, SearchOption searchOption) at Gallery.Core.Impl.PackageFileGetter.GetPackagePath(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:line 38 [PackageFileDoesNotExistException]:\r\n Package with ID 'RazorEngine' and Version '1.2' does not have a corresponding file. at Gallery.Core.Impl.PackageFileGetter.GetPackagePath(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:line\r\n 48 at Gallery.Core.Impl.PackageFileGetter.GetPackageStream(String packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Core\\Impl\\PackageFileGetter.cs:line 23 at Gallery.Server.Controllers.PackageController.Download(String\r\n packageId, String packageVersion) in c:\\inetpub\\OrchardGalleryNimbles\\GalleryServer\\GalleryServer\\src\\Gallery.Server\\Controllers\\PackageController.cs:line 56 at lambda_method(Closure , ControllerBase , Object[] ) at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext\r\n controllerContext, IDictionary`2 parameters) at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) at System.Web.Mvc.ControllerActionInvoker.&lt;&gt;c__DisplayClassd.&lt;InvokeActionMethodWithFilters&gt;b__a()\r\n at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodFilter(IActionFilter filter, ActionExecutingContext preContext, Func`1 continuation) at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1\r\n filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters) at System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName) at System.Web.Mvc.Controller.ExecuteCore() at System.Web.Mvc.MvcHandler.&lt;&gt;c__DisplayClass8.&lt;BeginProcessRequest&gt;b__4()\r\n at System.Web.Mvc.Async.AsyncResultWrapper.&lt;&gt;c__DisplayClass1.&lt;MakeVoidDelegate&gt;b__0() at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() at System.Web.HttpApplication.ExecuteStep(IExecutionStep\r\n step, Boolean&amp; completedSynchronously) --&gt;&lt;!-- This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode=&quot;Off&quot;/&gt;. Consider using &lt;customErrors mode=&quot;On&quot;/&gt;\r\n or &lt;customErrors mode=&quot;RemoteOnly&quot;/&gt; in production environments.--&gt;</p>\r\n",
+    "PostedDate": "2010-12-29T13:13:06.7-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541879",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Clearing cache still results in the same error.</p>\r\n<p>The Feed I'm pulling from appears to be http://packages.nuget.org/GalleryServer/FeedService.svc/</p>\r\n",
+    "PostedDate": "2010-12-29T13:14:28.593-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541881",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Investigating.</p>\r\n",
+    "PostedDate": "2010-12-29T13:17:04.767-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541886",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Something was messed up on server. &nbsp;Can you try now?</p>\r\n",
+    "PostedDate": "2010-12-29T13:19:52.67-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541887",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>You may need to restart VS if you get an error about the package content being invalid.</p>\r\n",
+    "PostedDate": "2010-12-29T13:21:09.957-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "541889",
+    "ThreadId": "239852",
+    "Html": "\r\n<p>Awesome, a restart of visual studio solved that - thanks, davidebbo!</p>\r\n",
+    "PostedDate": "2010-12-29T13:25:00.897-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

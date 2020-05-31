@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2010-11-12T12:15:19.45-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Japanese(or multi-bytes) characters in template are garbled.\n \nReproduce Code:\nvar result = Razor.Parse(@\"私の名前は @Model.Value です。\", new { Value = \"飾利\" }); // Japanese chars in Razor Template\n------------------------------\nExpected Output:\n私の名前は 飾利 です。\n------------------------------\nActual Output:\n????? 飾利 ???\n------------------------------",
+    "LastUpdatedDate": "2013-05-16T04:38:20.397-07:00",
+    "PlannedForRelease": "Razor Template Engine v1.1",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2010-11-12T09:29:57.923-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Japanese(or multi-bytes) characters in template are garbled.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 101
+  },
+  "FileAttachments": [
+    {
+      "FileId": 12,
+      "FileName": "Razor Template Multi-Bytes.patch",
+      "DownloadUrl": ".\\12"
+    }
+  ],
+  "Comments": []
+}

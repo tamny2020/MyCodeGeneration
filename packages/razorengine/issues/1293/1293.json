@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I've found the one issue, but I don't know how to fix it correctly. Maybe you can help.\n\nImagine that you have 2 templates, and both use the same layout file. Layout doesn't have \"@model\" declaration while template 1 has \"@model List<..>\" and template 2 has \"@model MyClass\".\n\nWhen you perform RazorEngine.Razor.Parse(template1, model1, ...);, Razor caches _layout_ and remembers the type of the _current_ model.\n\nWhen you perform RazorEngine.Razor.Parse(template2, model2, ...);, Razor loads layout from the cache but throws an exception because it tries to cast model2 to the type of model1.\n\nOn my mind, Razor __shouldn't remember the type of the model for the layout caching__.",
+    "LastUpdatedDate": "2014-10-30T17:43:45.98-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-10-21T03:33:18.093-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Incorrect Caching behaviour for the layout",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 2,
+    "Id": 1293
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I'm having the same problem :( Kind of renders the layout functionality useless...",
+      "PostedDate": "2014-10-30T17:43:45.98-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

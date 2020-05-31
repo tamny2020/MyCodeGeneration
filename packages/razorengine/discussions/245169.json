@@ -1,0 +1,82 @@
+[
+  {
+    "Id": "562863",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>I am new to Razor, just doing some research, and was wondering, why is this project needed (no offense). Trying to figure out where it fits, what Razor lacks, a what is it that this project solves. &nbsp;Actually, I think this would be a good intro on the\r\n home page anyway.</p>\r\n",
+    "PostedDate": "2011-02-08T12:41:56.357-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "562880",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>Lol, well my initial response was going to be &quot;why not?&quot;.</p>\r\n<p>RazorEngine is a wrapper around the parser and code generation features of Razor. Razor itself its not the MVC Razor ViewEngine, Razor is a pretty wicked code/markup parser. MVC and Web Pages used Razor a specific way, to generate compilable code from quite\r\n a robust template language. There are a number of examples of how to use this parser outside of MVC, and Ben (@BuildStarted) used some example code provided by Andew Nurse (@anurse) to allow you to use the Razor language as a more generalised templating language\r\n (think NVelocity, String Template, etc). Since his initial articles, we've expanded on this as a full wrapper around Razor providing templating services. This can go on be used for things like email generation, reporting, etc. &nbsp;There are some novel ways\r\n this is being used, for instance the guys over at Umbraco are using it to provide an alternative macro language provider.</p>\r\n<p>It is by no means a replacement to the MVC ViewEngine (although, with a little work you could do so).</p>\r\n",
+    "PostedDate": "2011-02-08T13:04:24.96-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "562882",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>Great, thanks for a quick answer, I am looking into using razor syntax to generate c# code at the runtime, which would than have to be than compiled (medium trust). &nbsp;It looks like your project could help me do this get there faster. Do you see any issues\r\n I could run into?</p>\r\n",
+    "PostedDate": "2011-02-08T13:10:51.567-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "562890",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>What sort of code are you trying to compile. RazorEngine wraps up string templates into instances of ITemplate, which are dynamically compiled, and executed. From that we get a string result which is merged with a model instance (if provided). It does work\r\n in ASP.NET Medium Trust, there is a little configuration to do (<a href=\"http://razorengine.codeplex.com/wikipage?title=Configuring%20RazorEngine%20for%20ASP.NET%20Medium%20Trust&referringTitle=Documentation\">http://razorengine.codeplex.com/wikipage?title=Configuring%20RazorEngine%20for%20ASP.NET%20Medium%20Trust&amp;referringTitle=Documentation</a>)...<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2011-02-08T13:21:32.287-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "562900",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>Pure C# code (meta-data programming). Templates would create strings that represent the class code and than they would be compiled into in memory assemblies. I'll probably use some of the code you have referenced above for that step too (no reason to re-invent\r\n the wheel). So first step is to use razor to give me the class code back as a string.</p>\r\n",
+    "PostedDate": "2011-02-08T13:32:29.31-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "563179",
+    "ThreadId": "245169",
+    "Html": "\r\n<p>That's possible, you would need to ensure that your C# class files can be parsed without Razor getting confused as to what is code and what is content.</p>\r\n<p>The real obstacle you will face is compilation of code in a medium trust environment. You can't use the CodeDomProvider (or derivations thereof, e.g. CSharpCodeProvider) directly because that requires full trust. We tackled a similar situation with RazorEngine\r\n as Razor uses CodeDomProvider instances internally to generate code, so we had to take advantage of ASP.NET's BuildProvider model to defer compilation to the build system. There is a little work to get that done, but it does work.</p>\r\n",
+    "PostedDate": "2011-02-09T01:52:30.177-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564796",
+    "ThreadId": "245169",
+    "Html": "<p>Great, I did not know that in 4.0 VirtualPathProvider works in medium trust, in 3.5 it worked only in full trust :)</p>",
+    "PostedDate": "2011-02-11T10:33:29.367-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569814",
+    "ThreadId": "245169",
+    "Html": "<p>I also hoped to use Razor for generating C# code files (right now I'm using NVelocity). Have you guys had any luck with it? Does the parser get confused? Seems like HTML would be much easier for it to deal with, since the two langs differ so much...</p>\r\n<p>Let me know how far you've gotten.</p>",
+    "PostedDate": "2011-02-21T12:59:35.237-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569816",
+    "ThreadId": "245169",
+    "Html": "<p>Well, we decided to use T4 syntax for templates. We created our own parser and compiler for T4, so that we can grab .tt files and compile them on the fly, but also we can test them in VS. I did not like that I would have to do &lt;text&gt; tags everywhere.</p>",
+    "PostedDate": "2011-02-21T13:05:48.133-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569820",
+    "ThreadId": "245169",
+    "Html": "<p>Thanks for your quick answer. You've pretty much confirmed by&nbsp;suspicions - it's safer to use T4.<br />Btw, I just learned that Mono has an implementation - Mono.TextTemplating &nbsp;</p>",
+    "PostedDate": "2011-02-21T13:12:53.817-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "832433",
+    "ThreadId": "354603",
+    "Html": "\r\n<p>Hi, thanks for the great library, but i have one problem:</p>\r\n<p>I have a base template similar to _Layout.cshtml in MVC 3. It has only one placeholder - @Model.Content. I'm also have several &quot;partials&quot; views that stored as a simple HTML files. I need to embed this partial views into my base template, but the final result\r\n is rendered as plain text with tags. For example i need to have&nbsp;Header 2 but i see &lt;h2&gt;Title&lt;/h2&gt; on my page instead of parsed HTML.</p>\r\n<p>Is it possible to parse model data as HTML code?</p>\r\n",
+    "PostedDate": "2012-05-04T21:18:50.72-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "854280",
+    "ThreadId": "354603",
+    "Html": "<p>I had this problem. If you use @Raw(&lt;string&gt;) then it will format it as Html</p>",
+    "PostedDate": "2012-06-27T03:33:47.6-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

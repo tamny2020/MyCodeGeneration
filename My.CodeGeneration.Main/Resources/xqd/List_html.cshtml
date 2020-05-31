@@ -1,0 +1,145 @@
+﻿@using My.CodeGeneration.Model
+@using System.Text
+@{
+    StringBuilder columns = new StringBuilder();
+    foreach (Fields item in Model.Fields)
+    {
+        columns.AppendLine("{");
+        columns.AppendLine("  dataIndex: '"+item.Name+"',");
+        columns.AppendLine("  text: '" + item.Note + "',");
+        columns.AppendLine("}");
+    }
+}
+
+@RawHtml("@{")
+@RawHtml("    Layout = \"~/Views/Shared/_Layout.cshtml\"");
+@RawHtml("}")
+<style></style>
+
+<div class="ne-panel" ne-role="panel">
+    <div class="ne-panel-header">
+        <div class="header-title">
+            <span>筛选查询</span>
+        </div>
+    </div>
+    <div class="ne-panel-body" style="overflow-y: auto;">
+        <div class="ne-row">
+            <div class="ne-col-4">
+                <div class="ne-field">
+                    <label><span class="w5">推荐人姓名：</span></label>
+                    <div>
+                        <input type="text" id="DrName" class="ne-input" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ne-col-4">
+                <div class="ne-field">
+                    <label class="align-middle"><span class="w5">推荐时间：</span></label>
+                    <div>
+                        <div class="ne-cell ne-inputgroup">
+                            <div class="ne-cell-left" style="width: 50%;">
+                                <input class="ne-input" type="text" data-type="date" readonly="readonly" id="StartRecommendTime" ne-tap="show:picker" ne-role="picker">
+                            </div>
+                            <div class="ne-cell-center bg-light" style="width: 1%; padding: 0 5px;">至</div>
+                            <div class="ne-cell-right" style="width: 50%;">
+                                <input class="ne-input" type="text" data-type="date" readonly="readonly" id="EndRecommendTime" ne-tap="show:picker" ne-role="picker">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="ne-panel-footer">
+        <button class="ne-btn ne-btn-primary" onclick="loadData();">搜索</button>
+        <button class="ne-btn ne-btn-default" onclick="clearQuery();">清除</button>
+    </div>
+</div>
+<div class="ne-panel" ne-role="panel">
+    <div class="ne-panel-header">
+        <div class="header-title">
+            <span>列表</span>
+        </div>
+        <div class="header-actions space-nowrap" id="x-atable-colctrlContainer">
+        </div>
+    </div>
+    <div class="ne-panel-body" style="overflow-y: auto;">
+        <div class="ne-cell padding-0 margin-bottom-15"></div>
+        <div id="x-table-container"></div>
+    </div>
+</div>
+
+@RawHtml("@section scripts{")
+    <script src="~/Content/Tools/JQuery/jquery.js"></script>
+    <script>
+
+        var currentRow = null;
+        var dt_MedicationList = Ne.dataTable({
+            tableContainer: '#x-table-container',
+            columnsControlContainer: '#x-atable-colctrlContainer',
+            columns: [
+                @RawHtml(columns.ToString())
+            ],
+            rowMultiSelectAble: false,
+            pageSize: 10,
+        });
+
+        //dataTable加载数据status
+        function loadData() {
+
+            dt_MedicationList.loadData({
+                api: '/PackRecommendRecord/PackRecommendRecord/GetPackRecommendRecordPage',
+                ajax: App.requestApi,
+                para: {
+                    //DrName: document.getElementById("DrName").value,
+                }
+            });
+        }
+        //清除
+        function clearQuery() {
+            var txts = document.getElementsByTagName("input");
+            for (var i = 0; i < txts.length; i++) {
+                if (txts[i].type == "text" || txts[i].type == "hidden") {
+                    txts[i].value = "";
+                }
+            }
+        }
+
+        //回车按下触发
+        document.onkeydown = function (e) {
+            var ev = document.all ? window.event : e;
+            if (ev.keyCode == 13) {
+                loadData();
+            }
+        }
+
+        $(function () {
+
+
+        });
+
+        function viewOnShow(data) {
+            if (data != null && data != undefined) {
+                if (data.CallBack == "update") {
+                    if (data.NeedRef = "1") {
+                        dt_MedicationList.refresh();
+                    }
+                }
+                else if (data.CallBack == "add") {
+                    if (data.NeedRef = "1") {
+
+                        clearQuery();
+                        //加载数据
+                        loadData();
+                    }
+                }
+            }
+        }
+
+        loadData();
+
+
+    </script>
+}

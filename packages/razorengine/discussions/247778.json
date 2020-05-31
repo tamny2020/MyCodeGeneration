@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "572887",
+    "ThreadId": "247778",
+    "Html": "\r\n<p>I see that the latest version has support for DynamicObjects as models, but what are the limitations/restrictions outside of the Model itself? For instance, I'm trying to use RazorEngine with a simple template like:</p>\r\n<p style=\"padding-left:30px\"><span style=\"font-family:Consolas; color:#0000ff; font-size:x-small\"><span style=\"font-family:Consolas; color:#0000ff; font-size:x-small\"><span style=\"font-family:Consolas; color:#0000ff; font-size:x-small\"><span style=\"font-family:Consolas; color:#0000ff; font-size:x-small\"><span style=\"color:#a31515\">&lt;FlowDocument</span><br>\r\n&nbsp;&nbsp;&nbsp; <span style=\"color:red\">xmlns</span><span style=\"color:blue\">=</span><span style=\"color:black\">'</span><span style=\"color:blue\">http://schemas.microsoft.com/winfx/2006/xaml/presentation</span><span style=\"color:black\">'</span><br>\r\n&nbsp;&nbsp;&nbsp; <span style=\"color:red\">xmlns:x</span><span style=\"color:blue\">=</span><span style=\"color:black\">'</span><span style=\"color:blue\">http://schemas.microsoft.com/winfx/2006/xaml</span><span style=\"color:black\">'</span><span style=\"color:blue\">&gt;</span><br>\r\n&nbsp;&nbsp;&nbsp; <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">Paragraph</span><span style=\"color:blue\">&gt;</span>Recommendation: @Model.Summary.Plan[0].Recommendation[0].Value<span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">Paragraph</span><span style=\"color:blue\">&gt;</span><br>\r\n<span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">FlowDocument</span><span style=\"color:blue\">&gt;</span></span></span></span></span></p>\r\n<p>Where the final &quot;Value&quot; property is a dynamic propery on a class drived from DynamicObject. Attempting to use this template results in a &quot;does not contain a definition for 'Value'&quot; error message. Are there some examples of using DynamicObject classes? What\r\n are the limitations? Why doesn't my test case above work?</p>\r\n<p>Thanks!</p>\r\n",
+    "PostedDate": "2011-02-27T12:38:10.453-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574031",
+    "ThreadId": "247778",
+    "Html": "<p>Never mind. I figured out that it's an oddity with the dynamic stuff in C# in general rather than anything to do with RazorEngine.</p>",
+    "PostedDate": "2011-03-01T11:52:57.9-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574249",
+    "ThreadId": "247778",
+    "Html": "<p>Sorry for the late reply.</p>\r\n<p>What was the resolution in the end?</p>",
+    "PostedDate": "2011-03-02T00:59:07.09-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "575274",
+    "ThreadId": "247778",
+    "Html": "<p>Given a derived dynamic class like this:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> DynamicTestObject : DynamicObject\r\n    {\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> StaticProperty { <span style=\"color: blue;\">get</span>; <span style=\"color: blue;\">set</span>; }\r\n    }\r\n</pre>\r\n</div>\r\n<p>Then using code like this:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">    var</span> d = <span style=\"color: blue;\">new</span> DynamicTestObject();\r\n    d.StaticProperty = <span style=\"color: #a31515;\">\"static\"</span>;\r\n    d.DynamicProperty = <span style=\"color: #a31515;\">\"dynamic\"</span>;\r\n</pre>\r\n</div>\r\n<p>Will get&nbsp;the error \"DynamicTestObject' does not contain a definition for 'DynamicProperty' on the third line. If you change the variable class to explicitly \"dynamic\" then that problem goes away:</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>    <span style=\"color: blue;\">dynamic</span> d = <span style=\"color: blue;\">new</span> DynamicTestObject();\r\n    d.StaticProperty = <span style=\"color: #a31515;\">\"static\"</span>;\r\n    d.DynamicProperty = <span style=\"color: #a31515;\">\"dynamic\"</span>;\r\n</pre>\r\n</div>\r\n<p>So even though DynamicTestObject is derived from a dynamic type, using that derived definition doesn't really get treated as a dynamic type in at least some cases.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>",
+    "PostedDate": "2011-03-03T13:48:56.687-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "575436",
+    "ThreadId": "247778",
+    "Html": "<p>The problem you are seeing is that you are declaring your variable using var. Var is used for type inference, so at compile time, the compiler essential substitutes var for the static type name. In this case, DynamicTestObject. C# is a statically-typed language,  so without using the dynamic keyword, the compiler is attempting to find the DynamicProperty member of DynamicTestObject. If you declare the variable using dynamic, the compiler will accept the call to DynamicProperty and mark it for runtime resolution using  late-binding.</p>\n<p>In essence if you wan't to use DynamicObject, you have to declare it using dynamic.</p>",
+    "PostedDate": "2011-03-04T01:13:29.28-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "575667",
+    "ThreadId": "247778",
+    "Html": "<p>I guess what I found surprising is that&nbsp;\"DynamicObject\" and \"ExpandoObject\" don't derive from a base class \"dynamic\" which is how I'd pictured it working. I'd assumed that the IDE/compiler was doing something like \"if (Yourclass is dynamic)\" to see if your class was derived from the \"dynamic\" base class but that's not at all how it apparently works.&nbsp;\"DynamicObject\" is assignment compatible with \"dynamic\" but is not derived from it.</p>",
+    "PostedDate": "2011-03-04T09:42:58.847-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576500",
+    "ThreadId": "247778",
+    "Html": "<p>No, they derive from System.Object which all other objects do. It's just that when an instance declared with dynamic is hit in code, the CLR delegates execution to the DLR (the dynamic language runtime) which kicks in,&nbsp;recognises&nbsp;the&nbsp;IDynamicMetaObjectProvider implementation in DynamicObject (or ExpandoObject) and handles the rest. There is no special dynamic base class at all, you're simply using the dynamic keyword in place of the static type name. Much like var which is all compiler magic, dynamic is runtime magic :-)</p>",
+    "PostedDate": "2011-03-07T01:00:10.857-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

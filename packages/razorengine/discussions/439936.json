@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "1029004",
+    "ThreadId": "439936",
+    "Html": "Hello,\r<br />\n<br />\nI'm getting this error when parsing my template even though my model object does have the Header property on it. The odd thing is if I use and anonymous type it works fine. Any ideas how I can fix this? I'm using .NET 4.0.\r<br />\n<br />\nFAILS\r<br />\nstring body = Razor.Parse&lt;EmailBodyModel&gt;(template, model);\r<br />\n<br />\nWORKS\r<br />\nstring body = Razor.Parse(template, new { Header = &quot;xxx&quot;} );\r<br />\n<br />\nI came accross the discussion below but that appears to be the opposite issue that I have.\r<br />\n<br />\n<a href=\"http://razorengine.codeplex.com/discussions/248593\" rel=\"nofollow\">http://razorengine.codeplex.com/discussions/248593</a>\r<br />\n<br />\nThanks<br />\n",
+    "PostedDate": "2013-04-11T06:56:37.693-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1029006",
+    "ThreadId": "439936",
+    "Html": "Okay, wow, I feel dumb... My model class was private. Making it public fixed my issue.<br />\n",
+    "PostedDate": "2013-04-11T07:00:26.373-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1093091",
+    "ThreadId": "439936",
+    "Html": "Did the same thing as well :roll:<br />\n\r<br />\nMaybe if this exception is thrown the Parse method should test the objects protection level and throw a nicer error if it is private / internal.<br />\n",
+    "PostedDate": "2013-09-16T06:38:20.48-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

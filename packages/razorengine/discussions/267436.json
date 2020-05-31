@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "651123",
+    "ThreadId": "267436",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I createdCustomTemplateBase and implement there method like in your example.</p>\r\n<p>&nbsp;</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">public</span> <span style=\"color:blue\">abstract</span> <span style=\"color:blue\">class</span> MyCustomTemplateBase&lt;T&gt; : TemplateBase&lt;T&gt;\r\n{\r\n  <span style=\"color:blue\">public</span> <span style=\"color:blue\">string</span> ToUpperCase(<span style=\"color:blue\">string</span> name)\r\n  {\r\n    <span style=\"color:blue\">return</span> name.ToUpperCase();\r\n  }\r\n}</pre>\r\n</div>\r\n<pre><br>I use .cshtml files to store my templates. <br><div style=\"color:black; background-color:white\"><pre><span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">html</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">head</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">head</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">body</span><span style=\"color:blue\">&gt;</span>\r\n         @ToUpperCase(&quot;Alex&quot;);\r\n    <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">body</span><span style=\"color:blue\">&gt;</span>\r\n<span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">html</span><span style=\"color:blue\">&gt;</span>\r\n</pre>\r\n</div>\r\n<br><br>When i try to build project I have Compilation error: <br>Error The name 'ToUpperCase' does not exist in the current context<br><br>How to fix this problem?<br></pre>\r\n",
+    "PostedDate": "2011-08-02T05:31:28.227-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

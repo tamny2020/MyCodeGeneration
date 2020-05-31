@@ -1,0 +1,61 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I kept getting the default Base Template even when I added a correct templateBase attribute in my Web.Config.\n \nLooks like the config is getting parsed, but the TemplateService isn't having SetTemplateBase() called.\n \nOne line fix attached in diff.",
+    "LastUpdatedDate": "2013-02-21T17:17:01.4-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-07-17T22:42:46.05-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Configuration templateServices/templateBase doesn't work",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 462
+  },
+  "FileAttachments": [
+    {
+      "FileId": 158,
+      "FileName": "WebCompilerService NullRef.diff",
+      "DownloadUrl": ".\\158"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "although not sure about sugested fix, would you not just include the parameter in TemplateServiceFactory calls",
+      "PostedDate": "2011-11-21T09:15:39.64-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-07-24T02:39:51.957-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:01.4-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

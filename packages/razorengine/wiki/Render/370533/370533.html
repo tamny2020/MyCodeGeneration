@@ -1,0 +1,30 @@
+<div class="wikidoc"><h1>Building Custom Base Templates</h1>
+When the Razor parser is processing the content of your Razor view, it&#39;s actually generating the code of a method (Execute) as a series of Write statements.  In the exact same way, this templating engine is creating a class at runtime that inherits from a type that supports Execute and Write operations.  The default implementation, TemplateBase (or TemplateBase&lt;T&gt; when using a model) is what we use to create simple templates, e.g:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">string</span> template = <span style="color:#A31515;">&quot;This is my sample template, Hello @Model.Name!&quot;</span>;
+<span style="color:Blue;">string</span> result = Razor.Parse(template, <span style="color:Blue;">new</span> { Name = <span style="color:#A31515;">&quot;World&quot;</span>  });
+</pre></div><br />Will result in something similar to:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> asdascasca : RazorEngine.Templating.TemplateBase&lt;<span style="color:Blue;">dynamic</span>&gt;
+{
+  ...
+  <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Execute()
+  {
+    <span style="color:Blue;">this</span>.Clear();
+    WriteLiteral(<span style="color:#A31515;">&quot;This is my sample template, Hello &quot;</span>);
+    Write(Model.Name);
+    WriteLiteral(<span style="color:#A31515;">&quot;!&quot;</span>);
+  }
+}
+</pre></div><br />A question I get often asked is where is my @Html support? Much like @Model, @Html is a property of the base WebViewPage in MVC.  Out of the box, Razor doesn&#39;t actually support it.  If I wanted to introduce support for custom properties or methods, I would need to create a custom base template. Here&#39;s an example:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MyCustomTemplateBase&lt;T&gt; : TemplateBase&lt;T&gt;
+{
+  <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> ToUpperCase(<span style="color:Blue;">string</span> name)
+  {
+    <span style="color:Blue;">return</span> name.ToUpperCase();
+  }
+}
+</pre></div><br />To use this custom template base, I need to tell the TemplateService hosted by the Razor static class to use it:<br /><br /><div style="color:Black;background-color:White;"><pre>
+Razor.SetTemplateBase(<span style="color:Blue;">typeof</span>(MyCustomTemplateBase&lt;&gt;));
+</pre></div><br />And then we can fire some code at it:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">string</span> template = <span style="color:#A31515;">&quot;My name in UPPER CASE is: @ToUpperCase(Model.Name)&quot;</span>;
+<span style="color:Blue;">string</span> result = Razor.Parse(template, <span style="color:Blue;">new</span> { Name = <span style="color:#A31515;">&quot;Matt&quot;</span> });
+</pre></div><br />We are looking at ways of improving support for base templates in the future.</div><div class="ClearBoth"></div>

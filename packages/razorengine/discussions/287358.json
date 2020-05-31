@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "730486",
+    "ThreadId": "287358",
+    "Html": "\r\n<p>Passing a dynamic object without a property that template is expecting gives the following error : 'System.Dynamic.DynamicObject' does not contain a definition for '<em><strong>PropertyName</strong></em>'.<br>\r\nIs there a way to have Razor disregard the properties that's not in the dynamic object?</p>\r\n<p>Below is the example.</p>\r\n<p><strong>template = @&quot;</strong>This is standard Email Template.<br>\r\nName:@Model.FullName<br>\r\n<br>\r\n&lt;strong&gt;By:@Model.Author.&lt;/strong&gt;<br>\r\n@Model.PropertyName&quot;</p>\r\n<p><strong>Parse Method:<br>\r\n</strong><strong></strong>Razor.Parse(template, new { FullName=&quot;F - name&quot;, Author=&quot;author..&quot; })</p>\r\n",
+    "PostedDate": "2012-01-25T06:25:20.477-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "734817",
+    "ThreadId": "287358",
+    "Html": "<p>I'm making changes to both the ViewBag property, and also the RazorDynamicObject we currently provide for dynamic support. Can you move your issue over to https://github.com/Antaris/RazorEngine and I'll make sure it gets looked at before the final v3 release...</p>",
+    "PostedDate": "2012-02-01T08:08:25.83-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "In an MVC4 project I have a view with a section for header scripts (below). Razor is ending the section on the last line of the Javascript (the } ) instead of the end like it should. \n \nNote: This works correctly under an MVC3 project.\n \n@section header{\n    \n         <script type=\"text/javascript\">\n             $(document).ready(function () {\n                 CartJS.LoadMiniCart(@Model.CartJson);\n             });\n         </script>\n}",
+    "LastUpdatedDate": "2013-02-21T17:16:59.177-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-12-29T16:40:40.76-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "MVC4 Razor ending a section early from JS }",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 559
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This is likely due to a change in the Razor parse. Andrew Nurse (MSFT) has stated that the parser is undergoing some redevelopment. I'll enquire with him.",
+      "PostedDate": "2012-02-01T08:14:37.8-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.177-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

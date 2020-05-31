@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "836017",
+    "ThreadId": "355682",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>I am trying to use&nbsp;IsolatedTemplateService and I am getting exception:</p>\r\n<p>SerializationException: Type 'RazorEngine.Templating.ExecuteContext' is not marked as serializable.</p>\r\n<p>Maybe it is because I am returning and using ViewBag.Title as email title.</p>\r\n<p>ITemplate template = Service.Resolve(templateName, model);&nbsp;<br>\r\nExecuteContext executeContext = new ExecuteContext();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\r\n<br>\r\nstring generateOutput = template.Run(executeContext);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\r\n<br>\r\nreturn new TemplateOutput(generateOutput, (string)executeContext.ViewBag.Title);</p>\r\n<p>With&nbsp;TemplateService it is working without problems.</p>\r\n<p>The question: How to use&nbsp;IsolatedTemplateService and return and use ViewBag?</p>\r\n<p>The RazorEngine version is:3.0.8.0</p>\r\n",
+    "PostedDate": "2012-05-14T04:52:58.853-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1460721",
+    "ThreadId": "355682",
+    "Html": "Good Documentation<br />\n<br />\n<a href=\"http://wisenitsolutions.com/IT-Courses/MVC-Training\" rel=\"nofollow\">ASP.NET MVC Training</a><br />\n<a href=\"http://wisentechnologies.com/it-courses/.net-training.aspx\" rel=\"nofollow\">Dot Net Training in Chennai</a><br />\n",
+    "PostedDate": "2016-01-26T04:21:55.863-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

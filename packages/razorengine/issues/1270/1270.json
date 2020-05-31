@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I am using a foreach statement to parse a number of templates. So I have to parse a number of templates using the same model. \n\n The first parse returns the correct html however all remaining parsers continue to return the first html aswell, almost as if it is cached. \n\n _Simple example code:_ \n\n```\n string html = string.empty; \n List<string> templates = GetListOfTemplates(); \n\n foreach(var t in templates) \n {\n        html = RazorEngine.razor.Parse(t, model, \"myRazor\");\n        //Do Something with 'html'\n }\n```",
+    "LastUpdatedDate": "2014-10-20T00:56:27.83-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-07-14T01:28:54.933-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "RazorEngine.Razor.Parse cached",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 2,
+    "Id": 1270
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "We have the same issue. Compile doesn't work as well",
+      "PostedDate": "2014-10-20T00:56:27.83-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

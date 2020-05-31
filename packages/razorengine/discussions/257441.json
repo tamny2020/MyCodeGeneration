@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "612019",
+    "ThreadId": "257441",
+    "Html": "<p>When using a template that has an Include with a model object passed in, that template cache's the objects values on the next run.</p>\n<p>Scenario:</p>\n<p>We have a complex template that contains Includes of other templates and we also pass in a model to that template.</p>\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;html&gt;&lt;span&gt;Model.Name&lt;/span&gt; @Include(\"Header\", Model.List)&lt;/html&gt;</p>\n<p>So, when I iterate thru this to send that same template with a different Model, the main template will have the correct values of the Model, but the subsequent templates will use the first Model's instance everytime it calls the Include. The value of Model.List  will of the first Model, not the current Model.</p>\n<p>Is there a way to force the parse, or run, to not cache the Include when it is given a Model?</p>\n<p>I had to flatten my template by not using the Includes, which really sucked.</p>\n<p><strong>MOVED to Issue Tracker</strong></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
+    "PostedDate": "2011-05-12T13:48:02.973-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "688710",
+    "ThreadId": "257441",
+    "Html": "<p>Hey Joe,</p>\r\n<p>Can't believe it will not utilise the current model everytime? Seems quite the oversight?</p>\r\n<p>Cheers</p>\r\n<p>Andrew</p>",
+    "PostedDate": "2011-10-24T18:18:26.573-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "691600",
+    "ThreadId": "257441",
+    "Html": "<p>Hi,</p>\r\n<p>The behaviour of the caching mechanism is corrected in v3, which are currently commiting to RazorEngine's new home at GitHub (https://www.github.com/Antaris/RazorEngine).</p>\r\n<p>There are two fundamental changes that affect the @Include method:</p>\r\n<ol>\r\n<li>We no longer cache the last value, we correctly cache the template type, and spin up a new instance each time.</li>\r\n<li>If no model is passed to @Include, the model passed to the calling template is passed to the include.<span style=\"white-space: pre;\"> </span></li>\r\n</ol>",
+    "PostedDate": "2011-10-31T05:46:24.663-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

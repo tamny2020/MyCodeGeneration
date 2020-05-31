@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "901869",
+    "ThreadId": "392447",
+    "Html": "\r\n<p>First off, great tool - keep up the great work.</p>\r\n<p>I have a requieremnt to call RazorEngine.Parse&lt;T&gt;(string template, T model) without knowing the derived type - I only know the base type. &nbsp;If I call this method&nbsp;passing in the base type as the model, I get an error if my template references\r\n any properties on the derived type.</p>\r\n<p>I have got round this by using reflection at the entry point to work out the derived type using baseType.GetType() and parsing this in as the generic parameter. &nbsp;Would a method interface which could work out the derived type make sence, or am I just\r\n doing something wrong (fairly likely)?</p>\r\n<p>Thanks all,</p>\r\n<p>David</p>\r\n",
+    "PostedDate": "2012-08-21T03:03:13.197-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "553465",
+    "ThreadId": "242805",
+    "Html": "\r\n<p>First let me say thanks for addressing my other issues. I appreciate the responsiveness.</p>\r\n<p>Another thing I'm looking at is support for ExpandoObjects. &nbsp;It would be great to be able to do the following:</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>dynamic model = <span style=\"color:blue\">new</span> ExpandoObject();\r\nmodel.Name = <span style=\"color:#a31515\">&quot;Joe&quot;</span>;\r\n<span style=\"color:blue\">string</span> template = <span style=\"color:#a31515\">&quot;Hello @Model.Name!!&quot;</span>;\r\n<span style=\"color:blue\">var</span> result = Razor.Parse(template, model);\r\n</pre>\r\n</div>\r\n<p>The Razor Email template blogged about here (http://kazimanzurrashid.com/posts/use-razor-for-email-template-outside-asp-dot-net-mvc) works with ExpandoObjects and the main difference I can tell between it and your source (yes I've been peeking around) is\r\n declaring the Model (eg. Model in your TemplateBase&lt;TModel&gt; class) explicitly as dynamic instead of as an object. I actually made the change in your source and got the ExpandoObjects to work, but it broke other things (ie. Anonymous Types) and I haven't\r\n had a chance yet to see why. I apologize if I'm getting a bit too involved, but your library is pretty much what I'm looking for and I'm really enjoying playing with it and seeing what it can do.</p>\r\n",
+    "PostedDate": "2011-01-21T14:59:43.117-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553487",
+    "ThreadId": "242805",
+    "Html": "\r\n<p>I was just experimenting with ExpandoObject. &nbsp;It's quite possible that all it needs is the ability to generate TemplateBase&lt;dynamic&gt; when it is generating a typename with an ExpandoObject for a model. From my initial tests this works well. I'll\r\n experiment a bit more before a commit a change.</p>\r\n",
+    "PostedDate": "2011-01-21T16:06:56.077-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

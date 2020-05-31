@@ -1,0 +1,75 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I am changing the contents of a cshtml file which is being parsed with Razor.Parse. However RazorEngine seems to cache the result, so after the file is changed it does not re-parse. Is there a way to force the re-parse? Perhaps using a different part of the API?\n \nThis is a trivial demo of my issue:\n \nusing System;\nusing System.IO;\n \nnamespace ConsoleApplication1\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            File.WriteAllText(\"test.cshtml\", \"test 1\");\n            var test1 = Parse();\n \n            // Now change the file\n            File.WriteAllText(\"test.cshtml\", \"test 2\");\n            var test2 = Parse();\n \n            if (test1 != test2)\n            {\n                Console.WriteLine(\"Template re-parsed correctly.\");\n            }\n            else\n            {\n                Console.Error.WriteLine(\"Did not re-parse template.\");\n            }\n        }\n \n        static string Parse()\n        {\n            var test = File.ReadAllText(@\"test.cshtml\");\n            var x = RazorEngine.Razor.Parse(test, @\"test.cshtml\");\n            Console.WriteLine(x);\n            return x;\n        }\n    }\n}",
+    "LastUpdatedDate": "2013-02-21T17:17:00.487-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-08-24T08:40:14.73-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Razor.Parse does not detect template file change",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 4,
+    "Id": 492
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "After thinking some more, perhaps this is the correct behaviour since I'm passing in the name which is used to cache the template.\r\nI can implement a file last write time check, but how do I then tell Razor to clear its cache?",
+      "PostedDate": "2011-08-24T08:54:41.163-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "The RazorEngine doesn't monitor the filesystem for changes so that particular behavior is correct. Currently you can not update templates once they've been cached by RazorEngine. AntarisZX has mentioned a lot of new updates that will be forthcoming so please stay tuned. :)",
+      "PostedDate": "2011-08-24T15:28:09.157-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Hi,\r\n\r\nRazorEngine v2 currently handles caching completely incorrectly. We shouldn't be cachine the last result, we should only be caching the template type. This is addressed in v3 in a couple of ways:\r\n\r\n1. We now only cache the template type. This enables us to spin up new instances, potentially with out DI work, and no threading issues associated with [ThreadStatic], etc.\r\n2. When an item is being cached, it is cached against the template type and the hashcode of the source template value. That way, should the template change, it will trigger a recompile of the template and a re-cache of the source template value.\r\n\r\nI thought about adding in cache dependencies, but I don't want to overly bloat the framework. Will have a look.\r\n\r\nv3 will be pushed up soon, I have some issues to resolve before it can be.",
+      "PostedDate": "2011-08-25T04:26:41.31-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "OK, thanks guys. I'll keep an eye out for v3. The new hashcode based cache sounds perfect.\r\n\r\n(I've worked around my issue by including the file's last write time in the cache key string. Not ideal but it works for now ;) )",
+      "PostedDate": "2011-08-25T05:01:02.437-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-10-24T19:15:29.793-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-10-24T19:30:13.58-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:00.487-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

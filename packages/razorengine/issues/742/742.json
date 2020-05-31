@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I am trying to introduce Linq extensions into a project I am using and continue to get the error:\n \n'System.Collections.Generic.List<MyCustomType>' does not contain a definition for 'First'\n \nwhen executing the .First() extension method.\n \nI've tried updated various web.config settings per the documentation, but can't seem to remedy the error.\n \nI did interrogate TemplateService _config private variable and it appears the these three namespace are configured: \n \nSystem\nSystem.Collections.Generic\nSystem.Linq\n \nbut no changes I make to web.config seem to alter that configuration - so I may be chasing a rabbit.\n \nAny help would be greatly appreciated.\n \nBest regards and thanks for this excellent project.\n \nHal",
+    "LastUpdatedDate": "2013-08-01T03:20:13.763-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2012-07-13T07:37:04.61-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Does not contain a definition for 'First'",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 4,
+    "Id": 742
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I have the same issue, except I was using the FluentTemplateServiceConfiguration.\r\n\r\nDid you find a work around?",
+      "PostedDate": "2013-06-05T14:33:53.55-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "have you tried adding using statements at the top of your template?\r\n\r\n```\nvar template = \"using System; \" +\n  \"using System.Collections.Generic; \" +\n  \"<p>rest of template</p>\";\n```\r\n\r\n",
+      "PostedDate": "2013-07-04T08:36:29.113-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-08-01T03:19:36.507-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Anyone have basic using linq in razorengine, please help me",
+      "PostedDate": "2013-08-01T03:20:13.763-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

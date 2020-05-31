@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-26T07:36:09.5-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Not sure its accurate, but It seems I have found two bugs:\n- In TemplateService while resolving templates, the instance from the cache is not used but the current template\n- In TemplateBase, when including templates, the StringBuilder is static to a thread, making duplicate lines whenever an @include directive is used (at least with precompiled templates). The included template is writing to this static variable, and the includer template is writing again with the same string builder, resulting in a duplicate include\n \nI a patch is uploaded on the source code patch.",
+    "LastUpdatedDate": "2013-05-16T04:38:18.507-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-04-26T08:33:53.577-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Bug with @include directive",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 398
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This behaviour has been corrected in v3.",
+      "PostedDate": "2011-08-26T07:36:05.03-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-26T07:36:09.5-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:03.693-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:18.507-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

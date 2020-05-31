@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "724312",
+    "ThreadId": "285937",
+    "Html": "<p>The documentation refers to a static method off of Razor called \"SetTemplateBase\" that doesn't seem to exist in version 3.0.7.0 (the latest version published to NuGet).</p>\n<p>Looking at the API, the only thing I can figure out is that I need to use the SetTemplateService method as the alternative, but  it's not 100% clear how to use that to do the same thing.</p>\n<p>Any assistance would be appreciated.</p>",
+    "PostedDate": "2012-01-12T08:14:03.747-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "733463",
+    "ThreadId": "285937",
+    "Html": "<p>I just had the same problem and this was my workaround:</p>\r\n<pre style=\"font-family: Consolas; font-size: 15; color: black; background: white;\"><span style=\"color: blue;\">var</span>&nbsp;tplCfg&nbsp;=&nbsp;<span style=\"color: blue;\">new</span>&nbsp;RazorEngine.Configuration.<span style=\"color: #2b91af;\">TemplateServiceConfiguration</span>();\r\ntplCfg.BaseTemplateType = <span style=\"color: blue;\">typeof</span>(<span style=\"color: #2b91af;\">CustomTpl</span>);\r\n<span style=\"color: blue;\">var</span>&nbsp;tplSvc&nbsp;=&nbsp;<span style=\"color: blue;\">new</span>&nbsp;<span style=\"color: #2b91af;\">TemplateService</span>(tplCfg);\r\n<span style=\"color: #2b91af;\">Razor</span>.SetTemplateService(tplSvc);</pre>\r\n<p>&nbsp;It seems to work the way the docs specify.</p>",
+    "PostedDate": "2012-01-31T13:02:49.273-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "734829",
+    "ThreadId": "285937",
+    "Html": "<p>Hi,</p>\r\n<p>The configuration mechanism provided for v2.x wasn't flexible enough to support multi-threaded scenarios and has been reworked for the upcoming v3 release. Updated documentation at the Github site (https://github.com/Antaris/RazorEngine) will reflect these changes, but currently it is unfinished.</p>\r\n<p>The method dtanders has detailed is the correct way, so creating a configuration instance to initialise the service with the base type is the way to go.</p>\r\n<p>You don't need to use the Razor static type, if you prefer using instance services, you can do something like:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">var</span> config = <span style=\"color: blue;\">new</span> TemplateServiceConfiguration\r\n{\r\n    BaseTemplateType = <span style=\"color: blue;\">typeof</span>(MyTemplateBase&lt;&gt;)\r\n};\r\n\r\n<span style=\"color: blue;\">using</span> (<span style=\"color: blue;\">var</span> service = <span style=\"color: blue;\">new</span> TemplateService(config))\r\n{\r\n    <span style=\"color: green;\">// Use template service.</span>\r\n}\r\n</pre>\r\n</div>\r\nI will be extending the fluent configuration mechanism to support base template types also.</p>",
+    "PostedDate": "2012-02-01T08:13:37.547-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

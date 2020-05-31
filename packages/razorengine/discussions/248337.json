@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "575168",
+    "ThreadId": "248337",
+    "Html": "<p>&nbsp;</p>\n<pre>&lt;link href=\"@Url.Content(\"~/Content/Site.css\")\" rel=\"stylesheet\" type=\"text/css\" /&gt;&nbsp;&nbsp; &nbsp;</pre>\n<pre>&lt;script src=\"@Url.Content(\"~/Scripts/jquery-1.4.4.min.js\")\" type=\"text/javascript\"&gt;&lt;/script&gt;</pre>\n<pre><span style=\"font-family: 'Segoe UI', 'Microsoft Sans Serif', Arial, Geneva, sans-serif; white-space: normal;\"><br /></span></pre>\n<pre><span style=\"font-family: 'Segoe UI', 'Microsoft Sans Serif', Arial, Geneva, sans-serif; white-space: normal;\">fails..</span>\n</pre>\n<p>&nbsp;</p>\n<p>I'm sure there's an obvious cause for this, but what is the workaround? &nbsp;</p>\n<p>RazorEngine looks great for templating our customer portals, but a bunch of the built in view functions are broken. &nbsp;Is there a workaround for stuff like this? &nbsp;</p>",
+    "PostedDate": "2011-03-03T10:11:41.333-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "575585",
+    "ThreadId": "248337",
+    "Html": "<p>Correct. The RazorEngine is *not* the same as the MVC Razor Engine. All helpers available in MVC, such as, Html and Url, cannot be found. You would need to create your own TemplateBase which has these methods available in them. Think of RazorEngine more as a c# xml parser rather than an html parser.</p>",
+    "PostedDate": "2011-03-04T07:17:46.2-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "596323",
+    "ThreadId": "248337",
+    "Html": "<p>Do you have an example that you could post showing how to create a TemplateBase class where you could set properties like Url or Html to represent the UrlHelper/HtmlHelper properties?&nbsp; It looks like you can only pass the type of the TemplateBase, not an instance... In my case, I already have access to an existing UrlHelper object and would like to just pass that rather than construct a new one.</p>",
+    "PostedDate": "2011-04-12T20:57:36.267-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "596660",
+    "ThreadId": "248337",
+    "Html": "<p>The simplest example can be found <a href=\"http://razorengine.codeplex.com/wikipage?title=Building%20Custom%20Base%20Templates&amp;referringTitle=Documentation\">here</a>.</p>\r\n<p>The key points are:</p>\r\n<pre><span style=\"color: blue;\">public</span> <span style=\"color: blue;\">abstract</span> <span style=\"color: blue;\">class</span> MyCustomTemplateBase&lt;T&gt; : TemplateBase&lt;T&gt;<br />{<br />  <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> ToUpperCase(<span style=\"color: blue;\">string</span> name)<br />  {<br />    <span style=\"color: blue;\">return</span> name.ToUpperCase();<br />  }<br />}<br /></pre>\r\n<p>&nbsp;</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>Razor.SetTemplateBase(<span style=\"color: blue;\">typeof</span>(MyCustomTemplateBase&lt;&gt;));\r\n\r\n</pre>\r\n</div>",
+    "PostedDate": "2011-04-13T08:43:02.613-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "630207",
+    "ThreadId": "248337",
+    "Html": "<p>I have a similar problem. I have to pass an instance of an object to my template class (Url/Html helpers and others,&nbsp;eg. resolved from IoC container). It seems there's no way to do that as Razor engine does the instantiation from given type under the hood... Or am I missing something?</p>",
+    "PostedDate": "2011-06-20T12:12:57.25-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "630216",
+    "ThreadId": "248337",
+    "Html": "<p>I guess there's a way to achieve that - provide custom Activator via Razor.SetActivator method (an override allows a simple lambda to be passed, cool!), which creates instances of ITemplate objects. Within that activator you are free to set any necessary properties on the custom template base object (like Urland Html).</p>",
+    "PostedDate": "2011-06-20T12:41:50.967-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "630284",
+    "ThreadId": "248337",
+    "Html": "<p>If you are trying to template a portal, presumably a website, why are you trying to use Razor Engine instead of just creating views or page (MVC or WebPages) using Razor?</p>\r\n<p>RazorEngine allows you to do templating in or outside of a Web Applicaton, but is best used for other things than web pages as you get more functionality, such as helpers, using the Razor View Engine (not Razor Engine).</p>\r\n<p>Matthew</p>",
+    "PostedDate": "2011-06-20T17:23:51.83-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

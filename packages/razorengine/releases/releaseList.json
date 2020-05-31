@@ -1,0 +1,169 @@
+[
+  {
+    "Id": "0",
+    "Name": "RazorEngine v3.0.0beta",
+    "DevelopmentStatus": "Beta",
+    "Description": "Initial drop of v3.0.0beta. This release is a feature-complete build used to gather feedback on usage/performance and any issues that arise as we head a v3.0 release.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-11-23T16:35:40.407-08:00",
+    "Files": [
+      {
+        "Id": "f6339c0b-fe3a-4725-b1da-3fd64d91f3d9",
+        "FileName": "RazorEngine v3.0.0beta Binaries.zip",
+        "Url": "./0/f6339c0b-fe3a-4725-b1da-3fd64d91f3d9",
+        "Type": "Application",
+        "UploadDate": "2011-11-23T16:35:40.063-08:00"
+      },
+      {
+        "Id": "31d78b43-1a8d-4a09-94e7-6ae6d927a8d0",
+        "FileName": "RazorEngine v3.0.0beta Source.zip",
+        "Url": "./0/31d78b43-1a8d-4a09-94e7-6ae6d927a8d0",
+        "Type": "Source Code",
+        "UploadDate": "2011-11-23T16:35:40.11-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "1",
+    "Name": "RazorEngine v2.0",
+    "DevelopmentStatus": "Stable",
+    "Description": "*IMPORTANT* RazorEngine v2 is a complete rewrite of the templating framework.  Because of this, there are *no* guarantees that code written around v1.2 will run without modification.  The v2 framework is cleaner and refined.  Please check the forthcoming codeplex site updates which will detail the new functionality.\n\nFeatures in v2:\n* ASP.NET Medium Trust Support\n* Custom Template Activation with Dependency Injection Support\n* Subtemplating using the new @Include method.\n\nKnown issues:\n* @Include does not currently support passing of additional models. This will be delivered in v2.1 which is in development.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-01-19T14:48:59.37-08:00",
+    "Files": [
+      {
+        "Id": "46c6e423-a01d-49aa-b5c4-dd9a0144b2f5",
+        "FileName": "RazorEngine-Release2.0-Core.zip",
+        "Url": "./1/46c6e423-a01d-49aa-b5c4-dd9a0144b2f5",
+        "Type": "Application",
+        "UploadDate": "2011-01-19T14:48:59.167-08:00"
+      },
+      {
+        "Id": "8ea1cea5-8c96-4b58-bc63-92731e43304b",
+        "FileName": "RazorEngine-Release2.0-Web.zip",
+        "Url": "./1/8ea1cea5-8c96-4b58-bc63-92731e43304b",
+        "Type": "Application",
+        "UploadDate": "2011-01-19T14:48:59.197-08:00"
+      },
+      {
+        "Id": "ee3f2733-7b95-48eb-88a3-cd9a5c40f64d",
+        "FileName": "RazorEngine-Release2.0-Source.zip",
+        "Url": "./1/ee3f2733-7b95-48eb-88a3-cd9a5c40f64d",
+        "Type": "Application",
+        "UploadDate": "2011-01-19T14:48:59.197-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "2",
+    "Name": "Razor Templating Engine v1.2",
+    "DevelopmentStatus": "Stable",
+    "Description": "Changes:\nADDED: Standard namespaces imports for all templates: System, System.Collections.Generic, System.Linq (Changeset 5635)\nADDED: Methods for Precompilation (Changeset 3283)\n\nCHANGED: Refactored precompilation to be exposed per-TemplateService. (Changeset 3440)\nCHANGED: Added more descriptive compilation exception message. (Changeset 3629)\n\nFIXED: Forced reference to Microsoft.CSharp to correct support for testing frameworks. (Changeset 3689)\nFIXED: Added support for nested anonymous objects. (Changeset 3430)",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-12-28T17:18:16.66-08:00",
+    "Files": [
+      {
+        "Id": "3647638b-8403-4479-ac6e-a9f4c20fe275",
+        "FileName": "RTE-Release1.2-Binaries.zip",
+        "Url": "./2/3647638b-8403-4479-ac6e-a9f4c20fe275",
+        "Type": "Application",
+        "UploadDate": "2010-12-28T17:18:16.223-08:00"
+      },
+      {
+        "Id": "3ea8683f-d569-4b90-ae03-5da5eb755391",
+        "FileName": "RTE-Release1.2-Source.zip",
+        "Url": "./2/3ea8683f-d569-4b90-ae03-5da5eb755391",
+        "Type": "Source Code",
+        "UploadDate": "2010-12-28T17:18:16.3-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "3",
+    "Name": "Razor Template Engine v1.1",
+    "DevelopmentStatus": "Stable",
+    "Description": "! Release 1.1\n\nChanges:\nADDED: Signed assemblies with strong name to allow assemblies to be referenced by other strongly-named assemblies.\n\nFIX: Filter out dynamic assemblies which causes failures in template compilation.\nFIX: Changed ASCII to UTF8 encoding to support UTF-8 encoded string templates.\nFIX: Corrected implementation of TemplateBase adding ITemplate interface.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-12-28T17:51:59.243-08:00",
+    "Files": [
+      {
+        "Id": "ee62a888-3296-490b-a33e-61b6963c7033",
+        "FileName": "RTE-Release1.1-Binaries.zip",
+        "Url": "./3/ee62a888-3296-490b-a33e-61b6963c7033",
+        "Type": "Application",
+        "UploadDate": "2010-11-16T17:27:03.507-08:00"
+      },
+      {
+        "Id": "3d1e4942-7360-4ea0-82a2-94a03bbc69c3",
+        "FileName": "RTE-Release1.1-Source.zip",
+        "Url": "./3/3d1e4942-7360-4ea0-82a2-94a03bbc69c3",
+        "Type": "Source Code",
+        "UploadDate": "2010-11-16T17:27:03.523-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "4",
+    "Name": "Razor Template Engine v1.0",
+    "DevelopmentStatus": "Stable",
+    "Description": "This release is based on the pre-release Razor code. \n\n*Description*:\n* Initial Release of the Razor Templating Engine\n* Strict and Dynamic Model Support\n* Custom Base Template Support\n* Template Caching",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2010-11-11T15:01:41.783-08:00",
+    "Files": [
+      {
+        "Id": "d4d4fdc2-ad1a-42d2-8acc-3a86b7b45f41",
+        "FileName": "RTE-Release1.0-Binaries.zip",
+        "Url": "./4/d4d4fdc2-ad1a-42d2-8acc-3a86b7b45f41",
+        "Type": "Application",
+        "UploadDate": "2010-11-11T14:58:43.927-08:00"
+      },
+      {
+        "Id": "abe5e677-e5d1-45d3-970c-c1c9a365681d",
+        "FileName": "RTE-Release1.0-Source.zip",
+        "Url": "./4/abe5e677-e5d1-45d3-970c-c1c9a365681d",
+        "Type": "Source Code",
+        "UploadDate": "2010-11-11T14:58:43.94-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "5",
+    "Name": "RazorEngine v2.2",
+    "DevelopmentStatus": "Planning",
+    "Description": "Planned Release.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-02-11T00:31:23.65-08:00",
+    "Files": []
+  },
+  {
+    "Id": "6",
+    "Name": "RazorEngine v2.1",
+    "DevelopmentStatus": "Stable",
+    "Description": "Added:\n* Support for DynamicObject and ExpandoObject for models.\n\nChanges:\n* Changed how the Microsoft.CSharp assembly is referenced in dynamically compiled assemblies by added a stub reference type.\n\nFixes:\n* Corrected reference to TemplateWriter when expressing inline-helpers in templates.\n* Re-added missing RequireNamespacesAttribute for declaring required namespace imports for custom templates.",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-01-22T05:20:34.803-08:00",
+    "Files": [
+      {
+        "Id": "4bcb490d-654a-4e6b-a41c-92b95e617c7a",
+        "FileName": "RazorEngine-Release2.1-Core.zip",
+        "Url": "./6/4bcb490d-654a-4e6b-a41c-92b95e617c7a",
+        "Type": "Application",
+        "UploadDate": "2011-01-22T05:20:34.6-08:00"
+      },
+      {
+        "Id": "fa45ad61-3583-41db-ba63-3239a3b03a17",
+        "FileName": "RazorEngine-Release2.1-Web.zip",
+        "Url": "./6/fa45ad61-3583-41db-ba63-3239a3b03a17",
+        "Type": "Application",
+        "UploadDate": "2011-01-22T05:20:34.617-08:00"
+      },
+      {
+        "Id": "14c692c3-34de-4af5-86ac-0deadf6f4b8b",
+        "FileName": "RazorEngine-Release2.1-Source.zip",
+        "Url": "./6/14c692c3-34de-4af5-86ac-0deadf6f4b8b",
+        "Type": "Application",
+        "UploadDate": "2011-01-22T05:20:34.617-08:00"
+      }
+    ]
+  }
+]

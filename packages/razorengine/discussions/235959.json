@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "526736",
+    "ThreadId": "235959",
+    "Html": "\r\n<p>I'm considering&nbsp;separating our the RazorEngine.Templates assembly from the main release. &nbsp;This was intended as a sample assembly for developing&nbsp;custom base templates, and I don't feel comfortable releasing it alongside each core release as\r\n it generally means when deploying via NuGet means the HtmlTemplateBase&lt;T&gt; can't be used with a Client Profile target because of its dependency on System.Web (via System.Web.Mvc).</p>\r\n<p>Thoughts?</p>\r\n",
+    "PostedDate": "2010-11-24T20:40:00.86-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526929",
+    "ThreadId": "235959",
+    "Html": "\r\n<p>Good idea.</p>\r\n",
+    "PostedDate": "2010-11-25T05:20:42.97-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

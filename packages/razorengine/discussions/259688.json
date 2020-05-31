@@ -1,0 +1,50 @@
+[
+  {
+    "Id": "621018",
+    "ThreadId": "259688",
+    "Html": "\r\n<p>Didn't think I would get it to work but in the end I got Intellisense working :-) I hate working without it especially in non compile-time compiled templates.</p>\r\n<p>I saw some issues/discussions about it so I thought I'd post how I got it working (without engine source changes!)</p>\r\n<p>I experimented with the current RazorEngine assembly. (I have MVC 3 installed as well).</p>\r\n<p>I added a base template class (all in namespace SpotlightUpdateMail):</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>    <span style=\"color:blue\">public</span> <span style=\"color:blue\">class</span> SpotlightModel&lt;T&gt; : TemplateBase&lt;T&gt;\r\n    {\r\n        <span style=\"color:blue\">public</span> T Model\r\n        {\r\n            <span style=\"color:blue\">get</span> { <span style=\"color:blue\">return</span> <span style=\"color:blue\">base</span>.Model; }\r\n        }\r\n    }\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>So only redeclaring Model property. And registered it with Razor:</p>\r\n<p></p>\r\n<pre>    Razor.SetTemplateBase(typeof(SpotlightModel&lt;&gt;));</pre>\r\n<p></p>\r\n<p>And in the template I specified as first line:</p>\r\n<p>@inherits SpotlightUpdateMail.SpotlightModel&lt;SpotlightUpdateMail.SpotlightUnusedCodeReminder&gt;</p>\r\n<p>And&nbsp;SpotlightUnusedCodeReminder is a class that inherits from&nbsp;ModelBase which in turn inherits from&nbsp;DynamicObject (which I think is needed by RazorEngine)</p>\r\n<p>Hope this is somehow usefull to any reader :-)</p>\r\n<p>Regards, Jacco</p>\r\n",
+    "PostedDate": "2011-05-31T14:04:17.713-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "621021",
+    "ThreadId": "259688",
+    "Html": "<p>Forgot to mention I added the templates to my console application project as cshtml. This makes the mvc 3 editor is used.</p>",
+    "PostedDate": "2011-05-31T14:12:14.097-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "621053",
+    "ThreadId": "259688",
+    "Html": "<p>Hm, didn't test well. Somewhere along the line I had to trim the @inherits line... to prevent exceptions.</p>",
+    "PostedDate": "2011-05-31T15:33:38.98-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "621392",
+    "ThreadId": "259688",
+    "Html": "<p>Yeah, the parser doesn't parse @inherits or @model. You can apply the patch I uploaded to allow @model statements.</p>",
+    "PostedDate": "2011-06-01T07:03:40.4-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "624798",
+    "ThreadId": "259688",
+    "Html": "<p>@Jacco: could you go in some more detail on how to enable intellisense &nbsp;?<br />@BuildStarted: where can I find the patch? Or do I need to download source code and compile myself?&nbsp;</p>",
+    "PostedDate": "2011-06-08T08:59:07.48-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "657928",
+    "ThreadId": "259688",
+    "Html": "<p>thanks works better than mine !</p>\n<p>I found two ways to get intellisense in the template.&nbsp;</p>\n<p>Both require a small hack to allow it but I am quite okay with it since I can hide it away in my GetResource call ( I set my template.cshtml to EmbeddedResource and then return a string &nbsp;in the following GetResource call);<br /> <br /></p>\n<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>public</span>&nbsp;<span>static</span>&nbsp;<span>String</span>&nbsp;GetResource()\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>var</span>&nbsp;contents&nbsp;=&nbsp;<span>String</span>.Empty;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>var</span>&nbsp;resource&nbsp;=&nbsp;<span>String</span>.Format(<span>\"</span><span>{0}</span><span>.</span><span>{1}</span><span>.cshtml\"</span>,&nbsp;<span>\"&lt;TemplateNamespace&gt;\"</span>,&nbsp;<span>\"&lt;Template&gt;\"</span>); // whereever the file was embedded \n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>var</span>&nbsp;fileStream&nbsp;=&nbsp;<span>Assembly</span>.GetExecutingAssembly().GetManifestResourceStream(resource);\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>using</span>&nbsp;(<span>var</span>&nbsp;reader&nbsp;=&nbsp;<span>new</span>&nbsp;<span>StreamReader</span>(fileStream))\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contents&nbsp;=&nbsp;reader.ReadToEnd();\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>var</span>&nbsp;start&nbsp;=&nbsp;contents.IndexOf(<span>\"@*start*@\"</span>);\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>return</span>&nbsp;contents.Substring(start + 9);\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>\n<p>Note my hack is removing the beginning of my returned template string (which will break things if left out should you follow the remaining steps) starting at the token @*start*@.&nbsp;</p>\n<p>1.) Start your file with the following text put the datatype of your choice in there.</p>\n<pre><span>@</span>model&nbsp;&lt;Fully qualified datatype&gt; <span>@*</span>start*<span>@</span>\n</pre>\n<p>or</p>\n<p>2.)</p>\n<pre><span>@</span><span>using</span>&nbsp;Ellevate.T4Razor.Model.Data\n<span>@functions&nbsp;&nbsp;{</span>\n&nbsp;&nbsp;&nbsp;&nbsp;<span>public</span>&nbsp;ModelData&nbsp;Model&nbsp;{&nbsp;<span>get</span>;&nbsp;<span>set</span>;&nbsp;}</pre>\n<pre>    public String Test { get; } // Remember you would have to have a base class that cares about properties other than Model.\n<span>}@*start*@</span></pre>\n<pre><span><br /></span></pre>\n<pre><span>/////  Razor Engine Code</span></pre>\n<pre><span><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Razor</span>.SetTemplateBase(<span>typeof</span>&nbsp;(<span>BaseTemplate</span>&lt;&gt;));\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ModelData&nbsp;modelData=&nbsp;<span>new</span>&nbsp;ModelData();\n \n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>var</span>&nbsp;template&nbsp;=&nbsp;<span>MyTemplate</span>.GetResource();\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Razor</span>.Parse(template, modelData,&nbsp;<span>\"template\"</span>);\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Razor</span>.Run(<span>\"template\"</span>);</pre>\n<br /></span></pre>",
+    "PostedDate": "2011-08-13T23:59:13.297-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I'm trying to parse with utf symbol. And I've got not expected result.\nFor example:\nstring template = \"Hello @Model.Name\";\nvar result = Razor.Parse(template, new {Name=\"StÃ¼re\"});\nAnd result is \"Hello St&#195;&#188;re\".\nSomebody has the way how to get correct result?",
+    "LastUpdatedDate": "2014-11-06T05:34:45.87-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-11-06T05:34:45.87-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "utf8 symbols issue",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1304
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1246107",
+    "ThreadId": "545549",
+    "Html": "I am using a foreach statement to parse a number of templates. So I have to parse a number of templates using the same model.\r<br />\n<br />\nThe first parse returns the correct html however all remaining parsers continue to return the first html aswell, almost if it cached.\r<br />\n<br />\nSimple example code:\r<br />\n<br />\nstring html = string.empty;\r<br />\nList&lt;string&gt; t = GetListOfTemplates();\r<br />\n<br />\nforeach(var t in templates)\r<br />\n{<br />\n<pre><code>html = RazorEngine.razor.Parse(t, model, &quot;myRazor&quot;);\n//Do Something with 'html'</code></pre>\n\n}<br />\n",
+    "PostedDate": "2014-05-16T05:57:29.637-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

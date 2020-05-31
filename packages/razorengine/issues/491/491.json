@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I think I've found a bug.Lets take this little sample code:\n \n \nusing System;\nusing System.Linq;\nusing RazorEngine;\nusing RazorEngine.Templating;\n \nnamespace ConsoleTests\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            Console.WriteLine(\"Testing Razor...\");\n \n            try\n            {\n                Razor.AddResolver(new CustomTemplateResolver());\n \n                string template = \"hello!, this is @Include(\\\"fakeName\\\", @Model). This is only a test\";\n                string result = Razor.Parse(template, new { SampleString = \"World\" });\n \n                Console.WriteLine(result);\n            }\n            catch (RazorEngine.Templating.TemplateCompilationException ex)\n            {\n                string message = ex.Errors.Aggregate(ex.Message, (current, error) => current + (Environment.NewLine + error.ErrorText + \" => \" + error.Line + \" | \" + error.ErrorNumber));\n \n                Console.WriteLine(\"ERROR!!\");\n                Console.WriteLine(message);\n            }\n \n            Console.WriteLine(\"Bye!\");\n            Console.ReadLine();\n        }\n    }\n \n    public class CustomTemplateResolver : ITemplateResolver\n    {\n        public string GetTemplate(string name) {  return \"default template @Model.SampleString\"; }\n    }\n}\n \nIt will output this:\n \nTesting Razor...\ndefault template Worlddefault template World. This is only a test\nBye!\n \n \nBut the result must be:\n \nTesting Razor...\nhello!, this is default template World. This is only a test\nBye!\n \nIf I take \"builder\" private filed in TemplateBase and and convert it into a nonstatic field, everything works ok.\n \nAm I doing something wrong?",
+    "LastUpdatedDate": "2013-02-21T17:17:00.69-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-08-24T07:46:27.74-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Bug in @Include() ?",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 491
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

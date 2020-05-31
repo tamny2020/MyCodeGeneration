@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "568800",
+    "ThreadId": "246692",
+    "Html": "\r\n<p>I've been writing some code to attempt to enable MVC Razor-style view compilation and execution with RazorEngine but ran into a big snag with the way that TemplateService.Parse() works. &nbsp;</p>\r\n<p>MVC allows obtaining the instantiated compiled class object prior to calling Execute() to do the rendering so that it can provide some necessary data to the base class of the template (e.g. ViewData). &nbsp;</p>\r\n<p>The current design of RazorEngine does not provide a way to configure additional information on the object instance before Execute() is called. &nbsp;Would it be possible to add in hooks prior to Execute() for doing our own thing with the object? &nbsp;</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>        <span style=\"color:blue\">public</span> <span style=\"color:blue\">string</span> Parse(<span style=\"color:blue\">string</span> template, <span style=\"color:blue\">string</span> name = <span style=\"color:blue\">null</span>)\r\n        {\r\n            <span style=\"color:blue\">var</span> instance = GetTemplate(template, <span style=\"color:blue\">null</span>, name);\r\n\r\n            SetService(instance, <span style=\"color:blue\">this</span>);\r\n            instance.Execute();\r\n\r\n            <span style=\"color:blue\">return</span> instance.Result;\r\n        }\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>I had considered whether it might be possible to hook an IActivator instance into a DI container to use setter injection or something to create the instances with injected dependencies, but might be nice to just have something directly in the design to do\r\n this.'</p>\r\n<p>Has anyone else been successful in creating a WebViewPage-like template base class so that you can execute Html helpers, etc. using code compatible with MVC razor views? &nbsp;That's ultimately what I'd want.</p>\r\n",
+    "PostedDate": "2011-02-18T15:43:20.153-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569734",
+    "ThreadId": "246692",
+    "Html": "<p>Hi,</p>\r\n<p>Sorry for the late reply. While it is entirely possible to use an IActivator with an IoC container, it may not be everything you need. We could look to introduce some eventing support for the TemplateService, this could potentially be used to raise a custom event where you could cast the ITemplate instance back to your known template type (we'd need to consider models potentially), that way you could then assign additional properties on the template?<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-02-21T10:46:22.537-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

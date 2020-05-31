@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "603796",
+    "ThreadId": "255474",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I have implemented a solution&nbsp; to make <strong>reusable components of function helpers</strong>. It is a very common scenario to be able to call from different template files the same functions to render part of a document.</p>\r\n<p>For example, suppose I have a function &quot;PrintSection&quot; defined in a separate template called &quot;Tools&quot;:</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>@model MyApp.MyMContext\r\n@helper PrintSection(string name, string content) {\r\n<span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">div</span> <span style=\"color:red\">class</span><span style=\"color:blue\">=</span><span style=\"color:blue\">&quot;section&quot;</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">h1</span> <span style=\"color:red\">class</span><span style=\"color:blue\">=</span><span style=\"color:blue\">&quot;title&quot;</span><span style=\"color:blue\">&gt;</span>@name<span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">h1</span><span style=\"color:blue\">&gt;</span>\r\n    <span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">div</span> <span style=\"color:red\">class</span><span style=\"color:blue\">=</span><span style=\"color:blue\">&quot;content&quot;</span><span style=\"color:blue\">&gt;</span>\r\n        @content\r\n    <span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">div</span><span style=\"color:blue\">&gt;</span>\r\n<span style=\"color:blue\">&lt;/</span><span style=\"color:#a31515\">div</span><span style=\"color:blue\">&gt;</span>\r\n}\r\n</pre>\r\n</div>\r\n<p>I can import this function in another template like this, by using the Import directive and access through the Helpers property:</p>\r\n<p>&nbsp;</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>@model MyApp.MyContext\r\n@Import(<span style=\"color:#a31515\">&quot;Tools&quot;</span>, @Model)\r\n\r\n@<span style=\"color:blue\">foreach</span>(<span style=\"color:blue\">var</span> section <span style=\"color:blue\">in</span> @Model.Sections) {\r\n   @Helpers.Tools.PrintSection(section.Name, section.Content)\r\n}\r\n</pre>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p>Internally, I'm using a subclass of TemplateBase&lt;T&gt; that is providing a dynamic object through the property &quot;Helpers&quot; (which is a System.Dynamic.ExpandoObject).</p>\r\n<p>When an Import is perform, the function is resolving the template, and gets all the helper methods that return a TemplateWriter.</p>\r\n<p>Then a dynamic property on &quot;Helpers&quot; is created with the name of the import (&quot;Tools&quot;). This dynamic property is linked to a custom DynamicObject that is redirecting calls to the proper helpers methods.</p>\r\n<p>This way, it's very easy to reuse methods declared from other templates.</p>\r\n<p>Currently, there is only a small drawbacks in the internals, since I need to resolve a template (similar to include directive), but I don't have access to such method, so I had to go through reflection to get them.</p>\r\n<p>One suggestion could be to expose for the TemplateService class a method to resolve external templates without executing it, a public method like this:</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">public</span> ITemplate ResolveTemplate&lt;TModel&gt;(<span style=\"color:blue\">string</span> name, TModel model)\r\n</pre>\r\n</div>\r\n<p>This solution is probably not the only one. What do you think about it? Do you think you could provide a public resolver for a template (I don't think It hurts the current design, but It helps to build similar methods to Includes).</p>\r\n<p>I can post this solution as a patch if you are interested in.</p>\r\n",
+    "PostedDate": "2011-04-27T13:45:14.743-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1337920",
+    "ThreadId": "255474",
+    "Html": "Hi alexandre_mutel,\r<br />\n<br />\nI'm really interested about this solution. I'm working with razorengine 3.3.0.0 and need to call shared templates. Could you share your solution please ?\r<br />\n<br />\nThanks\r<br />\n<br />\nFreddy<br />\n",
+    "PostedDate": "2014-12-30T07:59:51.99-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1338799",
+    "ThreadId": "255474",
+    "Html": "<strong>frederyck wrote:</strong><br />\n<blockquote>\nI'm really interested about this solution. I'm working with razorengine 3.3.0.0 and need to call shared templates. Could you share your solution please ?<br />\n</blockquote>\nI don't have a solution out-of-the-box. I moved away from razorengine and create my own lightweight razor wrapper called <a href=\"https://github.com/xoofx/SharpRazor\" rel=\"nofollow\">SharpRazor</a> and using it in <a href=\"https://github.com/xoofx/SharpDoc\" rel=\"nofollow\">SharpDoc</a> (where I have implemented the <a href=\"https://github.com/xoofx/SharpDoc/blob/master/src/SharpDoc/PageTemplateDoc.cs#L96\" rel=\"nofollow\">import directive there</a>)<br />\n",
+    "PostedDate": "2015-01-03T18:54:53.867-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

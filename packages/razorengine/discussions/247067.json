@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "570185",
+    "ThreadId": "247067",
+    "Html": "\r\n<p>Hi, I am interested in how did you guys test web compiler service and virtual path providers? Other then building a dummy web project and configuring it for medium trust as you described it, is there a way to test this in nunit?&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-22T06:52:12.903-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "572710",
+    "ThreadId": "247067",
+    "Html": "<p>It's not easy to test (and to automate testing) in different trust levels without physically switching them over. The medium trust support was old schooled a bit and tested by switching between the trust levels manually and ensuring the templates compiled.<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-02-26T23:35:51.55-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1003963",
+    "ThreadId": "433799",
+    "Html": "Is it necessary to use dynamic models?<br />\n<br />\nI created a class &quot;SampleModelClass&quot; inheriting from abstract class ModelClassBase. I defined properties SampleModelClass.Firstname and SampleModelClass.Lastname. <br />\nWhen calling Razor.Parse&lt;SampleModelClass&gt;(templateContent, sampleModel); I get an exception telling me that Firstname is not found in class &quot;ModelClassBase&quot;.<br />\n<br />\nI don't understand why RazorEngine wants to use ModelClassBase? If I use a dynamic model (new {Firstname = &quot;Foo&quot;, Lastname = &quot;Bar&quot;;) it works fine.<br />\n<pre><code>public abstract class RazorTemplateModel : TemplateBase {\n\n        /// &lt;summary&gt;\n        /// Returns the text of the template\n        /// &lt;/summary&gt;\n        /// &lt;returns&gt;&lt;/returns&gt;\n        public abstract string GetTemplateContent();\n\n    }\n\nclass SampleRazorTemplateModel : RazorTemplateModel {\n            private readonly string _firstname;\n            private readonly string _lastname;\n\n            public SampleRazorTemplateModel(string firstname, string lastname) {\n                _firstname = firstname;\n                _lastname = lastname;\n            }\n\n            public override string GetTemplateContent() {\n                const string CONTENT = @&quot;Hello @Model.Firstname @Model.Lastname&quot;;\n                return CONTENT;\n            }\n\n            public string Firstname {\n                get { return _firstname; }\n            }\n\n            public string Lastname {\n                get { return _lastname; }\n            }\n        }\n\nSampleRazorTemplateModel templateModel = new SampleRazorTemplateModel(&quot;Foo&quot;, &quot;Bar&quot;);\nstring razorTemplate = templateModel.GetTemplateContent();\nreturn Razor.Parse(razorTemplate, templateModel.GetModel());\n</code></pre>\n\n",
+    "PostedDate": "2013-02-20T04:57:39.28-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1063560",
+    "ThreadId": "433799",
+    "Html": "Make your class public I had the same issue.<br />\n",
+    "PostedDate": "2013-07-02T04:55:20.647-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

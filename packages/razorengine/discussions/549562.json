@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1259340",
+    "ThreadId": "549562",
+    "Html": "First time using razor, basically using a wpf application and using the webbrowser inside it I am sending the file and the object into the razor.parse like this\r<br />\n<br />\nstrSource = RazorEngine.Razor.Parse(IO.File.ReadAllText(&quot;C:!BL\\projects\\WpfApplication1\\WpfApplication1\\AdminOrderNotification.vbhtml&quot;), header)\r<br />\n<br />\nThen Im opening the webbrowser.navigate to that source and it doesnt recognize the @Code statments. \r<br />\n<br />\nIt does however recognize the contents of the model, e.g <a href=\"mailto:@model.array(0)\" rel=\"nofollow\">@model.array(0)</a> \r<br />\n<br />\nWhat am I doing wrong?<br />\n",
+    "PostedDate": "2014-06-24T11:46:07.22-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I am getting the following error whenever RazorEngine is called:\n\n{\"FailedAt\":\"2014-11-12T02:51:59.9765953Z\",\"ExceptionType\":\"RazorEngine.Templating.TemplateCompilationException\",\"ExceptionMessage\":\"Unable to compile template. Assuming assembly reference 'System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' matches 'System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35', you may need to supply runtime policy\\n\\nOther compilation errors may have occurred. Check the Errors property for more information.\",\"ExceptionDetails\":\"RazorEngine.Templating.TemplateCompilationException: Unable to compile template. Assuming assembly reference 'System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' matches 'System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35', you may need to supply runtime policy\\n\\nOther compilation errors may have occurred. Check the Errors property for more information.\\r\\n   at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Compilation\\\\DirectCompilerServiceBase.cs:line 106\\r\\n   at RazorEngine.Templating.TemplateService.CreateTemplateType(String razorTemplate, Type modelType) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Templating\\\\TemplateService.cs:line 256\\r\\n   at RazorEngine.Templating.TemplateService.GetTemplate[T](String razorTemplate, Object model, String cacheName) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Templating\\\\TemplateService.cs:line 374\\r\\n   at RazorEngine.Templating.TemplateService.GetTemplate(String razorTemplate, Object model, String cacheName) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Templating\\\\TemplateService.cs:line 352\\r\\n   at RazorEngine.Templating.TemplateService.Parse(String razorTemplate, Object model, DynamicViewBag viewBag, String cacheName) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Templating\\\\TemplateService.cs:line 437\\r\\n   at RazorEngine.Razor.Parse(String razorTemplate, Object model, String cacheName) in c:\\\\Users\\\\abbottm\\\\Documents\\\\GitHub\\\\RazorEngine\\\\src\\\\Core\\\\RazorEngine.Core\\\\Razor.cs:line 302\\r\\n   at Postal.FileSystemRazorView.Render(ViewContext viewContext, TextWriter writer)\\r\\n   at Postal.EmailViewRenderer.RenderView(IView view, ViewDataDictionary viewData, ControllerContext controllerContext, ImageEmbedder imageEmbedder)\\r\\n   at Postal.EmailViewRenderer.Render(Email email, String viewName)\\r\\n   at Postal.EmailService.CreateMailMessage(Email email)\\r\\n   at NumediaTechCore.UI.Controllers.Admin.EmailsController.SendEmail(Int32 EmailTemplateID) in c:\\\\NumediaTech\\\\NumediaTechPortal\\\\NumediaTechCore\\\\UI\\\\Controllers\\\\Admin\\\\EmailsController.cs:line 105\"}",
+    "LastUpdatedDate": "2015-02-25T03:50:23.177-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-11-11T19:01:54.02-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "RazorEngine.Templating.TemplateCompilationException",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 3,
+    "Id": 1306
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

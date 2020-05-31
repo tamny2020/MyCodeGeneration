@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "722112",
+    "ThreadId": "285376",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I am trying to build .cs files from templates. How can I escape C# keywords? For example:</p>\r\n<p>public DbSet GetDbSet&lt;T&gt;()<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @foreach (var dbSet in Model.DbSets)<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (typeof(T) == typeof(@dbSet.ModelName))<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return @dbSet.Name;<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new ArgumentException(&quot;Unknown Entity Model&quot;);<br>\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>\r\n<p>The above code is a method inside my template. GetDbSet&lt;T&gt; will be fine, but anything inside the @foreach gets treated as though it were code. I'd liek to escape it&nbsp;- sending the text directly to the new .cs file. Is this possible?</p>\r\n<p>Thanks</p>\r\n",
+    "PostedDate": "2012-01-08T08:39:56.323-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "722229",
+    "ThreadId": "285376",
+    "Html": "<p>Here is a simple test you can try:</p>\r\n<p>class TestProperty<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string PropertyType { get; set; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string PropertyName { get; set; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />string testTemplate = @\"Testing 123 @Model.Name<br />@foreach (var p in Model.Properties)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public @p.PropertyType @p.PropertyName { get; set; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }\";</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var p1 = new TestProperty { PropertyName = \"P1\", PropertyType = \"string\" };<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var p2 = new TestProperty { PropertyName = \"P2\", PropertyType = \"int\" };</p>\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox.Show(Razor.Parse(testTemplate, new { Name = \"WallaWalla\", Properties = new[] { p1, p2 } }));&nbsp;</p>\r\n<div id=\"_mcePaste\" class=\"mcePaste\" style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; top: 0px; left: -10000px;\">﻿</div>\r\n<p>It will throw a TemplateCompilcationException with this error:</p>\r\n<p>error CS1513: } expected</p>\r\n<p>I tried using the @(@keyword) syntax as found here: <a href=\"http://stackoverflow.com/questions/4338627/razor-reseverd-words\">http://stackoverflow.com/questions/4338627/razor-reseverd-words</a>&nbsp;but to no avail. Help, please!</p>",
+    "PostedDate": "2012-01-08T18:40:33.777-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

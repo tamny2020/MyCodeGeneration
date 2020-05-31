@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have the need to run templates w/i Silverlight.  SL projects can't reference the compiler assemblies that runtime razor compilation requires.  Instead I compile razor templates down to assemblies; these pre-compiled assemblies may be referenced and executed by my SL project.  This requires the /nostdlib compiler option and references to the following assemblies\n \nC:\\Program Files\\Reference Assemblies\\Microsoft\\Framework\\Silverlight\\v4.0\\system.dll\nC:\\Program Files\\Reference Assemblies\\Microsoft\\Framework\\Silverlight\\v4.0\\mscorlib.dll\nC:\\Program Files\\Reference Assemblies\\Microsoft\\Framework\\Silverlight\\v4.0\\System.Windows.dll\n \nwhen setting up the CompilerParameters object.\n \nI've created a razor compiler myself and works but I'd love to have the ability to use RazorEngine for my purposes.  The main issue I'm having is I can't use the \"@helper Foo() {}\" syntax in my templates due to an \"ArgumentException - typeName null\" exception during compilation whenever I include an @helper.  The original project's blog notes that this works (http://www.fidelitydesign.net/?p=239) but our codebases vary so dramatically I can't figure how to get it working.",
+    "LastUpdatedDate": "2013-02-21T17:17:04.04-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-03-30T15:07:12.28-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Add compile-to-assembly option.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 371
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

@@ -1,0 +1,55 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "as I use a razor in asp net site?\njust gives me this error\n \nMethod not found: 'System.Web.Razor.GeneratorResultsSystem.Web.Razor.RazorTemplateEngine.GenerateCode(System.IO.TextReader)'.\nThe invoked member is not supported in the dynamic assembly.\n \ncould someone send me an example?",
+    "LastUpdatedDate": "2013-02-21T17:17:00.107-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-08-28T17:37:43.46-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Razor in Asp net site",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 493
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "What version of ASP.NET are you trying to use?",
+      "PostedDate": "2011-08-31T05:28:42.627-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "asp.net 4.0",
+      "PostedDate": "2011-08-31T07:20:59.407-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:00.107-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

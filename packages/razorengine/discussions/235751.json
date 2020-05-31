@@ -1,0 +1,122 @@
+[
+  {
+    "Id": "525971",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>This code</p>\r\n<pre>  <span>string</span> template = <span>&quot;Hello @Model.Name! Welcome to Razor!&quot;</span>;\r\n  <span>string</span> result = Razor.Parse(template, <span>new</span> { Name = <span>&quot;World&quot;</span> });</pre>\r\n<p>generates the following error</p>\r\n<p>Unhandled Exception: RazorEngine.Templating.TemplateCompilationException: Unable to compile template. &nbsp;<br>\r\nat RazorEngine.Compilation.RazorCompiler.CreateTemplate(String template, Type modelType)&nbsp;&nbsp;\r\n<br>\r\nat RazorEngine.Templating.TemplateService.GetTemplate(String template, Type modelType, String name)&nbsp;&nbsp;\r\n<br>\r\nat RazorEngine.Templating.TemplateService.Parse[T](String template, T model, String name)&nbsp;&nbsp;\r\n<br>\r\nat RazorEngine.Razor.Parse[T](String template, T model, String name)&nbsp;&nbsp; <br>\r\nat SK.Wiki.Server.Program.Main(String[] args) in G:\\Repository\\Cash Track\\branches\\2.0\\SK.Wiki.Server\\Program.cs:line 30</p>\r\n<p>I am using 1.1 version from nuget from a .Net 4.0 console application.</p>\r\n",
+    "PostedDate": "2010-11-23T09:58:12.36-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526131",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>I've just created a new console application and referenced the Release 1.1 build via NuGet and it compiles and runs fine. &nbsp;Can you email me your complete project so I can take a look? My email is matt [at] fidelitydesign [dot] net<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-11-23T15:04:22.153-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526175",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>In addition a clean Visual Studio Installation without MVC using Nuget works as it should so there must be some unique problem we're running into with this project. If you could post the complete error in the Exception: it's listed under Exception.Errors\r\n which should give us the compiler errors you're experiencing.</p>\r\n<p>&nbsp;</p>\r\n<p>AntarisZX - we should probably combine the errors into the exception. What do you think?</p>\r\n",
+    "PostedDate": "2010-11-23T17:28:19.203-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526275",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>I put a screenshot of the error here&nbsp;http://img405.imageshack.us/img405/944/errorir.jpg</p>\r\n<p>It runs OK within a debugger but it fails when I run it on the console. There is nothing special about the project and they are barely 5 lines of code.</p>\r\n",
+    "PostedDate": "2010-11-24T00:23:11.59-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526277",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>Where can I access &quot;Exception.Errors&quot; ?</p>\r\n",
+    "PostedDate": "2010-11-24T00:28:48.11-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526297",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>When you are running it from the console, it looks like the System.Web.Razor.dll assembly is missing from the output folder. &nbsp;Select the reference in Visual Studio's Solution Explorer, select Properties and ensure the Copy Local property is set to true\r\n and do a rebuild.</p>\r\n<p>&nbsp;</p>\r\n<p>The TemplateCompilationException has an Errors property, e.g.:</p>\r\n<p>} catch (TemplateCompilationException tcEx) {&nbsp;&nbsp;foreach (var error in tcEx.Errors)&nbsp;&nbsp;{&nbsp;&nbsp; &nbsp;Console.WriteLine(error);&nbsp;&nbsp;}}</p>\r\n",
+    "PostedDate": "2010-11-24T01:20:09.4-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526410",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>Still error&nbsp;http://img842.imageshack.us/img842/1272/error20.jpg</p>\r\n",
+    "PostedDate": "2010-11-24T06:04:32.82-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526417",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>Based on that last screenshot it looks like you need to add a reference to Microsoft.CSharp.dll and possibly System.Core.dll</p>\r\n<p>Please try and add those and let us know if you still have an error - we might need to update our documentation or the project itself to include those.</p>\r\n",
+    "PostedDate": "2010-11-24T06:31:16.293-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526514",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>Microsoft.CSharp and System.Core are referenced automatically for all C# console .Net 4.0 application. And they are always in the GAC anyway. I will try to replicate it in other computers. This is bizarre.&nbsp;</p>\r\n",
+    "PostedDate": "2010-11-24T08:52:26.23-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526603",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>I believe this is due to the compiler omitting references from the RazorEngine.Core.dll's manifest. &nbsp;When you are using DynamicObject, the runtime binder from Microsoft.CSharp.dll is required, but as we don't explicity load anything from Microsoft.CSharp.dll\r\n at compilation time, it falls over because Microsoft.CSharp.dll hasn't been referenced.</p>\r\n<p>Can you download and build Changeset 3689 and try your unit tests again? I had it working with NUnit here...<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-11-24T12:18:33.937-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "526814",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>It works now. Thanks.</p>\r\n",
+    "PostedDate": "2010-11-25T01:06:37.847-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "538421",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>I just grabbed this project with NuGet, and I'm having the same problem as nirataro -- debugging the sample app works fine, but running the app outside the debugger crashes it with the same unhandled exception. &nbsp;I can't seem find changeset 3689 on the\r\n site. &nbsp;Do I need to check it out of SVN?</p>\r\n",
+    "PostedDate": "2010-12-20T11:15:08.253-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "538423",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>Nevermind; I need to navigate more before I post. &nbsp;(http://razorengine.codeplex.com/SourceControl/changeset/changes/3689)</p>\r\n",
+    "PostedDate": "2010-12-20T11:17:08.497-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "539440",
+    "ThreadId": "235751",
+    "Html": "\r\n<p>It doesnt work with visual basic.net. Please test in vb.net as I really need this for a new project.</p>\r\n",
+    "PostedDate": "2010-12-22T09:38:17.12-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "540380",
+    "ThreadId": "235751",
+    "Html": "\r\n<div id=\"x_x_ctl00_ctl00_MasterContent_Content_PostRepeater_ctl04_BodyDiv\">\r\n<p>It has to do with the code generation for the template classes is hard coded for c# and doesn't take into account visual basic. If you don't pass in a model or anonymous type it will work fine. I've published an update that fixes this issue, however, it\r\n still does not work with classes that are subclasses</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<pre>Public Class SomeClass\r\n\r\nPublic Class SomeChildClass\r\n\r\nEnd Class\r\n\r\nEnd Class</pre>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>SomeClass.SomeChildClass will not work properly - I'm a bit confused as to why but don't do it for now! :)</p>\r\n</div>\r\n",
+    "PostedDate": "2010-12-25T00:22:52.257-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

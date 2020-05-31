@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "569382",
+    "ThreadId": "246851",
+    "Html": "\r\n<p>I used NuGet to add RazorEngine to my project and added the demo code. &nbsp;It throws an error on Razor.Parse.</p>\r\n<p>Method not found: 'System.Web.Razor.GeneratorResults System.Web.Razor.RazorTemplateEngine.GenerateCode(System.IO.TextReader)'</p>\r\n<p>I've checked the reference for System.Web.Razor and RazorEngine and they are both there. &nbsp; What else am I missing here?</p>\r\n<pre><br></pre>\r\n<pre> string template = &quot;Hello @Model.Name! Welcome to Razor!&quot;;\r\n<span> string result = Razor.Parse(template, new { Name = &quot;World&quot; });</span></pre>\r\n<pre><span style=\"color:#ff0000\"><br></span></pre>\r\n",
+    "PostedDate": "2011-02-20T17:15:37.84-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569388",
+    "ThreadId": "246851",
+    "Html": "<p>I removed the references that was downloaded as a part of NuGet (as well as the zip that is downloaded here) and added a reference to the system.web.razor that is a part of mvc3. &nbsp;This seems to have fixed it.</p>",
+    "PostedDate": "2011-02-20T17:51:16.047-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "569737",
+    "ThreadId": "246851",
+    "Html": "<p>Did you have the MVC3 RTM installed,or the Beta?</p>",
+    "PostedDate": "2011-02-21T10:48:07.4-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "570402",
+    "ThreadId": "246851",
+    "Html": "<p>To be honest I don't recall because I hadn't started doing any development in MVC3 and had installed it some time ago. &nbsp;After reinstalling mvc3 and then using the system.web.razor reference for mvc (not the one from the zip) it fixed it.</p>",
+    "PostedDate": "2011-02-22T13:13:01.24-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576209",
+    "ThreadId": "246851",
+    "Html": "<p>I even try to add new system.web.razor assembly from mvc folder, it still doesn't work at all</p>",
+    "PostedDate": "2011-03-05T23:58:41.023-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576502",
+    "ThreadId": "246851",
+    "Html": "<p>@javafun, can you let me know the exact file versions that you have referenced to your project, as well as the version(s) of MVC3 you have installed?<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-03-07T01:02:23.037-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576532",
+    "ThreadId": "246851",
+    "Html": "<p>RazorEngine version&nbsp;2.1.4039.23635</p>\r\n<p>System.Web.Razor version&nbsp;1.0.0.0 &nbsp;Path&nbsp;C:\\Program Files (x86)\\Microsoft ASP.NET\\ASP.NET Web Pages\\v1.0\\Assemblies\\System.Web.Razor.dll</p>",
+    "PostedDate": "2011-03-07T02:26:57.4-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

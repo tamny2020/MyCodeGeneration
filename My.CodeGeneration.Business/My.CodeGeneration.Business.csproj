@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C3384E2-A35B-4E80-A317-0481E2FD98C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>My.CodeGeneration.Business</RootNamespace>
+    <AssemblyName>My.CodeGeneration.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL_Database.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\My.CodeGeneration.Common\My.CodeGeneration.Common.csproj">
+      <Project>{4a948297-363f-452e-bd7e-af11b65f529f}</Project>
+      <Name>My.CodeGeneration.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Model\My.CodeGeneration.Model.csproj">
+      <Project>{4ea4fd0c-325d-42aa-928c-3e1562a987d5}</Project>
+      <Name>My.CodeGeneration.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.MySql\My.CodeGeneration.MySql.csproj">
+      <Project>{9bcfd567-d05e-4e37-a248-1f935e46f050}</Project>
+      <Name>My.CodeGeneration.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Oracle\My.CodeGeneration.Oracle.csproj">
+      <Project>{08b4665c-e414-412c-ada2-b364254786de}</Project>
+      <Name>My.CodeGeneration.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.Sqlite\My.CodeGeneration.Sqlite.csproj">
+      <Project>{d5e03db1-5d0c-475b-b742-6153210a81cf}</Project>
+      <Name>My.CodeGeneration.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.CodeGeneration.SqlServer\My.CodeGeneration.SqlServer.csproj">
+      <Project>{03057a63-6c18-47b7-b205-db3dded7335f}</Project>
+      <Name>My.CodeGeneration.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

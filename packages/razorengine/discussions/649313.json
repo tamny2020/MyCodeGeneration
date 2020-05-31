@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1457198",
+    "ThreadId": "649313",
+    "Html": "Below code is not working \r<br />\nI have created HtmlTemplateBase class and model class with name, email and copy paste the below i am getting error. <strong>error CS1061: 'System.Web.Mvc.HtmlHelper&lt;MvcApplication5.Controllers.PageModel&gt;' does not contain a definition for 'TextBoxFor' and no extension method 'TextBoxFor' accepting a first argument of type 'System.Web.Mvc.HtmlHelper&lt;MvcApplication5.Controllers.PageModel&gt;' could be found (are you missing a using directive or an assembly reference?)}</strong>\r<br />\n<br />\nplease help me\r<br />\n<br />\nRazor.SetTemplateBase(typeof(HtmlTemplateBase&lt;&gt;));\r<br />\n<br />\n  string template = \r<br />\n  @&quot;&lt;html&gt;<br />\n<pre><code>  &lt;head&gt;\n    &lt;title&gt;Hello @Model.Name&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    Email: @Html.TextBoxFor(m =&gt; m.Email)\n  &lt;/body&gt;\n&lt;/html&gt;&quot;;\n</code></pre>\n\nvar model = new PageModel { Name = &quot;World&quot;, Email = &quot;<a href=\"mailto:someone@somewhere.com\" rel=\"nofollow\">someone@somewhere.com</a>&quot; };\r<br />\n  string result = Razor.Parse(template, model);<br />\n",
+    "PostedDate": "2015-12-26T01:36:28.283-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

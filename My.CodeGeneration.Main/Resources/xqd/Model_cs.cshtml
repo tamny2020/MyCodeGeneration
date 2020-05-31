@@ -1,0 +1,33 @@
+﻿using System;
+
+namespace PlatFormService.Model.XQD
+@("{")
+	/// <summary>
+	/// 设备表
+	/// </summary>
+	public class @Model.TableName
+	@("{")
+		#region "  构造函数  "
+		
+		/// <summary>
+        /// 默认构造函数
+        /// </summary>
+		public @Model.TableName ()@("{}")   
+   
+        #endregion
+
+
+		#region "  属性定义  "
+
+        @foreach (dynamic item in Model.Fields)
+        {
+		
+            @RawHtml("         /// <summary> \r\n")
+            @RawHtml("         /// " + item.Note + " \r\n")
+            @RawHtml("         /// </summary> \r\n")
+		    @RawHtml("         public ") @(item.NetType +" "+item.Name) @(" { get; set; }\r\n")
+		}
+
+        #endregion
+    @("}")
+ @("}")

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "string template = @\"@foreach(var i in @Model.Items){\n                <div>Item: @i.Value12</div>\n            }\";\n            string result = Razor.Parse(template, new\n            {\n                Name = \"World\",\n                Items = new[]\n                                {\n                                    new\n                                        {\n                                            Value12 = \"Hello!\"\n                                        }\n                                }\n            });\n \nException:\n \nUnhandled Exception: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'object' does not contain a definition for 'Value12'\n \nWorkaround: is using normal type instead of anonnmous in when define property.",
+    "LastUpdatedDate": "2013-02-21T17:17:03.213-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-05T05:24:40.09-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Support for anonymous lists in anonymous objects",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 409
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

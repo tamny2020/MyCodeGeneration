@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "- remove the Clear and create a mew instance of the template each time you need to renderize it\n- for each template store the constructor delegate somewhere (after the compilation)\n- don't use Activator to create a new instance\n \nThe implementation to get the ctor delegate is:\n \n\tpublic Func<ITemplate> GetCtorDelegate(Type templateType)\n\t{\n\t\tif (templateType == null)\n\t\t\tthrow new ArgumentNullException(\"templateType\");\n \n\t\tvar method = templateType.GetConstructor(new Type[0]);\n\t\treturn Expression.Lambda<Func<ITemplate>>(Expression.New(method)).Compile();\n\t}\n \nAn example to have all default ctors of all generated templates:\nType[] types = compiledAssembly.GetExportedTypes();\nFunc<ITemplate>[] ctors = types.Select(x => GetCtorDelegate(x)).ToArray();\n \nTo have an instance of a template:\nITemplate templateInstance = ctors[0]();\n \nThe difference in performance is notable, believe me",
+    "LastUpdatedDate": "2013-02-21T17:17:00.877-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-08-14T11:31:20.47-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Advise for performance and multithreading",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 488
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Hi,\r\n\r\nWe're currently in the process of refining our model for v3. The issue with Clear() we've already implemented, so now we do the correct thing and cache the type, not the instance.\r\n\r\nThe constructor delegate is a good idea, but in cases of templates with complex constructors (for instance, those who want to use DI) we still need to allow them to bundle a customised activator. What I may consider is updating the DefaultActivator to support constructor caching, but I need to ensure that we have the same behaviour if we are loading the template in another AppDomain (using v3's new IsolatedTemplateService).\r\n\r\nThanks for the comments, good points all round.",
+      "PostedDate": "2011-08-15T04:16:24.4-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-15T06:29:23.227-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Also will be nice to be able to pass custom data to template classes. This will be useful if we have multiple template 'domains'. Now i have to sublcass template service for this(with some private\\publick hacks).",
+      "PostedDate": "2011-08-15T06:43:18.687-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:00.877-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-15T04:23:52.99-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "after i modified the template string, and called Razor.Compile, but the result as same as before, it seems cached. \n \nso could u have any plan to add Razor.Recompile in future?",
+    "LastUpdatedDate": "2013-05-16T04:38:17.71-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-06-01T23:16:16.143-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "add ReCompile to Razor",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 429
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I agree, it seems that the first content compiled against a name is cached, when compiling new content with the same name - same results. Change the compile methods to always compile using the template content passed.",
+      "PostedDate": "2011-08-09T18:21:19.5-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "In v3, we've added support for checking that the hash code of the template being passed in, and the model type is the same. If they are different, then the template will be recompiled and the type recached.\r\n\r\nThis allows us to do:\r\nstring content = service.Parse(\"Hello @Model.Name\", new { Name = \"World\" }, \"test\");\r\nstring content2 = service.Parse(\"Hello @Model.OtherName\", new { OtherName = \"World\" }, \"test\");\r\n\r\nIt will find that the hash code of the template has changed, and the model type will be different, so will kick off a recompile automatically.",
+      "PostedDate": "2011-08-15T04:23:12.987-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "We might still add an explicit Recompile option, need to look over the framework and see if it will be of any use.",
+      "PostedDate": "2011-08-15T04:23:46.93-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-15T04:23:52.99-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:02.233-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:17.71-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

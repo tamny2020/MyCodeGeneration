@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Nearly all the logic with dealy w/ ITemplate instances is within the TemplateService class. While it has several injection properties, the ITemplate instances are never exposed to the callers. \nWhile today the caller has the ability to set the base class of all templates, there is no way access the actual ITemplate instance, even if TemplateService is extended. \nAllowing access to the Template instance would provide a lot of power, with the ability to call methods and properties on the template both before and after execution.  For example, today, it is impossible to mimic the behavior of MVC's InitHelpers() method. (Activator doesn't full solve the problem because it's not called on cached instances).",
+    "LastUpdatedDate": "2013-02-21T17:17:01.7-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-06-27T10:50:15.73-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "TemplateService should be extensible (or allow access to ITemplate)",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 450
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "HI,\r\n\r\nThis is also being addressed in v3, whereby we are introducing IoC support and more extensiblity for the TemplateService. It will also be abstracted out into an ITemplateService contract, so implementations can be further customised.",
+      "PostedDate": "2011-06-28T07:36:33.32-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:01.7-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

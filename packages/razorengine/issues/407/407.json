@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-26T08:09:26.61-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I'm calling Razor.Parse(template, model, name) where \"model\" can be of any runtime type, but at compile time is just Object. So the call fails since Object type does not have the properties that are on the actual model type.\nCan you add an overload of Parse that is non-generic so I can pass an object and then have it call Object.GetType to determine the actual runtime type?\n \nThanks.",
+    "LastUpdatedDate": "2013-05-16T04:38:18.343-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-04T14:24:19.703-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Add non-generic overload of Parse",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 407
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This has been added to the TemplateService types in v3",
+      "PostedDate": "2011-08-26T08:09:23.17-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-26T08:09:26.61-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:03.537-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:18.343-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

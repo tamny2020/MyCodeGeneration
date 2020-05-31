@@ -1,0 +1,13 @@
+Index: RazorCompiler.cs
+===================================================================
+--- RazorCompiler.cs	(revision 2566)
++++ RazorCompiler.cs	(working copy)
+@@ -76,7 +76,7 @@
+         private void AddReferences(CompilerParameters parameters)
+         {
+             var list = new List<string>();
+-            foreach (string location in AppDomain.CurrentDomain.GetAssemblies().Select(a => a.Location))
++            foreach (string location in AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic).Select(a => a.Location))
+             {
+                 list.Add(location.ToLowerInvariant());
+             }

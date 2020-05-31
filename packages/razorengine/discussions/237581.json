@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "532843",
+    "ThreadId": "237581",
+    "Html": "\r\n<p>Hi, I'm looking at your sample in your quickstart guide.</p>\r\n<p>&nbsp;</p>\r\n<p>I'm trying to precompile a template, but there is no compile method, no compilewithanonymous, and no razor.run. I've tried the following namespaces:</p>\r\n<p>using RazorEngine.Templating;</p>\r\n<p>using RazorEngine;</p>\r\n<p>using RazorEngine.Compilation;</p>\r\n<p>&nbsp;</p>\r\n<p>What gives?</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks!</p>\r\n",
+    "PostedDate": "2010-12-08T06:01:46.49-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "532912",
+    "ThreadId": "237581",
+    "Html": "\r\n<p>Answered my own question. &nbsp;Apparently&nbsp;the binary download isn't built from the latest source.</p>\r\n",
+    "PostedDate": "2010-12-08T07:44:46.56-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "532989",
+    "ThreadId": "237581",
+    "Html": "\r\n<p>Hi,&nbsp;</p>\r\n<p>Sorry for the late reply. &nbsp;We've trying to get some further fixes to do with trust issues before we release v1.2 which will include the update Compile and CompileAnonymous methods.<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2010-12-08T09:59:51.733-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "533106",
+    "ThreadId": "237581",
+    "Html": "\r\n<p>Thanks for the reply.&nbsp; I compiled what I needed from your committed source code.</p>\r\n<p>&nbsp;</p>\r\n<p>Keep up the good work!</p>\r\n",
+    "PostedDate": "2010-12-08T13:49:59.5-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

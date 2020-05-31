@@ -1,0 +1,18 @@
+<div class="wikidoc"><h2>Framework Architecture</h2>
+RazorEngine is a simplified templating framework built around Microsoft&#39;s new Razor parsing engine, used in both ASP.NET MVC3 and Web Pages. RazorEngine provides a wrapper and additional services built around the parsing engine to allow the parsing technology to be used in other project types.<br /><br /><img src="http://www.fidelitydesign.net/images/architecture.jpg" /><br /><br />The core components that make up the templating mechanism are a compiler service and a template service.  The compile service is defined as:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">interface</span> ICompilerService
+{
+    <span style="color:Blue;">string</span> BuildTypeName(Type templateType, Type modelType);
+    Type CompileType(TypeContext context);
+}
+</pre></div><br />The compiler service is responsible for transforming a text template (as defined in a TypeContext) into a compiled type using the Razor parser for code generation. When a type has been generated, it is instantiated through an activator:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">interface</span> IActivator
+{
+    ITemplate CreateInstance(Type type);
+}
+</pre></div><br />An activator allows for the custom instantiation of a template instance. This functionality is managed through a TemplateService instance. A TemplateService provides additional functionality, such as templating caching and template resolution. Template resolution is the process of locating additional templates using @Include calls. A template resolver is defined as:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">interface</span> ITemplateResolver
+{
+    <span style="color:Blue;">string</span> GetTemplate(<span style="color:Blue;">string</span> name);
+}
+</pre></div><br />A template resolver returns the unparsed template content of the template to include.  This allows @Include calls to be resolved at execute time by providing a mechanism to locate named templates that may not have been parsed prior to the parent template executing.</div><div class="ClearBoth"></div>

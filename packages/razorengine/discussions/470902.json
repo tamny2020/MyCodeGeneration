@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1128140",
+    "ThreadId": "470902",
+    "Html": "Hello, I want to traverse a tree in a template. So the model is smth like this:<br />\n<pre><code>class Model\n{\npublic Node[] Nodes {get;set;}\n}</code></pre>\n\nand the node is:<br />\n<pre><code>class Node\n{\npublic string Name {get;set;}\npublic Node[] Nodes {get;set;}\n}</code></pre>\n\nThe model itself should not know how to render itself. I want to keep all rendering logic in a template to make it possible to change rendering without recompiling. So I came to the idea of a recursive helper. I thought I could write smth like this in a template header:<br />\n<pre><code>helper Render(Node node){\n &lt;text&gt;node.Name&lt;/text&gt;\n foreach(var childNode in node.Nodes){\n Render(childNode);\n}\n}</code></pre>\n\nand later use it to render a model:<br />\n<pre><code>&lt;div&gt;\n@foreach(var node in @Model.Nodes){\n@Render(node)\n}\n&lt;/div&gt;</code></pre>\n\nUnfortunately I could not compose a template that would compile without an error. Is it possible to use helpers recursively? Can anybody provide a sample how to implement recursive helper correctly?<br />\n",
+    "PostedDate": "2013-11-23T02:11:21.927-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

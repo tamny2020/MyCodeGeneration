@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "result = Razor.Parse<ABCTEMPLATE>(outer_html, abctemplate);\n\nI am iterating all users in db and make a template to send an email to respective users, problem is, when they reach to 20,000 users they throw an exception below.\n\nException of type 'System.OutOfMemoryException' was thrown at CompiledRazorTemplates.Dynamic.dcdddaebaee.Execute()\n   at RazorEngine.Templating.TemplateBase.RazorEngine.Templating.ITemplate.Run(ExecuteContext context)\n   at RazorEngine.Templating.TemplateService.Run(ITemplate template, DynamicViewBag viewBag)\n   at RazorEngine.Templating.TemplateService.Parse(String razorTemplate, Object model, DynamicViewBag viewBag, String cacheName)\n   at RazorEngine.Razor.Parse[T](String razorTemplate, T model)\n\nI went through the google about and find out that razor cached template.\nMy question is why they cached a template and how can i get rid of this.\nThat should be template clear method to cleal cache.\n\nRegards\nHumair",
+    "LastUpdatedDate": "2013-07-22T01:51:34.617-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2013-07-22T01:51:34.617-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Exception of type 'System.OutOfMemoryException' was thrown",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1023
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

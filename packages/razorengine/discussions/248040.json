@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "574041",
+    "ThreadId": "248040",
+    "Html": "\r\n<p>Is there any easy way to get access to the generated source code for templates? I'm new to Razor and find that I'm struggling with a&nbsp;lot of&nbsp;syntax errors in my templates. I'd love to be able to see the code that's generated to make it easier to\r\n figure out what's gone wrong.</p>\r\n<p>For example, here's a typical&nbsp;error message:</p>\r\n<pre>{c:\\Users\\scottb\\AppData\\Local\\Temp\\tedws2oh.0.cs(39,1) : error CS1501: No overload for method 'Write' takes 0 arguments}</pre>\r\n<p>There's a temporary source file mentioned there, but by the time I get the error message it's not on the drive any longer. The Line,Column number stuff isn't helpful since it's&nbsp;for the generated .cs file and not for the template file.</p>\r\n<p>Thanks!</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-03-01T12:08:57.897-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "574248",
+    "ThreadId": "248040",
+    "Html": "<p>We could add the generated source code to the exception data, but can only do this in full trust scenarios (because we have to invoke a CodeDomProvider to generate the code. In medium trust environments, we don't access the CodeDomProvider directly, but through the ASP.NET build system, so don't have access to the generated source.</p>",
+    "PostedDate": "2011-03-02T00:58:22.077-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "575270",
+    "ThreadId": "248040",
+    "Html": "<p>If it's easy to do, adding the source code to the exception data would be terrifically handy. In my case it's a WPF application so full trust is no problem.</p>",
+    "PostedDate": "2011-03-03T13:43:29.56-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

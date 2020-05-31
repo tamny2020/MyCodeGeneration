@@ -1,0 +1,191 @@
+﻿using Prescription.Model.Database;
+using System;
+using System.Data;
+using System.Collections.Generic;
+using Xqd.Common.Feature.Helper;
+using Xqd.Common.Utils.Models;
+@using My.CodeGeneration.Model
+@using System.Text
+@{
+
+    string prefix = GetTablePrefix(Model.TableName);
+    string tableName = GetTableName(Model.TableName);
+    string modelName = prefix + "_" + tableName;
+    string dataBaseTableName=Model.TableName;//数据库表名
+    string fields = "";
+    string allFields = "";
+    string fieldsParameter = "";
+    StringBuilder fieldsUpdate = new StringBuilder();
+    StringBuilder dictParamters = new StringBuilder();
+    Fields primaryKeyField = null;//主键字段
+    StringBuilder whereBuilder = new StringBuilder();
+
+    foreach (Fields item in Model.Fields)
+    {
+        if (item.IsPrimaryKey)
+        {
+            primaryKeyField = item;
+            continue;
+        }
+        fields += item.Name + ",";
+        allFields += "a."+item.Name + ",";
+        fieldsParameter += "@" + item.Name + ",";
+        dictParamters.AppendFormat("dictParamters[\"{0}\"] = model.{0};\r\n", item.Name);
+        fieldsUpdate.AppendFormat("{0}=@{0},", item.Name);
+
+        //whereBuilder.AppendLine(item.Name+"-"+item.NetType);
+        
+        switch (item.NetType)
+        {
+            case "string":
+                    whereBuilder.AppendFormat("if(!string.IsNullOrWhiteSpace(model.{0})) \r\n", item.Name);
+                    whereBuilder.AppendLine("{");
+                    whereBuilder.AppendFormat("dictParamters[\"{0}\"] = model.{0};\r\n", item.Name);
+                    whereBuilder.AppendFormat("sqlBuilder.Append(\" AND a.{0} LIKE CONCAT('%',@{0},'%')\");\r\n", item.Name);
+                    whereBuilder.AppendLine("}");
+                break;
+
+            case "int":
+            case "sbyte":
+                    whereBuilder.AppendFormat("if(model.{0}>-1) \r\n", item.Name);
+                    whereBuilder.AppendLine("{");
+                    whereBuilder.AppendFormat("dictParamters[\"{0}\"] = model.{0};\r\n", item.Name);
+                    whereBuilder.AppendFormat("sqlBuilder.Append(\" AND a.{0}=@{0}\");\r\n", item.Name);
+                    whereBuilder.AppendLine("}");
+                break;
+                
+            case "DateTime":
+                whereBuilder.AppendFormat("if(model.{0}.HasValue) \r\n", item.Name);
+                    whereBuilder.AppendLine("{");
+                    whereBuilder.AppendFormat("dictParamters[\"{0}\"] = model.{0};\r\n", item.Name);
+                    whereBuilder.AppendFormat("sqlBuilder.Append(\" AND a.{0}=@{0}\");\r\n", item.Name);
+                    whereBuilder.AppendLine("}");
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+namespace PlatFormService.Model.XQD
+{
+	/// <summary>
+    /// 设备表
+    ///</summary>
+	public class  @("DAL_")@tableName
+    {
+
+        #region 新增记录
+        /// <summary>
+        /// 新增记录
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public virtual @(primaryKeyField.NetType) Add@(tableName) (@(modelName) model)
+        {
+            
+            @RawHtml(string.Format("string sql =@\"INSERT INTO {0}({1}) VALUES({2});SELECT @@IDENTITY;\"", dataBaseTableName, fields.TrimEnd(','), fieldsParameter.TrimEnd(',')));
+
+            @RawHtml("Dictionary<string, object> dictParamters = new Dictionary<string, object>();")
+            @RawHtml("dictParamters.Clear();")
+
+            @RawHtml("    "+dictParamters.ToString())
+
+            return DBDataSourceHelper.ExecuteScalar<@(primaryKeyField.NetType)>(sql, dictParamters);
+        }
+        #endregion
+   
+        #region 更新记录
+        /// <summary>
+        /// 更新记录
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public virtual bool Update@(tableName)(@(modelName) model){
+
+            @RawHtml(string.Format("string sql =@\"UPDATE {0} SET {1} WHERE {2} = @{2};\"", dataBaseTableName, fieldsUpdate.ToString().TrimEnd(','), primaryKeyField.Name));
+
+
+            @RawHtml("Dictionary<string, object> dictParamters = new Dictionary<string, object>();")
+            @RawHtml("dictParamters.Clear();")
+
+            @RawHtml("   "+dictParamters.ToString())
+
+            var num = DBDataSourceHelper.ExecuteNonQuery(sql,dictParamters);
+            return num > 0;
+        }
+        #endregion
+
+        #region 删除记录
+        /// <summary>
+        /// 删除记录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual bool Del@(tableName)(@primaryKeyField.NetType id)
+        {
+            @RawHtml(string.Format("string sql = \"UPDATE {0} SET Invalid = 1 WHERE {1} = @{1}\";", dataBaseTableName, primaryKeyField.Name))
+
+            @RawHtml("Dictionary<string, object> dictParamters = new Dictionary<string, object>();")
+            @RawHtml("dictParamters.Clear();")
+
+            @RawHtml("dictParamters[\"" + primaryKeyField.Name + "\"] = id;")
+
+            int num = DBDataSourceHelper.ExecuteNonQuery(sql,dictParamters);
+            return num > 0;
+    
+        }
+        #endregion
+
+
+        #region 获取记录
+        /// <summary>
+        /// 获取记录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual @(modelName) Get@(tableName)(@primaryKeyField.NetType id)
+        {
+            @RawHtml(string.Format("string sql =\"select {0} from {1} WHERE {2} = @{2}\";", allFields.TrimEnd(','), dataBaseTableName, primaryKeyField.Name))
+
+            @RawHtml("Dictionary<string, object> dictParamters = new Dictionary<string, object>();")
+            @RawHtml("dictParamters.Clear();")
+            @RawHtml("dictParamters[\"" + primaryKeyField.Name + "\"] = id;")
+
+            return DBDataSourceHelper.GetSingleOrmData<@(modelName)>(sql, dictParamters);
+        } 
+        #endregion
+
+        #region 获取记录分页
+        /// <summary>
+        /// 获取记录分页
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public virtual CommonPageData<@(modelName)>  Get@(tableName)Page(@(modelName) model){
+    
+            var list = new CommonPageData<@(modelName)>();
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.Append(" from @(modelName) a WHERE a.Invalid =0 ");
+            Dictionary<string, object> dictParamters = new Dictionary<string, object>();
+            dictParamters.Clear();
+           
+            @RawHtml(whereBuilder.ToString())
+            if (string.IsNullOrWhiteSpace(model.SortField))
+            {
+                model.SortField = "a.CreateTime";
+            }
+
+            var sql = new string[] {
+                "select count(*) "+ sqlBuilder.ToString(),
+                "select @(allFields.TrimEnd(',')) "+ sqlBuilder.ToString()
+            };
+            list.ReturnData = DBDataSourceHelper.GetOrmDataByPage<@(modelName)>(sql, model, dictParamters);
+            list.Total = model.TotalCount;
+
+            return list;
+        }
+        #endregion
+
+    }
+}

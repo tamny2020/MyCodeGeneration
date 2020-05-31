@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "570168",
+    "ThreadId": "247062",
+    "Html": "\r\n<p>Hi all</p>\r\n<p>Thanks a lot for this great implmentation of Templates using Razor.</p>\r\n<p>I have some problem testing my templates, it's rather complicated to understand the error messages without having the code that has been generated. Would it be possible to add it in the TemplateCompilationException ?</p>\r\n<p>I would like to be able to use a syntax like the &quot;@model&quot; in MVC 3 to specify the type of the Model in the template. This would ease the specification of the Model type for Included Templates.</p>\r\n<p>Keep up the good work !</p>\r\n<p>Regards,</p>\r\n<p>Vincent</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-22T06:18:37.36-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "570195",
+    "ThreadId": "247062",
+    "Html": "<p>I've added support for the @model declaration in a branch. Whether or not we'll see that in the main is up for grabs simply because we'd be repeating functionality of the MVC razor engine, which is something we're not keen to do. However, my implementation only works in design mode and doesn't affect the actual type passed in by the engine itself - though now that I think about it, it could be used to validate you're passing in the right model....hmm...</p>",
+    "PostedDate": "2011-02-22T07:18:38.92-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "570481",
+    "ThreadId": "247062",
+    "Html": "<p>Thanks for quick feedback.</p>\r\n<p>I understand that you don't want to repeat every functionality of the MVC engine. But&nbsp;if the support of the @model directive is enough to increase intelisense in VS, it's could greatly improve template creation/debugging.</p>\r\n<p>tks</p>\r\n<p>&nbsp;</p>",
+    "PostedDate": "2011-02-22T14:50:02.34-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "571128",
+    "ThreadId": "247062",
+    "Html": "<p>Agreed. That's why I wrote it in the first place. I'm still figuring out how it's going to work but I think it will be a dynamic system where we can add any @namegoeshere support that can be overridden by the parser when people write their own templatebase type. Still up in the air :)</p>",
+    "PostedDate": "2011-02-23T14:49:03.473-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

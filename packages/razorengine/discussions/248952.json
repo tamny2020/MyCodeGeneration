@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "577529",
+    "ThreadId": "248952",
+    "Html": "\r\n<p>I am trying to parse a template passing in a model with dynamic collection, I keep getting exception &nbsp;object' does not contain a definition for 'Number'</p>\r\n<p>var cards = new List&lt;dynamic&gt;();<br>\r\ncards.Add(new { Number = &quot;xxx&quot;, Balance = &quot;00.0&quot; }); &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>\r\n<p>var model = new{Cards = cards}; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>\r\n<p>string message = Razor.Parse(template,model); &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>\r\n<p>@foreach (var item in Model.Cards)</p>\r\n<p>{&nbsp;&nbsp; &nbsp;&lt;tr&gt;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</p>\r\n<p><span style=\"white-space:pre\"></span>&lt;td&gt; @item.Number &nbsp; &lt;/td&gt; &nbsp; &nbsp; &nbsp;</p>\r\n<p><span style=\"white-space:pre\"></span>&lt;td&gt; @String.Format(&quot;{0:c}&quot;, item.Balance) &lt;/td&gt;&nbsp;&nbsp; &nbsp;</p>\r\n<p>&lt;/tr&gt;</p>\r\n<p>}</p>\r\n",
+    "PostedDate": "2011-03-08T21:27:02.97-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "577597",
+    "ThreadId": "248952",
+    "Html": "<p>Hi,</p>\r\n<p>This is currently unsupported, we need to work on our dynamic object handling to get this to work. I would question the need for a static list of dynamic objects though, it would be safer and more efficient to declare a Card class.</p>",
+    "PostedDate": "2011-03-09T01:12:25.663-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "577986",
+    "ThreadId": "248952",
+    "Html": "<p>The problem stems from .net in that any dynamic is translated to object directly. so your List&lt;dynamic&gt; results in List&lt;object&gt; once it gets to our system. I'm not sure exactly how we could solve this problem in any way that doesn't require explicit information  from the user on whether or not the model contains any dynamic objects as we won't have that information. This is an interesting problem and I have a possible solution - I'm not sure how well it will work yet.</p>\n<p>&nbsp;</p>\n<p>So far it doesn't seem to work well. Though it's just a matter of me not fully understanding how ExpandoObject works. But I'm pretty sure I'm on the right track :)</p>",
+    "PostedDate": "2011-03-09T12:25:28.88-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "578042",
+    "ThreadId": "248952",
+    "Html": "<p>I am now passing in entities from EF&nbsp;directly&nbsp;and its working like dream. Thanks for the great work.</p>",
+    "PostedDate": "2011-03-09T13:39:33.467-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

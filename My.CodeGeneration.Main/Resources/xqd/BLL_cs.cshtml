@@ -1,0 +1,61 @@
+﻿using Prescription.Model.Database;
+using System;
+using System.Data;
+using System.Collections.Generic;
+using Xqd.Common.Feature.Helper;
+using Xqd.Common.Utils.Models;
+@using My.CodeGeneration.Model
+@using System.Text
+@using System.Linq
+@{
+
+    string prefix = GetTablePrefix(Model.TableName);
+    string tableName = GetTableName(Model.TableName);
+    string modelName = prefix + "_" + tableName;
+    string dataBaseTableName = Model.TableName;//数据库表名
+    string fields = "";
+    string fieldsParameter = "";
+    StringBuilder fieldsUpdate = new StringBuilder();
+    StringBuilder dictParamters = new StringBuilder();
+    Fields primaryKeyField = null;//主键字段
+
+    foreach (var item in Model.Fields)
+    {
+        if (item.IsPrimaryKey)
+        {
+            primaryKeyField = item;
+        }
+    }
+}
+namespace PlatFormService.Model.XQD
+{
+	/// <summary>
+    /// 
+    ///</summary>
+	public class  @("BLL_")@tableName
+    {
+        private static DAL_@(tableName) _dal = new DAL_@(tableName)t();
+
+        public @(primaryKeyField.NetType) Add@(tableName)(@(modelName) model)
+        {
+            return _dal.Add@(tableName)(@(modelName) model)
+        }
+
+
+        public bool Update@(tableName)(@(modelName) model){
+
+               return _dal.Update@(tableName)(@(modelName) model);
+        }
+
+        public bool Del@(tableName)(@primaryKeyField.NetType Id)
+        {
+            return _dal.Del@(tableName)(@primaryKeyField.NetType Id);
+        }
+
+        public  @(modelName) Get@(tableName)(@primaryKeyField.NetType Id)
+        {
+            return _dal.Get@(tableName)(@primaryKeyField.NetType Id);
+        }
+ 
+   }
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "Id": "564240",
+    "ThreadId": "245523",
+    "Html": "\r\n<p>The current release doesn't seem to contain&nbsp;HtmlTemplateBase. &nbsp;Where can I find an example of this that will work with 2.1? &nbsp;I tried to yank a version of&nbsp;HtmlTemplateBase out of an older release but it doesn't seem to be compatible.</p>\r\n<p>Thanks!</p>\r\n",
+    "PostedDate": "2011-02-10T14:32:14.003-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564247",
+    "ThreadId": "245523",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>The HtmlTemplateBase&lt;T&gt; was an example template that demonstrates how to build a custom base template; it's not an official part of the base RazorEngine project. I'll try to get round to release some additional template bases to target specific scenarios,\r\n perhaps to accompany the v2.2 release.</p>\r\n",
+    "PostedDate": "2011-02-10T14:43:01.67-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564670",
+    "ThreadId": "245523",
+    "Html": "<p>Thanks for the quick reply! &nbsp;Do you have an implementation of&nbsp;HtmlTemplateBase that works in 2.1? &nbsp;I attempted writing it myself, but I don't know that I have what it takes.</p>",
+    "PostedDate": "2011-02-11T07:47:00.97-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564728",
+    "ThreadId": "245523",
+    "Html": "<p>I'll chuck something together for you tonight.</p>",
+    "PostedDate": "2011-02-11T09:03:54.53-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576642",
+    "ThreadId": "245523",
+    "Html": "<p>Bump. &nbsp;Sorry to be a bother, but I really wanted to make use of MVC's HTML Helpers and can't for the life of me get it working in 2.1. =[</p>",
+    "PostedDate": "2011-03-07T06:51:37.62-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579571",
+    "ThreadId": "245523",
+    "Html": "<p>Hi,</p>\r\n<p>Did you solve it?</p>\r\n<p>I did not get it running - when&nbsp; using Html.LabelFor(m=&gt;m.Companyname) the result being rendered is always \"Companyname\" instead of the value of Companyname...</p>\r\n<p>Alex</p>",
+    "PostedDate": "2011-03-12T14:26:05.58-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579892",
+    "ThreadId": "245523",
+    "Html": "<p>Sorry guys, I still haven't got round to looking at this, its on my (very big) todo list though.</p>",
+    "PostedDate": "2011-03-14T01:26:54.303-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604422",
+    "ThreadId": "245523",
+    "Html": "<p>Not news on this yet? Thanks to everybody for the wonderful work on this, but a default implementation of the HtmlTemplateBase&lt;&gt; would take this framework to a whole new level!</p>\r\n<p>&nbsp;</p>\r\n<p>Miguel</p>",
+    "PostedDate": "2011-04-28T13:32:20.42-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "678190",
+    "ThreadId": "245523",
+    "Html": "<p>I just put together an implementation of HtmlTemplateBase&lt;&gt; that supports Html Helper and the ViewBag. Can be easily extended to have Ajax helper etc. Here is the details:</p>\r\n<p><a href=\"http://www.haiders.net/post/HtmlTemplateBase.aspx\">http://www.haiders.net/post/HtmlTemplateBase.aspx</a></p>",
+    "PostedDate": "2011-09-29T07:11:32.037-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "678210",
+    "ThreadId": "245523",
+    "Html": "<p>Thanks Haider!</p>",
+    "PostedDate": "2011-09-29T07:48:11.363-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1457199",
+    "ThreadId": "245523",
+    "Html": "Haider i am followed your blog and try to implement razorengine i am getting error, please guide me\r<br />\n<br />\nBelow code is not working \r<br />\nI have created HtmlTemplateBase class and model class with name, email and copy paste the below i am getting error. error CS1061: 'System.Web.Mvc.HtmlHelper&lt;MvcApplication5.Controllers.PageModel&gt;' does not contain a definition for 'TextBoxFor' and no extension method 'TextBoxFor' accepting a first argument of type 'System.Web.Mvc.HtmlHelper&lt;MvcApplication5.Controllers.PageModel&gt;' could be found (are you missing a using directive or an assembly reference?)} \r<br />\n<br />\nplease help me \r<br />\n<br />\nRazor.SetTemplateBase(typeof(HtmlTemplateBase&lt;&gt;)); \r<br />\n<br />\nstring template = \r<br />\n@&quot;&lt;html&gt;<br />\n&lt;head&gt;\r\n    &lt;title&gt;Hello @Model.Name&lt;/title&gt;\r\n  &lt;/head&gt;\r\n&lt;body&gt;<br />\n<pre><code>Email: @Html.TextBoxFor(m =&gt; m.Email)</code></pre>\n\n&lt;/body&gt;\r<br />\n&lt;/html&gt;&quot;;\r<br />\nvar model = new PageModel { Name = &quot;World&quot;, Email = &quot;<a href=\"mailto:someone@somewhere.com\" rel=\"nofollow\">someone@somewhere.com</a>&quot; }; \r<br />\nstring result = Razor.Parse(template, model);<br />\n",
+    "PostedDate": "2015-12-26T01:39:21.597-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

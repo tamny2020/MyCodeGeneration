@@ -1,0 +1,55 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When calling the Razor.Parse or Razor.Run with an object that is an interface or an abstract class, it does not use the generic type of the object. Can you expose another method for this, or handle appropriately?\n \nWe had to do something like this to get it to work:\n \nreturn (string) typeof (Razor).GetMethods()\n                                    .Where(m => m.Name == \"Run\" && m.ContainsGenericParameters)\n                                    .First()\n                                    .MakeGenericMethod(model.GetType())\n                                    .Invoke(null, new[] {(object) model, compiledTemplateName});\n \nSample Test:\n[Test]\n        public void Renders_correctly_when_model_is_supplied_as_base_type_or_interface()\n        {\n            _templateLoader.Stub(m => m.Load(\"ParentTemplate\")).Return(\"Parent Template -- @Include(\\\"ChildTemplate\\\", Model.Val2) --\");\n            _templateLoader.Stub(m => m.Load(\"ChildTemplate\")).Return(\"Child Template and @Model\");\n            \n            var message = new MailMessage(\"test1@glgroup.com\", \"Test2@glgroup.com\", \"Test3@glgroup.com\", \"\");\n \n            try\n            {\n                _emailer.SendEmail(message, (IEmailModel)new TestEmailModel(), \"ParentTemplate\");\n            }\n            catch (Exception e)\n            {\n                if (e is TemplateCompilationException)\n                {\n                    Console.WriteLine(string.Join(\",\", ((TemplateCompilationException)e).Errors));\n                }\n                else\n                {\n                    Console.WriteLine(e);\n                }\n            }\n \n            Assert.That(message.Body, Is.EqualTo(\"Parent Template -- Child Template and It's a val2 --\"));\n        }",
+    "LastUpdatedDate": "2013-02-21T17:17:02.89-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-12T13:54:05.273-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Calling Run or Parse with Interface or Abstract Type",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 412
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I've encountered a similar problem with a base class trying to pass \"this\" into the Razor.Parse method.\r\n\r\nFrom what I can see the problem stems from the fact that the Parse method (and I assume the run method) use typeof(T) to get the type rather than model.GetType() so it binds to the compile time type (eg the interface, abstract class, etc.) rather than the actual runtime type of the object.\r\n\r\nI'm not familiar enough with Razor to know if there is a good reason for this or if it is just a bug. In general though I would have thought youw ant to use the specific runtime type - if the template expects the compiletime type then it will still work if it expects the runtime type then it will work.\r\n\r\nConversely as it currently stands if the template expects the compile time type then it works but if it expects the runtime type then it throws errors.\r\n\r\nIt looks like it should be easy enough to fix though I guess the harder bit is updating all the tests that are run to make sure it does the right thing to include this new scenario. :)\r\n",
+      "PostedDate": "2012-05-02T06:28:56.157-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-05-02T06:29:05.787-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:02.89-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

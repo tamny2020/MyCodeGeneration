@@ -1,0 +1,24 @@
+[
+    {
+        "Id":"10",
+        "Name":"127.0.0.1(SqlServer)",
+        "Type":"SqlServer",
+        "Server":"127.0.0.1",
+        "Database":"",
+        "Uid":"sa",
+        "Pwd":"sa",
+        "Port":"",
+        "File":""
+    },
+    {
+        "Id":"11",
+        "Name":"172.18.30.6(MySql)",
+        "Type":"MySql",
+        "Server":"172.18.30.6",
+        "Database":"",
+        "Uid":"root",
+        "Pwd":"root",
+        "Port":"3306",
+        "File":""
+    }
+]

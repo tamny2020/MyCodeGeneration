@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "709608",
+    "ThreadId": "282328",
+    "Html": "\r\n<p><span style=\"color:blue\">I ran this simple example from the website and I get the error below when it calls Razor.Parse. How can I fix this???</span></p>\r\n<p><span style=\"color:blue\">string</span> template = <span style=\"color:#a31515\">\r\n&quot;Hello @Model.Name! Welcome to Razor!&quot;</span>;</p>\r\n<p>&nbsp;<span style=\"color:blue\">string</span> result = Razor.Parse(template, <span style=\"color:blue\">\r\nnew</span> { Name = <span style=\"color:#a31515\">&quot;World&quot;</span> });</p>\r\n<p><span style=\"color:#ff0000\">error CS0234: The type or namespace name 'Markdown' does not exist in the namespace 'ServiceStack' (are you missing an assembly reference?)</span></p>\r\n",
+    "PostedDate": "2011-12-08T16:09:17.69-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "713135",
+    "ThreadId": "282328",
+    "Html": "<p>Hi,</p>\r\n<p>This doesn't really give me anything to work with. The template doesn't appear to reference the ServiceStack.Markdown, unless you've made a call to AddNamespaces() somewhere?</p>",
+    "PostedDate": "2011-12-16T02:12:13.153-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When a razor template has a variable wrapped in parenthesis (ex. \"(@Model.B)\" in the code below), the razor engine fails to compile and replace that variable if it is preceded by a \"<\" and separated by space or text. Is this intended behavior?\n\n```\n        [Test]\n        public void TestWeirdLangleBracketError()\n        {\n            var template = \"(@Model.B)\";\n            var model = new Model { B = Guid.NewGuid().ToString() };\n            var templateService =\n                new TemplateService(new TemplateServiceConfiguration { EncodedStringFactory = new RawStringFactory() });\n\n            //It is replaced here\n            templateService.Compile(template, typeof(Model), \"Try1\");\n            Assert.True(templateService.Run(\"Try1\", model, null).Contains(model.B));\n            //But not here\n            templateService.Compile(\" < \" + template, typeof(Model), \"Try2\");\n            Assert.False(templateService.Run(\"Try2\", model, null).Contains(model.B));\n        }\n\n        public class Model\n        {\n            public int A { get; set; }\n            public string B { get; set; }\n        }\n```",
+    "LastUpdatedDate": "2014-04-22T13:32:53.153-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-04-22T13:32:53.153-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Error parsing razor when text is preceded by \"<\"",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1211
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

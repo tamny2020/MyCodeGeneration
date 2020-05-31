@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "655587",
+    "ThreadId": "268466",
+    "Html": "\r\n<p>I've tried a few things. Including hacking the registry to add 'csrzr' as a registered extension of VS's RazorEditor. This allowed me to open the csrzr files in the RazorEditor, but there is no IntelliSense and no syntax highlighting for code portions, only\r\n HTML portions are recognised. I tried adding the Razor configuration to web.config - including the build providers - but no joy.</p>\r\n",
+    "PostedDate": "2011-08-09T18:27:10.913-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

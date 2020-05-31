@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "601709",
+    "ThreadId": "254991",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I've used RazorEngine in asp.net project with forms authentication and suddenly my forms authentication failed... It started to point to some Account\\Login which is not configured anywhere. Actually after few hours of investigation I've found that to solve\r\n it we need to add:</p>\r\n<p><span><em></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">&lt;</span><span style=\"color:#a31515\">add</span> <span style=\"color:red\">key</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">loginUrl</span><span style=\"color:black\">&quot;</span> <span style=\"color:red\">value</span><span style=\"color:blue\">=</span><span style=\"color:black\">&quot;</span><span style=\"color:blue\">~/LogOn</span><span style=\"color:black\">&quot;</span> <span style=\"color:blue\">/&gt;</span>\r\n</pre>\r\n</div>\r\n</em></span>\r\n<p></p>\r\n<p><span>in <em></em></span>appSettings. The source: <a href=\"http://stackoverflow.com/questions/4087300/asp-mvc-problem-with-configuration-of-forms-authentication-section\">\r\nhttp://stackoverflow.com/questions/4087300/asp-mvc-problem-with-configuration-of-forms-authentication-section</a>.</p>\r\n<p>It might help somebody.</p>\r\n<p>Regards,</p>\r\n<p>Bezieur</p>\r\n",
+    "PostedDate": "2011-04-22T14:12:28.353-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "602507",
+    "ThreadId": "254991",
+    "Html": "<p>Can you post your configuration settings? The razorEngine should have *no* effect on that what-so-ever, except possibly with the virtual path. But it's something that we should track down if it's really an issue.</p>",
+    "PostedDate": "2011-04-25T10:33:57.493-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

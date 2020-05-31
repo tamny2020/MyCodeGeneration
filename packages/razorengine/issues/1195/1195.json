@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "It seems that everything that I try and add to the template gets encoded.  How can I add html elements to the template the same kind of way that someone might do it via @Html.LabelFor(d => d.Id)?\n\n__My Template__\n    public class MyTemplateBase : HtmlTemplateBase<Person>\n    {\n        public string LabelFor(Expression<Func<Person, string>> ex)\n        {\n            return \"<label for=\\\"Id\\\">\" + ex.Compile().Invoke(this.Model) + \"</label>\";\n        }\n    }\n\n__Output html AFTER rendering__\n&lt;label for=\"Id\"&gt;1&lt;/label&gt;\n\n__Expected html__\n<label for=\"Id\">1</label>\n\n__Razor View__\n            var html = Razor.Parse<Person>(@\"\n\n<!DOCTYPE html>\n\n<html>\n<head>\n    <meta name=\"\"viewport\"\" content=\"\"width=device-width\"\" />\n    <title>Index</title>\n</head>\n<body>\n    <div>\n       @LabelFor(d => d.Id)\n    </div>\n</body>\n</html>\n            \", new Person() { Id = \"1\", Name = \"Dude\" });",
+    "LastUpdatedDate": "2014-03-25T14:07:47.95-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-03-25T14:06:39.457-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "(bug) Everything gets encoded",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1195
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "btw.  the \"output html AFTER rendering\" is the Html encoded value, not what it has up there (forum did that after I typed it)",
+      "PostedDate": "2014-03-25T14:07:47.95-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

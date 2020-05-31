@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1375450",
+    "ThreadId": "595062",
+    "Html": "Hi, \r<br />\n<br />\nWhile the RazorEngine parses and executes the @helper code correctly, \r<br />\nI found myself un-able to debug the 'run-time' generated class after starting to use @helper\r<br />\nfunctions in my Razord .cshtml templates\r<br />\n<br />\nbasically - when I click F11 to step into the code, the debugger - jumps over it\r<br />\nremoving the @helper's- let's me step into the generated code and debug it .\r<br />\n<br />\nIs there any way around this ? <br />\n",
+    "PostedDate": "2015-03-22T16:32:17.403-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

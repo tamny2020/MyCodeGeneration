@@ -1,0 +1,75 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "In order to to use razor to generate \"non-XML-like languages\" without using <text> tags\nas a softwaredevelopper\ni want @\"...\"@ or @'...'@ as alias for <text>...</text>\n \nFrom http://stackoverflow.com/questions/4938134/use-razor-to-generate-code\n \n    > You certainly could use Razor to generate C# code, \n    > but it's not really designed for non-XML-like languages. \n    > You'd have to have a lot of <text> tags.\n \nI implemented a small working example http://stackoverflow.com/questions/4938134/use-razor-to-generate-code/5376539#5376539\nand thought that @\"...\"@ or @'...'@ as alias for <text>...</text> would make the code much more clear",
+    "LastUpdatedDate": "2014-08-31T05:23:32.933-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-03-21T04:04:59.35-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Improvement: @\"...\"@ or @'...'@ as alias for <text>...</text>",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 6,
+    "Id": 366
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I'll have to look into the parser and see if there is a mechanism for that. Also, consider that the parser is actually a separate project at http://aspnet.codeplex.com so even if it were possible - code changes to future versions might break it. Currently the parser only looks for the xml tag of \"text\" and as such changing it to something else doesn't work straight off the bat. (Especially considering that @ is supposed to be a transition to code.\r\n\r\nI'm not saying it's not going to work but I don't think the parser works in the way you intend it to. :)\r\n\r\nWith that said, I will look into it.",
+      "PostedDate": "2011-03-21T08:18:34.03-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-04-24T01:16:34.297-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-04-11T08:14:25.733-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-06-13T12:48:10.723-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-08-09T17:31:00.443-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:04.37-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2014-08-31T05:23:32.933-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

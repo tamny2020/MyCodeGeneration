@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "677104",
+    "ThreadId": "273964",
+    "Html": "\r\n<p>Hello guys,</p>\r\n<p>i had a problem compiling a razor template (the content doesnt matter) in a mvc project. it gave an error during compilation saying that the same assembly had been added already to the list of references sent to the codedom.</p>\r\n<p>i traced the problem to the CompilerResults Compile(TypeContext context) method in DirectCompilerServiceBase where it takes all the loaded assemblies and add them as references. i modified the following to get it working, [there are probably better ways\r\n to do this]</p>\r\n<div id=\"_mcePaste\" style=\"width:1px; height:1px; overflow:hidden; top:0px; left:-10000px\">\r\n&#65279;</div>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>Dictionary&lt;<span style=\"color:blue\">string</span>, <span style=\"color:blue\">string</span>&gt; references = <span style=\"color:blue\">new</span> Dictionary&lt;<span style=\"color:blue\">string</span>, <span style=\"color:blue\">string</span>&gt;();\r\n\r\n<span style=\"color:blue\">var</span> assemblies = CompilerServices\r\n    .GetLoadedAssemblies()\r\n    .Where(a =&gt; !a.IsDynamic)\r\n    .Select(a =&gt; a.Location)\r\n    .ToArray();\r\n\r\n<span style=\"color:blue\">foreach</span> (<span style=\"color:blue\">var</span> a <span style=\"color:blue\">in</span> assemblies)\r\n{\r\n    references[Path.GetFileName(a)] = a;\r\n}\r\n\r\n@<span style=\"color:blue\">params</span>.ReferencedAssemblies.AddRange(references.Values.ToArray());\r\n\r\n</pre>\r\n</div>\r\n<p>i hope you can add something similar to the main code base :)</p>\r\n",
+    "PostedDate": "2011-09-27T04:01:40.083-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1068253",
+    "ThreadId": "449998",
+    "Html": "I am using the RazorEngine library to create templates for my PDF generation in my application. RazorEngine allows me to utilize Razor outside of the normal asp.net web context. \r<br />\n<br />\nHow do I create shared / common .cshtml files that I can reuse? For example a <strong>Footer</strong> template. Since my Footer is going to look the same for most of my PDFs I would like to have a common footer template that I can call. \r<br />\n<br />\nHow do I do this using RazorEngine? <br />\n",
+    "PostedDate": "2013-07-15T01:00:01.357-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

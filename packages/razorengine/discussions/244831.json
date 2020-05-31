@@ -1,0 +1,50 @@
+[
+  {
+    "Id": "561407",
+    "ThreadId": "244831",
+    "Html": "\r\n<p>Hello.</p>\r\n<p>Who can tell me how to use the configuration?</p>\r\n<p>Thanks!</p>\r\n",
+    "PostedDate": "2011-02-06T00:40:34.397-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561439",
+    "ThreadId": "244831",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>I'll post an update to the Documentation section soon showing you what you can do (either today or tomorrow).</p>\r\n",
+    "PostedDate": "2011-02-06T04:36:13.85-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "563080",
+    "ThreadId": "244831",
+    "Html": "\r\n<p>Thx, AntarisZX!</p>\r\n<p>But I can not find the update&nbsp;documentation now.</p>\r\n<p>If you had do it, pls tell me. Thanks again!</p>\r\n<p>&nbsp;</p>\r\n<p>BTW, maybe you can put some samples in the code repository,&nbsp;and others can know how to use the RazorEngine quickly.</p>\r\n",
+    "PostedDate": "2011-02-08T21:28:17.753-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "563148",
+    "ThreadId": "244831",
+    "Html": "\r\n<p>Sorry I haven't had a chance to update this site with an example. I'll try and get it done tonight (I am at work at the moment).</p>\r\n",
+    "PostedDate": "2011-02-09T00:25:32.817-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564491",
+    "ThreadId": "244831",
+    "Html": "<p>Hi,</p>\r\n<p>I've added a documentation wiki page:&nbsp;<a href=\"http://razorengine.codeplex.com/wikipage?title=Using%20Configuration&amp;referringTitle=Documentation\">http://razorengine.codeplex.com/wikipage?title=Using%20Configuration&amp;referringTitle=Documentation<span style=\"white-space: pre;\"> </span></a></p>",
+    "PostedDate": "2011-02-11T01:50:43.783-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "564549",
+    "ThreadId": "244831",
+    "Html": "<p>Thank you ^_^</p>",
+    "PostedDate": "2011-02-11T04:08:52.193-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

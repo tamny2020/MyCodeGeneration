@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "521417",
+    "ThreadId": "234548",
+    "Html": "\r\n<p>I've been thinking about adding Unit Testing to this project as I know we already have plans to add additional parsers and what not.</p>\r\n<p>The few questions I have are mainly related to what Unit Testing setup we should use.</p>\r\n<p>The benefits of something like Microsoft's mTest, for instance, is that most people will have it. nUnit is more widely used. (These are the only two I've ever used.)</p>\r\n<p>Mocking is another item to consider. There are several to choose from. I tend to use Moq and RhinoMocks.</p>\r\n<p>What does everyone else thing about these? Pros, cons?</p>\r\n",
+    "PostedDate": "2010-11-13T00:08:49.69-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "521422",
+    "ThreadId": "234548",
+    "Html": "\r\n<p>It's quite hard to figure out exactly what to unit test in this project. &nbsp;The infrastructure is quite limited in variable operation, it essentially does the same thing over and over, so I guess you could introduce tests that prove that it is compiling\r\n templates correctly and incorrectly but a lot of it is dependent on the source template itself. &nbsp;Now, should be testing the data people are parsing, or the functionality of the compiler itself?</p>\r\n<p>Mocking is another example; we have few situations where we are consuming our interface contracts, but it might be a bit too complex to start mocking say an ILanguageProvider. &nbsp;Don't get me wrong, I think it's important that we create proving tests\r\n to show that it works and changes we make don't break it, it's just a little deciding what to test.</p>\r\n<p>I think my vote would be for NUnit with Moq.</p>\r\n",
+    "PostedDate": "2010-11-13T01:27:44.243-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

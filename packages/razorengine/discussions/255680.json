@@ -1,0 +1,66 @@
+[
+  {
+    "Id": "604704",
+    "ThreadId": "255680",
+    "Html": "\r\n<p>Is there a way with Web.Razor to retrieve meaningful error message (error from line, column) while parsing a template?</p>\r\n<p>Currently, it is painful to debug a template error, as we only get an error from the compilation of a c# file. Does Razor provide a way to include #line pragmas in the generated file?</p>\r\n",
+    "PostedDate": "2011-04-29T02:19:29.547-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604847",
+    "ThreadId": "255680",
+    "Html": "<p>Well, the most meaningful errors are contained in the Errors property of the exception. I've found those to be pretty helpful in targeting the errors that I have in my templates. With regards to more information the problem is the templates are converted to a c# file which is then compiled and that makes it much more difficult to provide any information about the cshtml template itself. I don't think even the MVC one does. It's something I'll look into though.</p>",
+    "PostedDate": "2011-04-29T07:27:52.927-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604909",
+    "ThreadId": "255680",
+    "Html": "<p>When you have hundreds of lines in your template and the error says \"missing ;\", moreover when the error line is meaningless, It's not so easy to found it! ;)</p>\r\n<p>Any templating system is usually able to include pragma lines (this is the case for the T4 engine for example) to improve diagnostics for template errors. Looking at the code in System.Web.Razor, it seems that the class <code>System.Web.Razor.Generator.RazorCodeGenerator</code> contains a property <code>GenerateLinePragmas</code>, so they are probably handling it. Going to check if I set this flag in RazorEngine, does the line is coming up...</p>",
+    "PostedDate": "2011-04-29T08:58:13.997-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604920",
+    "ThreadId": "255680",
+    "Html": "<p>Just made a quick test and its working fine in RazorEngine! This is much easier now!</p>\r\n<p>The only thing that was slightly annoying in the current code is that the name for \"named\" templates is not propagate. So I had to change quite some code, but It didn't hurt anything in the workflow. Just add a TemplateName property to TypeContext and propagate it.</p>\r\n<p>I'm going to upload a patch with those changes.</p>",
+    "PostedDate": "2011-04-29T09:17:33.92-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604925",
+    "ThreadId": "255680",
+    "Html": "<p>The patch for line pragmas is <a href=\"http://razorengine.codeplex.com/SourceControl/list/patches\">uploaded</a>. Tell me if it's working fine on your side or if you encounter any issues with this patch.</p>",
+    "PostedDate": "2011-04-29T09:24:20.197-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604956",
+    "ThreadId": "255680",
+    "Html": "<p>I have just uploaded a new patch which includes <strong>support for debugging template file inside visual studio by settings breakpoint directly inside a template</strong>, which is pretty cool, when you have to debug things!</p>\r\n<p>In order to achieve that, I have extended all the signature that compiles/parse a template to pass a new optional argument \"location\" where you can specify the location of the template file (absolute location is better).</p>\r\n<p>Let me know what do you think about this extension? That would be fantastic to integrate it in the 2.2 release, as I wouldn't have to maintain a local version of this great project!</p>",
+    "PostedDate": "2011-04-29T10:17:23.907-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "604999",
+    "ThreadId": "255680",
+    "Html": "<p>That's awesome. I'm definitely going to look at that this weekend. That's a wonderful contribution.</p>",
+    "PostedDate": "2011-04-29T11:57:20.077-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "605018",
+    "ThreadId": "255680",
+    "Html": "<p>That's indeed pretty cool! After testing it, It seems that breakpoints can only be set on a line inside @{ ... } or @functions { ... }, which can be already quite helpful.</p>",
+    "PostedDate": "2011-04-29T12:50:49.307-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

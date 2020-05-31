@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The error occurs when I try to load assembly dynamically which uses RazorEngine.\n \nError text:\nSystem.Diagnostics.Contracts.__ContractsRuntime+ContractException: Precondition failed: templateType != null\nat System.Diagnostics.Contracts.__ContractsRuntime.TriggerFailure(ContractFailureKind kind, String message, String userMessage, String conditionText, Exception inner)\nat System.Diagnostics.Contracts.__ContractsRuntime.ReportFailure(ContractFailureKind kind, String message, String conditionText, Exception inner)\nat System.Diagnostics.Contracts.__ContractsRuntime.Requires(Boolean condition, String message, String conditionText)\nat RazorEngine.Templating.InstanceContext..ctor(TypeLoader loader, Type templateType)\nat RazorEngine.Templating.TemplateService.CreateInstanceContext(Type templateType)\nat RazorEngine.Templating.TemplateService.CreateTemplate(Type templateType)\nat RazorEngine.Templating.TemplateService.CreateTemplate(Type templateType, T model)\nat RazorEngine.Templating.TemplateService.CreateTemplate(String razorTemplate, T model)\nat RazorEngine.Templating.TemplateService.Parse(String razorTemplate, T model)\nat System.Dynamic.UpdateDelegates.UpdateAndExecute3<T0,T1,T2,TRet>(CallSite site, T0 arg0, T1 arg1, T2 arg2)\nat TestConsoleApp.TemplateService.Parse(String templateFileName, Object model) in TemplateService.cs: line 28\nat System.Dynamic.UpdateDelegates.UpdateAndExecute3<T0,T1,T2,TRet>(CallSite site, T0 arg0, T1 arg1, T2 arg2)\nat TestConsoleApp.Tests.UnitTest1.TestMethod2() in UnitTest1.cs: line 56\n \nThe unit test to generate the error:\n \n[TestMethod]\n        public void TestMethod2()\n        {\n            var template = \"<h1>This is ID @Model.Id</h1><p>Items count: @Model.Items.Count()</p><p>Regards</p>\";\n            var model = new Model { Id = 12, Items = new List<string> { \"\", \"\", \"\" } };\n            var expectedResult = \"<h1>This is ID 12</h1><p>Items count: 3</p><p>Regards</p>\";\n \n            var assembly = Assembly.LoadFrom(@\"..\\..\\..\\TestConsoleApp\\bin\\Debug\\TestConsoleApp.dll\");\n \n            dynamic builder = assembly.CreateInstance(\"TestConsoleApp.TemplateService\", true, BindingFlags.Instance | BindingFlags.Public, null, null, null, null);\n \n            var result = builder.Parse(template, model);\n \n            Assert.AreEqual(expectedResult, result);\n        }\n \nTemplate service in TestConsoleApp:\n \npublic class TemplateService\n    {\n        public string Parse(string template, dynamic model)\n        {\n            return Razor.Parse(template, model);\n        }\n    }",
+    "LastUpdatedDate": "2013-02-21T17:16:58.707-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2012-04-06T07:35:43.38-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Error with dynamically loaded assembly",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 706
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I've spent the best part of today digging through the code to try and work out why this is happening.\r\n\r\nIt seems to be, that RazorEngine generates an assembly dynamically, which uses the template and Model class.\r\n\r\nAs your Model class is defined in your TestConsoleApp.dll, this dynamic assembly references TestConsoleApp.dll\r\n\r\nWhen the runtime tries to instantiate the dynamic assembly, it cannot find TestConsoleApp.dll (as this dll is not in the search path for the application), and fails.\r\n\r\nI have found two possible solutions:\r\n\r\n1.) Use an anonymous type for your model e.g.:\r\n    var model = new { Prop1 = \"x\", Prop2 = \"y\" };\r\n\r\n2.) Hook into the AppDomain's AssemblyResolve event and point it to the right directory:\r\n\r\nAppDomain currentDomain = AppDomain.CurrentDomain;\r\n            currentDomain.AssemblyResolve += new ResolveEventHandler(LoadAssembly);\r\n\r\npublic Assembly LoadAssembly(object sender, ResolveEventArgs args)\r\n        {\r\nrn Assembly.LoadFrom(\"..\\..\\..\\TestConsoleApp\\bin\\Debug\\\" + AssemblyName(args.Name).Name + \".dll\");\r\n        }",
+      "PostedDate": "2012-05-09T08:44:27.903-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:58.707-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

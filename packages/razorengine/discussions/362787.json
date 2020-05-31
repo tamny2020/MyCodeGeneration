@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "860226",
+    "ThreadId": "362787",
+    "Html": "\r\n<p>Hi there,</p>\r\n<p>It looks like the NuGet package is including an old version of the System.Web.Razor.dll</p>\r\n<p>This means when I compile I get the error: 'Found conflicts between different versions of the same dependent assembly.'</p>\r\n<p>Shouldn't the NuGet package be dependent on the Microsoft.AspNet.Razor package instead of including the DLL directly? Or have I missed something?</p>\r\n<p>Many thanks,</p>\r\n<p>&nbsp; &nbsp; Geoff</p>\r\n",
+    "PostedDate": "2012-07-11T02:42:42.627-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "897075",
+    "ThreadId": "362787",
+    "Html": "<p>That particular package is currently the RC of Razor 2 (included with MVC4 + WebPages). There are a number of incompatible changes in the newer Razor parser (namely around creating custom Model spans) which I need to look at before I can change how I am binding to System.Web.Razor.dll.</p>",
+    "PostedDate": "2012-08-08T09:39:19.777-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

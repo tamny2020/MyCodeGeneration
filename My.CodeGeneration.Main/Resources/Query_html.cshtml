@@ -1,0 +1,89 @@
+﻿@using My.CodeGeneration.Model
+@using System.Text
+
+@{
+    var page = new My.CodeGeneration.Common.PagingList<ClassPropertity>(Model, 3);
+
+    for (int i = 1; i <= page.PageCount; i++)
+    {
+        var list = page.GetList(i);
+    <div class="ne-row">
+        @foreach (ClassPropertity item in list)
+        {
+            switch (item.Type)
+            {
+                case "string":
+            <div class="ne-col-4">
+                <div class="ne-field">
+                    <label><span class="w5">@item.Desc：</span></label>
+                    <div>
+                        <input type="text" id="@item.Name" name="@item.Name" class="ne-input" placeholder="">
+                    </div>
+                </div>
+            </div>
+                    break;
+
+                case "DateTime":
+                case "DateTime?":
+            <div class="ne-col-4">
+                <div class="ne-field">
+                    <label class="align-middle"><span class="w5">@item.Desc：</span></label>
+                    <div>
+                        <div class="ne-cell ne-inputgroup">
+                            <div class="ne-cell-left" style="width: 50%;">
+                                <input class="ne-input" type="text" data-type="date" readonly="readonly" id="Start@(item.Name)" ne-tap="show:picker" ne-role="picker">
+                            </div>
+                            <div class="ne-cell-center bg-light" style="width: 1%; padding: 0 5px;">至</div>
+                            <div class="ne-cell-right" style="width: 50%;">
+                                <input class="ne-input" type="text" data-type="date" readonly="readonly" id="End@(item.Name)" ne-tap="show:picker" ne-role="picker">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    break;
+
+                default:
+            <div class="ne-col-4">
+                <div class="ne-field">
+                    <label class="align-middle"><span class="w5">@item.Desc：</span></label>
+                    <div class="ne-input_withicon_right">
+                        <select id="@item.Name" name="@item.Name" class="ne-select" value="">
+                            <option value="-1">全部</option>
+                        </select>
+                        <label class="ne-icon-arrow-down ne-input-icon"></label>
+                    </div>
+                </div>
+            </div>
+                    break;
+            }
+
+        }
+    </div>
+
+    }
+    
+    
+    <script>
+
+        //dataTable加载数据status
+        function loadData() {
+             @{
+                 StringBuilder paraBuilder = new StringBuilder();
+                 foreach (ClassPropertity item in Model)
+                 {
+                     paraBuilder.AppendFormat("                    {0}:document.getElementById(\"{0}\").value,\r\n", item.Name);
+                 }
+             }
+            dt_List.loadData({
+                api: '/PackRecommendRecord/PackRecommendRecord/GetPackRecommendRecordPage',
+                ajax: App.requestApi,
+                para: {
+                     @RawHtml(paraBuilder.ToString())
+                }
+            });
+        }
+
+    </script>
+    
+}

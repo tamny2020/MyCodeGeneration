@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "982907",
+    "ThreadId": "428452",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>First of all, thanks for developing and sharing this package.This has helped me a lot in my applications.</p>\r\n<p>I am consuming this package in one of my MVC 4 application, and hence facing issues as MVC 4 is referencing System.Web.Razor 2.0.0.0, and RazorEngine package is referencing version 1.0.0.0.. this making the live deployment difficult.</p>\r\n<p>Could you please let us know if there are any plans to release RazorEngine package for S.W.R. V 2.0.0.0?</p>\r\n<p>Thanks</p>\r\n<p>Nirman</p>\r\n",
+    "PostedDate": "2013-01-03T20:28:09.543-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

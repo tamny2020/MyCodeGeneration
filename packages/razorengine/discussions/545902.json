@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1247249",
+    "ThreadId": "545902",
+    "Html": "Hi All,\r<br />\n<br />\nI'm trying to run RazorEngine from VB.net.\r<br />\n<br />\nI've added the following to my web.config...<br />\n<pre><code>  &lt;configSections&gt;\n    &lt;section name=&quot;razorEngine&quot; type=&quot;RazorEngine.Configuration.RazorEngineConfigurationSection, RazorEngine&quot; requirePermission=&quot;false&quot;/&gt;\n  &lt;/configSections&gt;\n  &lt;razorEngine&gt;\n    &lt;templateServices&gt;\n      &lt;add name=&quot;myCustomTemplateService&quot; language=&quot;VisualBasic&quot;/&gt;\n    &lt;/templateServices&gt;\n  &lt;/razorEngine&gt;</code></pre>\n\n... as per the <a href=\"http://razorengine.codeplex.com/wikipage?title=Using%20Configuration\" rel=\"nofollow\">documentation</a>, but it's giving an error on the line...<br />\n<pre><code>&lt;add name=&quot;myCustomTemplateService&quot; language=&quot;VisualBasic&quot;/&gt;</code></pre>\n\nParser Error Message: Unrecognized element 'add'.\r<br />\n<br />\nCan anyone tell me what I'm doing wrong? Is there something else I have to add to my project, or web.config etc?\r<br />\n<br />\nThanks,\r<br />\nEugene<br />\n",
+    "PostedDate": "2014-05-19T21:13:10.667-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

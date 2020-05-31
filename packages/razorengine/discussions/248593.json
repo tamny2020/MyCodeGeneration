@@ -1,0 +1,186 @@
+[
+  {
+    "Id": "576205",
+    "ThreadId": "248593",
+    "Html": "\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">using</span> System;\r\n<span style=\"color:blue\">using</span> System.Collections.Generic;\r\n<span style=\"color:blue\">using</span> System.Linq;\r\n<span style=\"color:blue\">using</span> System.Text;\r\n<span style=\"color:blue\">using</span> RazorEngine;\r\n\r\n<span style=\"color:blue\">namespace</span> RazorDemo\r\n{\r\n    <span style=\"color:blue\">class</span> Program\r\n    {\r\n        <span style=\"color:blue\">static</span> <span style=\"color:blue\">void</span> Main(<span style=\"color:blue\">string</span>[] args)\r\n        {\r\n            <span style=\"color:blue\">string</span> template = <span style=\"color:#a31515\">&quot;Hello @Model.Name! Welcome to Razor!&quot;</span>;\r\n            <span style=\"color:blue\">string</span> result = Razor.Parse(template, <span style=\"color:blue\">new</span> { Name = <span style=\"color:#a31515\">&quot;World&quot;</span> });\r\n            Console.WriteLine(result);\r\n        }\r\n    }\r\n}</pre>\r\n<pre><br></pre>\r\n<pre>when you run this code, it throws exception.</pre>\r\n<pre><br></pre>\r\n<pre><pre>Unhandled Exception: RazorEngine.Templating.TemplateCompilationException: Unable\r\n to compile template. Check the Errors list for details.\r\n   at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext\r\ncontext)\r\n   at RazorEngine.Templating.TemplateService.CreateTemplate(String template, Typ\r\ne modelType)\r\n   at RazorEngine.Templating.TemplateService.GetTemplate(String template, Type m\r\nodelType, String name)\r\n   at RazorEngine.Templating.TemplateService.Parse[T](String template, T model,\r\nString name)\r\n   at RazorEngine.Razor.Parse[T](String template, T model, String name)\r\n   at RazorDemo.Program.Main(String[] args) in c:\\@codetemp\\NvelocityDemo\\RazorD\r\nemo\\Program.cs:line 14\r\nPress any key to continue . . .\r\n</pre>\r\n</pre>\r\n</div>\r\n<p></p>\r\n",
+    "PostedDate": "2011-03-05T23:26:15.787-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576498",
+    "ThreadId": "248593",
+    "Html": "<p>Hi,</p>\r\n<p>Can you run the project again, and check what compilation errors you have? They will be in the .Errors property of the TemplateCompilationException thrown.</p>",
+    "PostedDate": "2011-03-07T00:54:24.533-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576501",
+    "ThreadId": "248593",
+    "Html": "<p>&nbsp;</p>\n<p>&nbsp;</p>\n<div style=\"color: black; background-color: white;\">\n<pre><span style=\"color: blue;\">using</span> System;\n<span style=\"color: blue;\">using</span> System.Collections.Generic;\n<span style=\"color: blue;\">using</span> System.Linq;\n<span style=\"color: blue;\">using</span> System.Text;\n<span style=\"color: blue;\">using</span> RazorEngine;\n<span style=\"color: blue;\">using</span> RazorEngine.Templating;\n\n<span style=\"color: blue;\">namespace</span> RazorDemo\n{\n    <span style=\"color: blue;\">class</span> Program\n    {\n        <span style=\"color: blue;\">static</span> <span style=\"color: blue;\">void</span> Main(<span style=\"color: blue;\">string</span>[] args)\n        {\n            <span style=\"color: blue;\">try</span>\n            {\n                <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.Name! Welcome to Razor!\"</span>;\n                <span style=\"color: blue;\">string</span> result = Razor.Parse(template, <span style=\"color: blue;\">new</span> { Name = <span style=\"color: #a31515;\">\"World\"</span> });\n                Console.WriteLine(result);\n            }\n            <span style=\"color: blue;\">catch</span> (TemplateCompilationException ex)\n            {\n\n                ex.Errors.ToList().ForEach(p =&gt; Console.WriteLine(p.ErrorText));\n            }\n            \n        }\n    }\n}\n\n</pre>\n</div>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>Here it is.&nbsp;</p>\n<p>Predefined type 'Microsoft.CSharp.RuntimeBinder.Binder' is not defined or importedOne or more types required to compile a dynamic expression cannot be found. Areyou missing references to Microsoft.CSharp.dll and System.Core.dll?One or more types required  to compile a dynamic expression cannot be found. Areyou missing references to Microsoft.CSharp.dll and System.Core.dll?Press any key to continue . . .</p>\n<p>&nbsp;</p>\n<p>but I had Microsoft.Csharp and System.Core in my project reference.&nbsp;</p>\n<p>&nbsp;</p>",
+    "PostedDate": "2011-03-07T01:01:35.36-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576505",
+    "ThreadId": "248593",
+    "Html": "<p>I just test it again, found some interesting things. &nbsp;If I Press Ctrl+F5, it through exception. but when I run step by step from vs2010, works fine. I then go to bin folder under Command Mode and execute the exe file. it also throw exception.</p>",
+    "PostedDate": "2011-03-07T01:08:15.593-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576522",
+    "ThreadId": "248593",
+    "Html": "<p>What version of .NET are you trying to use this with?<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-03-07T01:54:43.157-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576531",
+    "ThreadId": "248593",
+    "Html": "<p>.NET 4</p>",
+    "PostedDate": "2011-03-07T02:24:52.957-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "576585",
+    "ThreadId": "248593",
+    "Html": "<p>Hi,</p>\r\n<p>Can you send me a copy of your sample project? Please send it to matt [at] fidelitydesign [dot] net</p>",
+    "PostedDate": "2011-03-07T04:35:59.67-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579628",
+    "ThreadId": "248593",
+    "Html": "<p>Hi Matt</p>\r\n<p>Did you get my sample solution and manage to fix the problem?</p>",
+    "PostedDate": "2011-03-13T00:58:22.057-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579890",
+    "ThreadId": "248593",
+    "Html": "<p>Hi,</p>\r\n<p>Sorry for the late reply, had a weekend off enjoying my birthday :-) Checked my email this morning and the attached archive won't open. Can you resend?</p>",
+    "PostedDate": "2011-03-14T01:26:02.277-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579931",
+    "ThreadId": "248593",
+    "Html": "<p>Hi,</p>\r\n<p>Add&nbsp;Microsoft.CSharp as reference. This should fix your problem.</p>",
+    "PostedDate": "2011-03-14T03:05:40.25-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579932",
+    "ThreadId": "248593",
+    "Html": "<p>no I had that under reference folder</p>\r\n<p>&nbsp;</p>\r\n<p>see my previous comment</p>\r\n<p>&nbsp;</p>\r\n<p>I just test it again, found some interesting things. &nbsp;If I Press Ctrl+F5, it through exception. but when I run step by step from vs2010, works fine. I then go to bin folder under Command Mode and execute the exe file. it also throw exception.</p>",
+    "PostedDate": "2011-03-14T03:07:36.293-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "579936",
+    "ThreadId": "248593",
+    "Html": "<p>you've tried recreating again the project, targetting 4.0 from the start?</p>",
+    "PostedDate": "2011-03-14T03:19:11.29-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585044",
+    "ThreadId": "248593",
+    "Html": "<p>I am experiencing the similar problem. I can call the following class from a console app and it works OK. However, I get the errors described above when I create a test project and run from there.</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">namespace</span> ClassLibrary1 {\r\n    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> Class1 {\r\n\r\n        <span style=\"color: blue;\">public</span> Class1() { }\r\n\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> RunTest() {\r\n                                  \r\n            <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.Name! Welcome to Razor!\"</span>;\r\n            <span style=\"color: blue;\">string</span> result = <span style=\"color: #a31515;\">\"\"</span>;\r\n            result = Razor.Parse(template, <span style=\"color: blue;\">new</span> {\r\n                Name = <span style=\"color: #a31515;\">\"World\"</span>\r\n            });\r\n\r\n            <span style=\"color: blue;\">return</span> result;\r\n        }\r\n\r\n    }\r\n}\r\n</pre>\r\n<pre><br /></pre>\r\n<pre>I can package up the test project and send to you if needed.</pre>\r\n</div>\r\n</p>\r\n<p>&nbsp;</p>\r\n<div>\r\n<pre><br /></pre>\r\n</div>\r\n<p>&nbsp;</p>",
+    "PostedDate": "2011-03-23T07:32:55.177-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585055",
+    "ThreadId": "248593",
+    "Html": "<p>One update... I found the problem is isolated to Dynamic classes. I ran the following class from the Test project without any errors:</p>\r\n<p>&nbsp;</p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> RunTestGenerics() {\r\n                                  \r\n            <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.Name! Welcome to Razor!\"</span>;\r\n            MyModel myModel = <span style=\"color: blue;\">new</span> MyModel();\r\n            myModel.Name = <span style=\"color: #a31515;\">\"World\"</span>;\r\n            <span style=\"color: blue;\">string</span> result = <span style=\"color: #a31515;\">\"\"</span>;\r\n            result = Razor.Parse&lt;MyModel&gt;(template, myModel);\r\n               \r\n            <span style=\"color: blue;\">return</span> result;\r\n        }\r\n</pre>\r\n</div>\r\n&nbsp;\r\n<p>&nbsp;</p>",
+    "PostedDate": "2011-03-23T07:52:31.617-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585220",
+    "ThreadId": "248593",
+    "Html": "<p>Hi, it's definately to do with dynamics, as its the RuntimeBinder used for C# dynamic support that is causing the issues. Using a typed model won't suffer, as all the types are correctly referenced. Haven't had a chance to fully look into this.<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2011-03-23T11:34:34.663-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "585715",
+    "ThreadId": "248593",
+    "Html": "<blockquote style=\"border: solid .1em #ccc; font-style: italic; margin: .25em 1em 0 1em; padding: 0 .25em 0 .25em;\"><strong>AntarisZX wrote:</strong><br />\r\n<p>Hi, it's definately to do with dynamics, as its the RuntimeBinder used for C# dynamic support that is causing the issues. Using a typed model won't suffer, as all the types are correctly referenced. Haven't had a chance to fully look into this.<span style=\"white-space: pre;\"> </span></p>\r\n</blockquote>\r\n<p>Just figured out yesterday that if I use an anonymouse type as a model, extension methods don't work (although I added a necessary namespace reference). But when I use a typed model it works like a charm.</p>",
+    "PostedDate": "2011-03-24T06:48:57.417-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "597163",
+    "ThreadId": "248593",
+    "Html": "<p>I'm getting exactly the same error as the original poster with the Hello World example.</p>\r\n<p>It seemingly is related to dynamic in some way, as the following test shows in my environment.</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>        [Test]\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">void</span> ShoudSpikeTheSillyError()\r\n        {\r\n            <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.Name!\"</span>;\r\n            Assert.Throws&lt;RazorEngine.Templating.TemplateCompilationException&gt;(() =&gt; Razor.Parse(template, <span style=\"color: blue;\">new</span> { Name = <span style=\"color: #a31515;\">\"World\"</span> }));\r\n\r\n            InitializeRazorParser();\r\n\r\n            Assert.DoesNotThrow(() =&gt; Razor.Parse(template, <span style=\"color: blue;\">new</span> { Name = <span style=\"color: #a31515;\">\"World\"</span> }));\r\n        }\r\n<br /></pre>\r\n<pre>And the magic in InitializeRazorParser() ?????</pre>\r\n<pre><br /></pre>\r\n<pre>        <span style=\"color: blue;\">void</span> InitializeRazorParser()\r\n        {\r\n            <span style=\"color: green;\">// HACK: this is required to get the Razor Parser to work, no idea why, something to with dynamic objects i guess, tracked this down as the test worked sometimes, turned out</span>\r\n            <span style=\"color: green;\">// it was when the ViewBag was touched from the controller tests, if that happened before the Razor.Parse in ShoudSpikeTheSillyError() then it ran fine.</span>\r\n            <span style=\"color: blue;\">dynamic</span> x2 = <span style=\"color: blue;\">new</span> ExpandoObject();\r\n            x2.Dummy = <span style=\"color: #a31515;\">\"\"</span>;\r\n        }</pre>\r\n<pre>Not sure if that helps understand the issue any better, its a strange one though!.</pre>\r\n<pre><br /></pre>\r\n<pre><br /></pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-04-14T05:25:40.393-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "598188",
+    "ThreadId": "248593",
+    "Html": "<p>This sounds like another problem with references not being loaded properly by .net. I'm working on solidifying a solution to make sure that their loaded but I haven't tested it with Razor yet.</p>",
+    "PostedDate": "2011-04-15T12:59:18.367-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "607404",
+    "ThreadId": "248593",
+    "Html": "<p>I'm having this same problem.</p>\r\n<p>When I run with debug enabled it works, but when I run without debug it fails with&nbsp;</p>\r\n<p>Unhandled Exception: RazorEngine.Templating.TemplateCompilationException: Unable to compile template. Check the Errors list for details.</p>",
+    "PostedDate": "2011-05-04T13:07:28.143-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "627882",
+    "ThreadId": "248593",
+    "Html": "<p>Its not as easy as adding web package reference with NuGet and run the sample code and test how it works.</p>\r\n<p>Simple HelloWorld is throwing several issues.</p>\r\n<p>First I have installed RazorEngine using NuGet command. Then it complained about syntax errors in the template. It could not understand what \"@Html\" is.</p>\r\n<p>Then after looking at the documentation I have added the following section in the web.config.</p>\r\n<pre><span>&lt;</span><span>configSections</span><span>&gt;</span>\r\n<span>\t\t&lt;</span><span>section</span><span>&nbsp;</span><span>name</span><span>=</span>\"<span>razorEngine</span>\"<span>&nbsp;</span><span>type</span><span>=</span>\"<span>RazorEngine.Configuration.RazorEngineConfigurationSection,&nbsp;RazorEngine</span>\"<span>&nbsp;</span><span>requirePermission</span><span>=</span>\"<span>false</span>\"<span>&nbsp;/&gt;</span>\r\n<span>\t&lt;/</span><span>configSections</span><span>&gt;</span>\r\n<span>\t&lt;</span><span>razorEngine</span><span>&nbsp;</span><span>activator</span><span>=</span>\"<span>RazorEngineSamples.Activators.MySampleActivator,&nbsp;RazorEngineSamples</span>\"\r\n<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>factory</span><span>=</span>\"<span>RazorEngine.Web.WebCompilerServiceFactory,&nbsp;RazorEngine.Web</span>\"<span>&gt;</span>\r\n<span>\t\t&lt;</span><span>namespaces</span><span>&gt;</span>\r\n<span>\t\t\t&lt;</span><span>add</span><span>&nbsp;</span><span>namespace</span><span>=</span>\"<span>System.Linq</span>\"<span>&nbsp;/&gt;</span>\r\n<span>\t\t&lt;/</span><span>namespaces</span><span>&gt;\t\t</span>\r\n<span>\t&lt;/</span><span>razorEngine</span><span>&gt;&nbsp;</span></pre>\r\n<pre><span><br /></span></pre>\r\n<pre><span>After adding this section now its throwing exceptions because it could not load the assemblies.</span></pre>\r\n<pre><span>First it said RazorEngine.Web is not found. But there was no dependency shown in the NuGet package.</span></pre>\r\n<pre><span>Then I installed RazorEngine.Web too.</span></pre>\r\n<pre><span>Now it could not find RazorEngineSample.Activators.....</span></pre>\r\n<pre><span>Even I could not find any such package in the RazorEngine project!!!</span></pre>\r\n<pre><br /></pre>",
+    "PostedDate": "2011-06-14T20:02:21.547-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "630489",
+    "ThreadId": "248593",
+    "Html": "<p>Hi,</p>\r\n<p>I am not sure this can be done. There is a bug logged at microsoft connect which indicates that this might not be possible.<br />http://connect.microsoft.com/VisualStudio/feedback/details/491554/clr-dynamic-runtime-binder-does-not-support-typedescriptors<br />If you read nicoscent's comment you will see a simple example where this doesn't work. I managed to hack RazorEngine to run this sample.</p>\r\n<pre style=\"font-family: Consolas; font-size: 11; color: black; background: white;\">\t\t\t<span style=\"color: #2b91af;\">Razor</span>.SetTemplateBase(<span style=\"color: blue;\">typeof</span>(RazorEngine.Templating.<span style=\"color: #2b91af;\">TemplateBase</span>&lt;<span style=\"color: blue;\">dynamic</span>&gt;));\r\n\t\t\t<span style=\"color: blue;\">string</span>&nbsp;template&nbsp;=&nbsp;<span style=\"color: #a31515;\">\"Hello&nbsp;@Model.Name!&nbsp;Welcome&nbsp;to&nbsp;Razor!\"</span>;\r\n\t\t\t<span style=\"color: blue;\">dynamic</span>&nbsp;x2&nbsp;=&nbsp;<span style=\"color: blue;\">new</span>&nbsp;System.Dynamic.<span style=\"color: #2b91af;\">ExpandoObject</span>();\r\n\t\t\t<span style=\"color: blue;\">string</span>&nbsp;result&nbsp;=&nbsp;<span style=\"color: #2b91af;\">Razor</span>.Parse(template,&nbsp;<span style=\"color: blue;\">new</span>&nbsp;{&nbsp;Name&nbsp;=&nbsp;<span style=\"color: #a31515;\">\"World\"</span>&nbsp;});\r\n\t\t\t<span style=\"color: blue;\">return</span>&nbsp;result;<br /></pre>\r\n<p>Unfortunately after hacking away, I still eventually get this error: <br />'object' does not contain a definition for 'Name' and no extension method 'Name' accepting a first argument of type 'object' could be found (are you missing a using directive or an assembly reference?)}I have coded up my own Razor engine host and tried to overcome this issue and cannot find a workaround. I am not certain if the bug above is exactly the same issue, but it certainly seems to be.<br /><br />In the interim I have written a method to change the anonymous type into an ExpandoObject using reflection, this is not ideal, but it does work.</p>\r\n<pre style=\"font-family: Consolas; font-size: 11; color: black; background: white;\">\t\t<span style=\"color: blue;\">public</span>&nbsp;<span style=\"color: blue;\">static</span>&nbsp;<span style=\"color: blue;\">dynamic</span>&nbsp;ToDynamic(<span style=\"color: blue;\">object</span>&nbsp;instance)\r\n\t\t{\r\n\t\t\t<span style=\"color: blue;\">var</span>&nbsp;x&nbsp;=&nbsp;<span style=\"color: blue;\">new</span>&nbsp;System.Dynamic.<span style=\"color: #2b91af;\">ExpandoObject</span>();\r\n\t\t\t<span style=\"color: blue;\">var</span>&nbsp;values&nbsp;=\r\n\t\t\t\t<span style=\"color: blue;\">from</span>&nbsp;property&nbsp;<span style=\"color: blue;\">in</span>&nbsp;instance.GetType().GetProperties(<span style=\"color: #2b91af;\">BindingFlags</span>.Public&nbsp;|&nbsp;<span style=\"color: #2b91af;\">BindingFlags</span>.Instance)\r\n\t\t\t\t<span style=\"color: blue;\">select</span>&nbsp;<span style=\"color: blue;\">new</span>\r\n\t\t\t\t{\r\n\t\t\t\t\tName&nbsp;=&nbsp;property.Name,\r\n\t\t\t\t\tValue&nbsp;=&nbsp;property.GetValue(instance,&nbsp;<span style=\"color: blue;\">null</span>)\r\n\t\t\t\t};\r\n\t\t\t<span style=\"color: blue;\">foreach</span>&nbsp;(<span style=\"color: blue;\">var</span>&nbsp;property&nbsp;<span style=\"color: blue;\">in</span>&nbsp;values)\r\n\t\t\t\t(x&nbsp;<span style=\"color: blue;\">as</span>&nbsp;<span style=\"color: #2b91af;\">IDictionary</span>&lt;<span style=\"color: blue;\">string</span>,&nbsp;<span style=\"color: blue;\">object</span>&gt;).Add(property.Name,&nbsp;property.Value);\r\n\t\t\t<span style=\"color: blue;\">return</span>&nbsp;x;\r\n\t\t}\r\n</pre>\r\n<p>I would really like to know if anyone has managed to get any other workarounds to work.</p>",
+    "PostedDate": "2011-06-21T03:48:32.503-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "630521",
+    "ThreadId": "248593",
+    "Html": "<p>Hi Everyone,</p>\r\n<p>I have more information. This is actually (also) because anonymous classes have internal properties, and the model binder can't see them.<br />I have tried adding internalsvisibleto in order to overcome the issue, but I have not yet succeeded.</p>\r\n<p>Here is more information: ﻿﻿http://stackoverflow.com/questions/5120317/dynamic-anonymous-type-in-razor-causes-runtimebinderexception</p>\r\n<p>I am not sure how to proceed to get that sample to work. It looks like it might be by design.</p>\r\n<p>Cheers<br />Craig</p>",
+    "PostedDate": "2011-06-21T05:08:31.5-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "644867",
+    "ThreadId": "248593",
+    "Html": "<p>@jkll's solution worked for me - ensure this gets run before anything else:</p>\r\n<p>&nbsp;</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">bool</span> loaded = <span style=\"color: blue;\">typeof</span>(Microsoft.CSharp.RuntimeBinder.Binder).Assembly != <span style=\"color: blue;\">null</span>;\r\n\r\n</pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-07-20T02:33:14.74-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

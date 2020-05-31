@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "859377",
+    "ThreadId": "362581",
+    "Html": "\r\n<p>Are there plans to release an updated nuget to the 3.08 beta anytime soon?</p>\r\n",
+    "PostedDate": "2012-07-09T14:23:20.223-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "897078",
+    "ThreadId": "362581",
+    "Html": "<p>I am hoping so. I'm currently in the middle of a job transition, and have had a ridiculously busy start to the year so haven't been able to progress as quickly as I intended to. Will let everyone know when I plan to do the next drop.<span style=\"white-space: pre;\"> </span></p>",
+    "PostedDate": "2012-08-08T09:41:57.57-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

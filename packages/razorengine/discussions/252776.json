@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "592791",
+    "ThreadId": "252776",
+    "Html": "\r\n<p>Probably too late to do anything about it now, but I was wondering why the Razor class was static. I thought the current best practice was to avoid static helper classes...?</p>\r\n",
+    "PostedDate": "2011-04-06T07:21:36.903-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "592940",
+    "ThreadId": "252776",
+    "Html": "<p>Hi,</p>\r\n<p>The Razor static class is merely a static wrapper around a default implementation of TemplateService. &nbsp;You can spin up as many instances of TemplateService as you like, the Razor static class just makes it easy to start parsing @razor templates very easily.</p>",
+    "PostedDate": "2011-04-06T10:10:18.077-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

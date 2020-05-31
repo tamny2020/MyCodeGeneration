@@ -1,0 +1,56 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "We have been using RazorEngine successfully for many months to create fillable certificates in our system, until recently it appears that we have run into a size related issue with our usage of base64 image encoding.\nAttached is the String used in the Razor.Parse call. Both the string and the model are completely valid and filled out.\nRegular Razor in MVC has no issues displaying the string on the page as seen in the certeditor.png\n\nThe error i receive is “An expression is too long or complex to compile” which points me to the fact that base64 image encoded strings have expression operators in them, and possibly are being handled by the template incorrectly.\n\nIf i remove some of the base64 images it starts to work again at a certain point.\n\nBase64 images works fine in other circumstances, but only to a certain size point.\n\nAny help would be appreciated. Is this an issue? or just something that I can change in our code?",
+    "LastUpdatedDate": "2014-10-01T03:07:40.85-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-04-08T11:31:36.25-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "RazorEngine.Parse fails with large base64 encoded images",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1204
+  },
+  "FileAttachments": [
+    {
+      "FileId": 1540,
+      "FileName": "razorengine_error.txt",
+      "DownloadUrl": ".\\1540"
+    },
+    {
+      "FileId": 1541,
+      "FileName": "certeditor.png",
+      "DownloadUrl": ".\\1541"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "It seems to me that the exception is caused by bug in CodeDom - http://stackoverflow.com/questions/960305/work-around-for-c-sharp-codedom-causing-stack-overflow-cs1647-in-csc-exe . ",
+      "PostedDate": "2014-10-01T03:07:40.85-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

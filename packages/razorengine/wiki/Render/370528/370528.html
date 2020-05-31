@@ -1,0 +1,30 @@
+<div class="wikidoc"><h1>Configuring RazorEngine for ASP.NET Medium Trust</h1>
+ASP.NET in Medium Trust does not allow direct instantiation of CodeDomProvider instances.  This means we need to use ASP.NET&#39;s BuildProvider model to defer compilation to the build system.  <b>To do this, you need to add a reference to RazorEngine.Web to your project.</b><br />
+<h2>Step 1 - Wire up the RazorVirtualPathProvider</h2>
+You need to register the RazorVirtualPathProvider to allow the BuildManager to make calls to virtual Razor file paths.<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">protected</span> <span style="color:Blue;">void</span> Application_Start()
+{
+    HostingEnvironment.RegisterVirtualPathProvider(<span style="color:Blue;">new</span> RazorVirtualPathProvider());
+}
+</pre></div>
+<h2>Step 2 - Add the RazorEngine configuration section</h2>
+There are a specialised set of compiler services for Medium trust scenarios.  We need to use the WebCompilerServiceFactory which is used to create these services.<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">&lt;</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">configSections</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">section</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">razorEngine</span><span style="color:Black;">&quot;</span> <span style="color:Red;">type</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Configuration.RazorEngineConfigurationSection, RazorEngine</span><span style="color:Black;">&quot;</span> <span style="color:Red;">requirePermission</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">false</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configSections</span><span style="color:Blue;">&gt;</span>
+
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">razorEngine</span> <span style="color:Red;">factory</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Web.WebCompilerServiceFactory, RazorEngine.Web</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+</pre></div>
+<h2>Step 3 - Configure the BuildProviders</h2>
+We map calls to virtual paths ending in &quot;.csrzr&quot; and &quot;.vbrzr&quot; to allow our BuildProvider to intercept and build the types. We don&#39;t use the Razor MVC file extensions (&quot;.cshtml&quot;, &quot;.vbhtml&quot;) as we do not want to conflict with an existing MVC 3 application.<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">&lt;</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">system.web</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">buildProviders</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">add</span> <span style="color:Red;">extension</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">.csrzr</span><span style="color:Black;">&quot;</span> <span style="color:Red;">type</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Web.CSharp.CSharpRazorBuildProvider, RazorEngine.Web</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">add</span> <span style="color:Red;">extension</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">.vbrzr</span><span style="color:Black;">&quot;</span> <span style="color:Red;">type</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Web.VisualBasic.VBRazorBuildProvider, RazorEngine.Web</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">buildProviders</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">system.web</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+</pre></div><br />You should now be able to make calls to parsing methods in your web application.</div><div class="ClearBoth"></div>

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "836041",
+    "ThreadId": "355687",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>I am trying to run razor templates in sanbox with minimal trust, so it will be more secure in code execution.</p>\r\n<p>I'm getting an System.Security.SecurityException: Request failed,&nbsp;on&nbsp;System.Activator.CreateInstance during construction of&nbsp;IsolatedTemplateService..ctor even I am specifying the RazorEngine as full trust assembly.</p>\r\n<p>the code:<br>\r\n(base on <a href=\"http://msdn.microsoft.com/en-us/library/bb763046.aspx\">http://msdn.microsoft.com/en-us/library/bb763046.aspx</a>)&nbsp;</p>\r\n<p>Service = new IsolatedTemplateService(() =&gt; {&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>\r\nEvidence ev = new Evidence();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\r\n<br>\r\nev.AddHostEvidence(new Zone(SecurityZone.Internet));&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\r\n<br>\r\nPermissionSet internetPS = SecurityManager.GetStandardSandbox(ev);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>\r\nStrongName fullTrustAssembly = typeof(TemplateService).Assembly.Evidence.GetHostEvidence&lt;StrongName&gt;();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>\r\nreturn AppDomain.CreateDomain(&quot;RazorHost&quot;, null, AppDomain.CurrentDomain.SetupInformation, internetPS, fullTrustAssembly);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>\r\n});</p>\r\n<p>The RazorEngine version is:3.0.8.0</p>\r\n",
+    "PostedDate": "2012-05-14T05:31:16.227-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

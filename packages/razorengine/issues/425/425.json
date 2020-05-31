@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-26T08:27:52.417-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Using version 2.1.4039.23635 of RazorEngine.  Trying to get anything to work with a custom template base causes the following exeption:\n \nCould not load file or assembly 'RazorEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference.",
+    "LastUpdatedDate": "2013-05-16T04:38:17.86-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-26T12:10:53.68-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "using custom template base causes exception",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 425
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "nuget issue, please disregard/close this ticket.",
+      "PostedDate": "2011-05-26T15:31:56.893-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-26T08:27:52.417-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:02.38-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:17.86-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

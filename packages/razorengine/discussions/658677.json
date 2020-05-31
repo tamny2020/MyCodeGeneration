@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1485894",
+    "ThreadId": "658677",
+    "Html": "I am getting a binding error when attempting to bind a razor template that has an email address in it using the following structure:\r<br />\n<br />\n<strong>somestring_@somewhere.com</strong>\r<br />\n<br />\nThe email address itself is a valid one, but the RazorEngine is throwing an exception saying &quot;somewhere&quot; does not exist in the model.  It appears the underscore character just before the @ symbol in the email address is causing it to think @somewhere is an attempt to bind to a model property.  Does anyone know of a way around this?<br />\n",
+    "PostedDate": "2016-10-12T07:03:25.21-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1458904",
+    "ThreadId": "649915",
+    "Html": "Hi,\r<br />\n<br />\nI'm having a code which I'm not able to convert to the new release of RazorEngine.<br />\n<pre><code>private string ParseTemplate(string template, string name)\n        {\n            try\n            {\n                if (string.IsNullOrWhiteSpace(template))\n                    return string.Empty;\n\n                if (!CachedFileAccess.IsCompiled(name))\n                {\n                    RazorEngine.Razor.SetTemplateBase(typeof(HtmlTemplateBase));\n                    RazorEngine.Razor.Compile(template, name);\n                    CachedFileAccess.SetCompiled(name);\n                }\n                return RazorEngine.Razor.Run(name);\n            }\n            catch (RazorEngine.Templating.TemplateCompilationException ex)\n            {\n                StringBuilder sb = new StringBuilder();\n                foreach (var e in ex.Errors)\n                    sb.AppendFormat(&quot;{0}\\n&quot;, e.ToString().Replace(e.FileName, string.Empty));\n                throw new JSFileParserException(string.Format(&quot;Failure to parse template {0}. See Errors:\\n{1}&quot;, _filename, sb.ToString()));\n            }\n        }</code></pre>\n\nCan somebody help me with this?<br />\n",
+    "PostedDate": "2016-01-12T03:37:42.083-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

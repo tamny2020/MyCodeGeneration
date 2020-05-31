@@ -1,0 +1,76 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi \n \nI try to generate a table that contains averages on the left side and on the right side has measurement values like\n \n[code]\n| VAR | AVG | STD | Value 1 | Remark 1 | \n|                          | Value 2 | Remark 2 | \n|                          | Value 3 | Remark 3 | \n| VAR | AVG | STD | Value 4 | Remark 4 | \n|                          | Value 5 | Remark 5 | \n[/code]\n \nI tried the following working code:\n \n[code]\n<table cellspacing=\"0\" cellpadding=\"0\" id=\"Variable\">\n<tr align=\"left\" valign=\"middle\">\n\t<th>@Model.Serie.Setup.VariableName [&deg;C]</th>\n\t<th>Average</th>\n\t<th>Standard deviation</th>\n\t<th>Force [N]</th>\n\t<th>Fracture type</th>\n</tr>\n@foreach (Serie<Setup, Measurement>.SerieItem<Measurement> m in\n           Model.Serie.Distinct<Serie<Setup, Measurement>.SerieItem<Measurement>>(new VariableComparer())) {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td>@m.Measurement.Variable</td>\n\t    <td>@Math.Round(SerieHelpers.Average(m.Measurement.Variable),3)</td>\n\t    <td>@Math.Round(SerieHelpers.StdDev(m.Measurement.Variable),3)</td>\n    </tr>\n    @foreach (Serie<Setup,Measurement>.SerieItem<Measurement> n in Model.Serie.FindAll(o =>o.Measurement.Checked && o.Measurement.Variable==m.Measurement.Variable))\n    {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td colspan=\"3\">&nbsp;</td>\n\t    <td>@Math.Round(n.Measurement.Force,3)</td>\n\t    <td>@n.Measurement.Fracture</td>\n    </tr>\n    }\n    </tr>\n}\n</table>\n[/code]\n \nBut that generates a table with empty places on the first line like:\n \n[/code]\n| VAR | AVG | STD |             |                | \n|                          | Value 1 | Remark 1 | \n|                          | Value 2 | Remark 2 | \n|                          | Value 3 | Remark 3 | \n| VAR | AVG | STD |              |               | \n|                          | Value 4 | Remark 4 | \n|                          | Value 5 | Remark 5 | \n[/code]\n \nSo i though if i could juggle around the TD/TR tags it would be fine. \n \n[code]\n<table cellspacing=\"0\" cellpadding=\"0\" id=\"Variable\">\n<tr align=\"left\" valign=\"middle\">\n\t<th>@Model.Serie.Setup.VariableName [&deg;C]</th>\n\t<th>Average</th>\n\t<th>Standard deviation</th>\n\t<th>Force [N]</th>\n\t<th>Fracture type</th>\n</tr>\n@foreach (Serie<Setup, Measurement>.SerieItem<Measurement> m in\n           Model.Serie.Distinct<Serie<Setup, Measurement>.SerieItem<Measurement>>(new VariableComparer())) {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td>@m.Measurement.Variable</td>\n\t    <td>@Math.Round(SerieHelpers.Average(m.Measurement.Variable),3)</td>\n\t    <td>@Math.Round(SerieHelpers.StdDev(m.Measurement.Variable),3)</td>\n    @foreach (Serie<Setup,Measurement>.SerieItem<Measurement> n in Model.Serie.FindAll(o =>o.Measurement.Checked && o.Measurement.Variable==m.Measurement.Variable))\n    {\n\t    <td>@(Math.Round(n.Measurement.Force,3))</td>\n\t    <td>@n.Measurement.Fracture</td>\n    </tr>\n    <tr align=\"left\" valign=\"middle\">\n\t    <td colspan=\"3\">&nbsp;</td>\n    }\n        <td colspan=\"2\">&nbsp;</td>\n    </tr>\n}\n</table>\n[/code]\n \nBUT i get a compilation error about a missing } bracket at a large line number. I confirmed it in both the latest release and the latest sources.\n \nExperimenting learned that if i move a single </tr> out of the inner foreach it already gives compilations errors! \nFor example:\n[code]\n<table cellspacing=\"0\" cellpadding=\"0\" id=\"Variable\">\n<tr align=\"left\" valign=\"middle\">\n\t<th>@Model.Serie.Setup.VariableName [&deg;C]</th>\n\t<th>Average</th>\n\t<th>Standard deviation</th>\n\t<th>Force [N]</th>\n\t<th>Fracture type</th>\n</tr>\n@foreach (Serie<Setup, Measurement>.SerieItem<Measurement> m in\n           Model.Serie.Distinct<Serie<Setup, Measurement>.SerieItem<Measurement>>(new VariableComparer())) {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td>@m.Measurement.Variable</td>\n\t    <td>@Math.Round(SerieHelpers.Average(m.Measurement.Variable),3)</td>\n\t    <td>@Math.Round(SerieHelpers.StdDev(m.Measurement.Variable),3)</td>\n    </tr>\n    @foreach (Serie<Setup,Measurement>.SerieItem<Measurement> n in Model.Serie.FindAll(o =>o.Measurement.Checked && o.Measurement.Variable==m.Measurement.Variable))\n    {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td colspan=\"3\">&nbsp;</td>\n\t    <td>@Math.Round(n.Measurement.Force,3)</td>\n\t    <td>@n.Measurement.Fracture</td>\n    }\n    </tr>\n    </tr>\n}\n</table>\n[/code]\n \n    @foreach (Serie<Setup,Measurement>.SerieItem<Measurement> n in Model.Serie.FindAll(o =>o.Measurement.Checked && o.Measurement.Variable==m.Measurement.Variable))\n    {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td colspan=\"3\">&nbsp;</td>\n\t    <td>@Math.Round(n.Measurement.Force,3)</td>\n\t    <td>@n.Measurement.Fracture</td>\n    }\n    </tr>\n \nit already starts giving errors.\n \nMy (non working solution would be\n \n<code>\n<table cellspacing=\"0\" cellpadding=\"0\" id=\"Variable\">\n<tr align=\"left\" valign=\"middle\">\n\t<th>@Model.Serie.Setup.VariableName [&deg;C]</th>\n\t<th>Average</th>\n\t<th>Standard deviation</th>\n\t<th>Force [N]</th>\n\t<th>Fracture type</th>\n</tr>\n@foreach (Serie<Setup, Measurement>.SerieItem<Measurement> m in\n           Model.Serie.Distinct<Serie<Setup, Measurement>.SerieItem<Measurement>>(new VariableComparer())) {\n    <tr align=\"left\" valign=\"middle\">\n\t    <td>@m.Measurement.Variable</td>\n\t    <td>@Math.Round(SerieHelpers.Average(m.Measurement.Variable),3)</td>\n\t    <td>@Math.Round(SerieHelpers.StdDev(m.Measurement.Variable),3)</td>\n    @foreach (Serie<Setup,Measurement>.SerieItem<Measurement> n in Model.Serie.FindAll(o =>o.Measurement.Checked && o.Measurement.Variable==m.Measurement.Variable))\n    {\n\t    <td>@(Math.Round(n.Measurement.Force,3))</td>\n\t    <td>@n.Measurement.Fracture</td>\n    </tr>\n    <tr align=\"left\" valign=\"middle\">\n\t    <td colspan=\"3\">&nbsp;</td>\n    }\n        <td colspan=\"2\">&nbsp;</td>\n    </tr>\n}\n</table>\n \nAny suggestions?\nwvd_vegt",
+    "LastUpdatedDate": "2013-02-21T17:17:01.26-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-07-30T07:33:00.62-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Failure to compile",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 472
+  },
+  "FileAttachments": [
+    {
+      "FileId": 167,
+      "FileName": "RazorTable.JPG",
+      "DownloadUrl": ".\\167"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "Forgot to mention the attached image belongs to the first piece of (working) code. I'm trying to remove the empty cells from the last two columns by shifting them upwards.",
+      "PostedDate": "2011-07-30T07:34:56.61-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "This doesn't look like an issue with RazorEngine, but moreso your template structure. In your HTML template, your opening a row (<tr>) but then your looping within that row (and closing the </tr>) within the loop. That looks to be breaking your HTML flow.",
+      "PostedDate": "2011-08-15T04:30:58.84-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "If I read my template correctly, the outer loop generates the start of a row with 3 columns (the xxx from):\r\n\r\n | xxx | xxx | xxx |\r\n\r\nThe inner loop adds the yyy columns, closes the row and the start of the next row (empty column with colspan of 3) \r\n\r\n | xxx | xxx | xxx | yyy | yyy |\r\n |                     | \r\n\r\nnext inner loop iteration:\r\n\r\n | xxx | xxx | xxx | yyy | yyy |\r\n |                     | yyy | yyy | \r\n |                     | \r\n\r\nnext inner loop:\r\n\r\n | xxx | xxx | xxx | yyy | yyy |\r\n |                     | yyy | yyy | \r\n |                     | yyy | yyy | \r\n |                     | \r\n\r\nThe code after the inner loop adds a empty column with colspan 2\r\n\r\n | xxx | xxx | xxx | yyy | yyy |\r\n |                     | yyy | yyy | \r\n |                     | yyy | yyy | \r\n |                     |              |\r\n\r\nNext outer loop adds another start of a row:\r\n\r\n | xxx | xxx | xxx | yyy | yyy |\r\n |                     | yyy | yyy | \r\n |                     | yyy | yyy | \r\n |                     |              |\r\n | xxx | xxx | xxx |\r\n\r\netc.\r\n\r\nSo the number of <tr> and </tr> match but not inside the loops. My question seems to be: does the razor engine make assumptions about html code in it's constructs or does it just see it as text.\r\n",
+      "PostedDate": "2011-08-19T13:59:33.63-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Oops this editor does not like multiple spaces. I replaces the empty columns with dashes.\r\n\r\nIf I read my template correctly, the outer loop generates the start of a row with 3 columns (the xxx from):\r\n\r\n| xxx | xxx | xxx |\r\n\r\nThe inner loop adds the yyy columns, closes the row and the start of the next row (empty column with colspan of 3) \r\n\r\n| xxx | xxx | xxx | yyy | yyy |\r\n| --- --- --- | \r\n\r\nnext inner loop iteration:\r\n\r\n| xxx | xxx | xxx | yyy | yyy |\r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | \r\n\r\nnext inner loop:\r\n\r\n| xxx | xxx | xxx | yyy | yyy |\r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | \r\n\r\nThe code after the inner loop adds a empty column with colspan 2\r\n\r\n| xxx | xxx | xxx | yyy | yyy |\r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | --- --- |\r\n\r\nNext outer loop adds another start of a row:\r\n\r\n| xxx | xxx | xxx | yyy | yyy |\r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | yyy | yyy | \r\n| --- --- --- | --- --- |\r\n| xxx | xxx | xxx |\r\n\r\netc.\r\n\r\nSo the number of <tr> and </tr> match but not inside the loops. My question seems to be: does the razor engine make assumptions about html code in it's constructs or does it just see it as text.",
+      "PostedDate": "2011-08-19T14:03:38.64-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Hi\r\n\r\nQuestion, is there a way to see the generated code before it gets compiled? I'm wondering where my template generates problems in Razor but at the moment I'm pretty blindfolded. \r\n\r\nPerhaps an idea would be to you add the code failing to compile to the exception being generated?",
+      "PostedDate": "2011-08-22T05:22:54.45-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:01.26-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

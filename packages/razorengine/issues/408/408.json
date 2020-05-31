@@ -1,0 +1,65 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "var t = \"<h3>Your Order @Model.OrderNumber <small>(placed on @Model.OrderDate)</small></h3>\";\nvar body = Razor.Parse(t, new\n{\n    OrderNumber = \"ORD0484\",\n    OrderDate = DateTime.Now,\n});\n \nWhen running this code from console application with Microsoft.CSharp.dll is referenced.\nIntersting point is that under debug, everything works as expected.",
+    "LastUpdatedDate": "2013-02-21T17:17:03.387-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-05T02:53:54.017-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "error CS0518: Predefined type 'Microsoft.CSharp.RuntimeBinder.Binder' is not defined or imported",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 408
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This is already known issue and according to http://razorengine.codeplex.com/discussions/242605 will be fixed in 2.2. Workaround also included.",
+      "PostedDate": "2011-05-05T04:09:03.653-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-05-10T01:25:52.907-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-25T04:26:27.14-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "The mechanism around the inclusion of this reference has changed in v3. In v3, we allow an ICompilerService instance to specify any additional required assemblies to be referenced by the template assembly. The CSharpDirectCompilerService in v3 enforces the Microsoft.CSharp.dll. This is demonstrated in the unit tests that will be available. Stay tuned.",
+      "PostedDate": "2011-08-25T04:28:35.203-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:03.387-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

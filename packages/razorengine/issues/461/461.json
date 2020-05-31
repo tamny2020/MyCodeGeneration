@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When running Razor in a web context on a background thread WebCompilerServiceBase throws a NullReferenceException. This is due to using HttpContext.Current (which is ThreadStatic to the http request thread) to pass the compiler class name between WebCompilerServiceBase and RazorBuildProviderBase.\n \nI've attached a simple diff to add a static ConcurrentDictionary to RazorBuildProviderBase and use that when HttpContext.Current is null.\n \nI'm sure there's a better way though.",
+    "LastUpdatedDate": "2013-02-21T17:17:01.55-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-07-17T22:38:57.57-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "WebCompilerServiceBase throws NullRef when running on background thread",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 461
+  },
+  "FileAttachments": [
+    {
+      "FileId": 157,
+      "FileName": "WebCompilerService NullRef.diff",
+      "DownloadUrl": ".\\157"
+    }
+  ],
+  "Comments": []
+}

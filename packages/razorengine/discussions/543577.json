@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1238759",
+    "ThreadId": "543577",
+    "Html": "I am using RazorEngine in an asp.net (mvc) website, which is restarted often (2 and more times per day). \r<br />\nTell me, please, is there any way to store the assemblies of the compiled templates somewhere beyond AppDomain, that after its restarting wouldn't have to recompile the same templates again?<br />\n",
+    "PostedDate": "2014-04-28T05:03:06.543-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

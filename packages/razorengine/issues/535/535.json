@@ -1,0 +1,55 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When you call CodeDomProvider.CompileAssemblyFromDom it can report compilation errors that are turned into an exception. The problem is that I cannot see the code that it couldn't compile. \n \nPlease include a call to CodeDomProvider.GenerateCodeFromCompileUnit and pass that information along with the compilation errors to the TemplateCompilationException.",
+    "LastUpdatedDate": "2013-02-21T17:16:59.36-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-11-21T07:56:28.01-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Needs better error reporting when there are compilation errors",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 535
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This is addressed in v3, we now include a much more verbose compilation output. This is currently enabled by setting `Debug` mode to on when using RazorEngine. Please visit https://github.com/Antaris/RazorEngine for updates, we're no longer pushing code changes here.",
+      "PostedDate": "2011-11-22T05:00:38.403-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-01-28T07:48:22.837-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.36-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

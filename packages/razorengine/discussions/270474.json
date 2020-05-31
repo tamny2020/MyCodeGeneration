@@ -1,0 +1,82 @@
+[
+  {
+    "Id": "683032",
+    "ThreadId": "270474",
+    "Html": "<p>I have this error as well.</p>\r\n<p>Maybe someone knows the solution?</p>",
+    "PostedDate": "2011-10-12T03:26:05.033-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "683109",
+    "ThreadId": "270474",
+    "Html": "<p>&nbsp;</p>\n<p>I'm trying to use Razor.Engine for parsing the e-mail templates. All works fine unless I'm trying to load assembly dynamically.</p>\n<p>The Engine (this is my class which has only one method Parse):</p>\n<p>&nbsp;</p>\n<pre class=\"prettyprint\"><div style=\"color: black; background-color: white;\"><pre><span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> Parse(<span style=\"color: blue;\">string</span> template, <span style=\"color: blue;\">dynamic</span> model)\n        {\n            <span style=\"color: blue;\">return</span> Razor.Parse(template, model);\n        }\n \n</pre>\n</div>\n<br /></pre>\n<p>If my test project has reference to library with Razor.Parse method everything works fime:</p>\n<p>&nbsp;</p>\n<pre class=\"prettyprint\"><span class=\"pln\">&nbsp; &nbsp; &nbsp; &nbsp;<div style=\"color: black; background-color: white;\"><pre> [TestMethod]\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">void</span> Engine_should_properly_parse_the_string()\n        {\n            <span style=\"color: blue;\">const</span> <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.PartId engine test\"</span>;\n\n            <span style=\"color: blue;\">var</span> model = <span style=\"color: blue;\">new</span> EmailModel { PartId = 123 };\n\n            <span style=\"color: blue;\">var</span> engine = <span style=\"color: blue;\">new</span> Engine();\n            <span style=\"color: blue;\">var</span> result = engine.Parse(template, model);\n\n            Assert.AreEqual(<span style=\"color: #a31515;\">\"Hello 123 engine test\"</span>, result);\n        }\n</pre>\n</div>\n</span></pre>\n<p>But if i'm trying next test in new test project without direct reference to library:</p>\n<pre class=\"prettyprint\"><div style=\"color: black; background-color: white;\"><pre>[TestMethod]\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">void</span> TestMethod1()\n        {\n            <span style=\"color: blue;\">const</span> <span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"Hello @Model.PartId engine test\"</span>;\n\n            <span style=\"color: blue;\">var</span> model = <span style=\"color: blue;\">new</span> my { PartId = 123 };\n\n            <span style=\"color: blue;\">var</span> assembly = Assembly.LoadFrom(<span style=\"color: #a31515;\">@\"..\\..\\..\\EmailNotifier\\bin\\Debug\\EmailNotifier.dll\"</span>);\n            <span style=\"color: blue;\">dynamic</span> builder = assembly.CreateInstance(<span style=\"color: #a31515;\">\"EmailNotifier.Notifier.Engine\"</span>);\n            <span style=\"color: blue;\">var</span> result = builder.Parse(template, model);\n\n            Assert.AreEqual(<span style=\"color: #a31515;\">\"Hello 123 engine test\"</span>, result);\n        }\n</pre>\n</div>\n<br /></pre>\n<p>I have the next error:</p>\n<div class=\"exception\">Test method TestProject1.UnitTest1.TestMethod1 threw exception:&nbsp;</div>\n<div class=\"exception\">\n<div class=\"exception\">System.ArgumentNullException: Value cannot be null.<br /> Parameter name: type</div>\n<div class=\"stacktrace\">at&nbsp;<span class=\"normalLinkEmuLink\"><span>RazorEngine.Templating.DefaultActivator</span></span>.<span class=\"normalLinkEmuLink\"><span>CreateInstance</span></span>(<span><span><span>Type</span></span></span>&nbsp;<span>type</span>)<br /> at&nbsp;<span class=\"normalLinkEmuLink\"><span>RazorEngine.Templating.TemplateService</span></span>.<span class=\"normalLinkEmuLink\"><span>CreateTemplate</span></span>(<span><span class=\"normalLinkEmuLink\"><span>String</span></span></span>&nbsp;<span>template</span>,&nbsp;<span><span><span>Type</span></span></span>&nbsp;<span>modelType</span>)<br /> at&nbsp;<span class=\"normalLinkEmuLink\"><span>RazorEngine.Templating.TemplateService</span></span>.<span><span>GetTemplate</span></span>(<span><span class=\"normalLinkEmuLink\"><span>String</span></span></span>&nbsp;<span>template</span>,&nbsp;<span><span class=\"normalLinkEmuLink\"><span>Type</span></span></span>&nbsp;<span>modelType</span>,&nbsp;<span><span class=\"normalLinkEmuLink\"><span>String</span></span></span>&nbsp;<span>name</span>)<br /> at&nbsp;<span class=\"normalLinkEmuLink\"><span>RazorEngine.Templating.TemplateService</span></span>.<span class=\"normalLinkEmuLink\"><span>Parse</span></span>(<span><span class=\"normalLinkEmuLink\"><span>String</span></span></span>&nbsp;<span>template</span>,&nbsp;<span><span class=\"normalLinkEmuLink\"><span>T</span></span></span>&nbsp;<span>model</span>,&nbsp;<span><span><span>String</span></span></span>&nbsp;<span>name</span>)<br /> at&nbsp;<span><span>RazorEngine.Razor</span></span>.<span><span>Parse</span></span>(<span><span class=\"normalLinkEmuLink\"><span>String</span></span></span>&nbsp;<span>template</span>,&nbsp;<span><span><span>T</span></span></span>&nbsp;<span>model</span>,&nbsp;<span><span><span>String</span></span></span>&nbsp;<span>name</span>)<br /> at&nbsp;<span><span><span><span>System</span>.Dynamic</span>.UpdateDelegates</span>.UpdateAndExecute3&lt;<span>T0</span>,<span>T1</span>,<span>T2</span>,<span>TRet</span>&gt;</span>(<span>CallSite</span>&nbsp;<span>site</span>,&nbsp;<span>T0</span>&nbsp;<span>arg0</span>,&nbsp;<span>T1</span>&nbsp;<span>arg1</span>,&nbsp;<span>T2</span>&nbsp;<span>arg2</span>)<br /> at&nbsp;<span class=\"normalLinkEmuLink\"><span>Notifier.Engine</span></span>.<span><span>Parse</span></span>(<span><span><span>String</span></span></span>&nbsp;<span>template</span>,&nbsp;<span><span><span>Object</span></span></span>&nbsp;<span>model</span>) in&nbsp;<a href=\"http://forums.asp.net/t/1729566.aspx/1?Razor+Parse+ArgumentNullException+when+using+Assembly+LoadFrom\">Engine.cs:  line 48</a><br /> at&nbsp;<span><span><span><span>System</span>.Dynamic</span>.UpdateDelegates</span>.UpdateAndExecute3&lt;<span>T0</span>,<span>T1</span>,<span>T2</span>,<span>TRet</span>&gt;</span>(<span>CallSite</span>&nbsp;<span>site</span>,&nbsp;<span>T0</span>&nbsp;<span>arg0</span>,&nbsp;<span>T1</span>&nbsp;<span>arg1</span>,&nbsp;<span>T2</span>&nbsp;<span>arg2</span>)<br /> at&nbsp;<span><span>TestProject1.UnitTest1</span></span>.<span><span>TestMethod1</span></span>() in&nbsp;<a href=\"http://forums.asp.net/t/1729566.aspx/1?Razor+Parse+ArgumentNullException+when+using+Assembly+LoadFrom\">UnitTest1.cs: line 27</a></div>\n</div>\n<div class=\"exception\">I've found that Razor tries to run&nbsp;<span class=\"normalLinkEmuLink\"><span>RazorEngine.Templating.DefaultActivator</span></span>.<span class=\"normalLinkEmuLink\"><span>CreateInstance</span></span>(<span><span><span>Type</span></span></span>&nbsp;<span>type</span>)  where the type equals null.</div>\n<div class=\"exception\">\n<p>it looks like Razor doesn't want to do the runtime compilation :(</p>\n<p>Maybe i have to do some initialization of the Razor classes?</p>\n</div>\n<div class=\"exception\">Maybe someone has a solution of this problem?</div>",
+    "PostedDate": "2011-10-12T06:12:06.2-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "683236",
+    "ThreadId": "270474",
+    "Html": "<p>I'll add this to my list of things to check before I push v3 LIVE<span style=\"white-space: pre;\"> </span></p>\r\n<p><span style=\"white-space: pre;\"><br /></span></p>",
+    "PostedDate": "2011-10-12T09:44:42.047-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "683242",
+    "ThreadId": "270474",
+    "Html": "<p>Thanks</p>",
+    "PostedDate": "2011-10-12T09:51:07.793-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "703203",
+    "ThreadId": "270474",
+    "Html": "<p>I had a similar issue and have managed to work around it.&nbsp; My setup is as follows:</p>\r\n<p>&nbsp;- WCF Service that loads assemblies dynamically (using Assembly.LoadFrom) from a different location to the service (basic plugins infrastructure)</p>\r\n<p>&nbsp;- Plugin Assemblies that execute razorengine templates</p>\r\n<p>1. In the plugin assembly I have set the RazorEngine and System.Web.Razor CopyLocal to false.&nbsp;</p>\r\n<p>2. I have copied the System.Web.Razor and RazorEngine assemblies to WCF bin directory.</p>\r\n<p>3. In the plugin I use a dynamic class for the model.&nbsp; The line is as follows:</p>\r\n<p>var str = Razor.Parse(Encoding.UTF8.GetString(bytes), new { Symbol = model.Symbol })</p>\r\n<p>If I use the strongly typed model I get the same error as posted.&nbsp; Using this method outlined gets around it.&nbsp; Note that you must ensure that the razor assemblies are in the host app domain bin path.&nbsp; If they are outside of it you will get these errors.</p>\r\n<p>Hope this helps.</p>\r\n<p>Thanks</p>\r\n<p>&nbsp;</p>\r\n<p>Craig.</p>",
+    "PostedDate": "2011-11-24T17:37:36.4-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "704597",
+    "ThreadId": "270474",
+    "Html": "<p>Thanks, craig_c for the&nbsp;workaround!</p>\r\n<p>But I hope it will be fixed in the new release.</p>",
+    "PostedDate": "2011-11-28T23:36:00.01-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "984067",
+    "ThreadId": "270474",
+    "Html": "\r\n<p><span>All, I am fac</span><span>&nbsp;</span>ing the same issue. Did you find a solution?</p>\r\n<p>&nbsp;</p>\r\n<p><span>AntarisZX</span>,</p>\r\n<p>Did you have a version with a fix?</p>\r\n",
+    "PostedDate": "2013-01-08T05:24:07.48-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "985099",
+    "ThreadId": "270474",
+    "Html": "\r\n<p>Here's what fixed this problem for me. I had to help the runtime load the missing assemblies, so I used the AssemblyResolve event of the current AppDomain and manually loaded the missed assemblies:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>        <span style=\"color:blue\">public</span> <span style=\"color:blue\">string</span> RenderText&lt;T&gt;(<span style=\"color:blue\">string</span> templateText, T data)\r\n        {\r\n            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;\r\n            <span style=\"color:blue\">try</span> {\r\n                <span style=\"color:blue\">return</span> Razor.Parse(templateText, data);\r\n            } <span style=\"color:blue\">finally</span> {\r\n                AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;\r\n            }\r\n        }\r\n\r\n        <span style=\"color:blue\">private</span> Assembly CurrentDomain_AssemblyResolve(<span style=\"color:blue\">object</span> sender, ResolveEventArgs args) {\r\n            <span style=\"color:blue\">return</span> Assembly.Load(args.Name);\r\n        }\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>For me this error was&nbsp;happening in a custom MSBuild task that I wrote using RazorEngine to create a report.</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2013-01-10T10:42:19.65-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "990028",
+    "ThreadId": "270474",
+    "Html": "\r\n<p>Is this problem officially fixed? or do we have go with the work around for now?</p>\r\n",
+    "PostedDate": "2013-01-21T15:20:16.6-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1008115",
+    "ThreadId": "270474",
+    "Html": "I debugged the code and found that the issue is the RazorEngine is trying to load itself when compile the template but can't find that in the loaded assemblies. So I fixed this problem by install RazorEngine dll in the GAC using .NET Framewok 4 tool with the following command.<br />\n<br />\n<br />\n<strong>Install RazorEngine to GAC 4.0</strong><br />\n<br />\n&quot;C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.0A\\Bin\\NETFX 4.0 Tools\\x64\\gacutil&quot; /f /i RazorEngine.dll<br />\n",
+    "PostedDate": "2013-02-28T03:46:38.017-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

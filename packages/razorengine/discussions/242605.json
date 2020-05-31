@@ -1,0 +1,154 @@
+[
+  {
+    "Id": "552629",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I am trying to use an anonymous type as my model and with the latest 2.0 version and this test fails. Any Ideas?</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>        [TestMethod]\r\n        <span style=\"color:blue\">public</span> <span style=\"color:blue\">void</span> Template_engine_supports_anonymous_models2()\r\n        {\r\n            <span style=\"color:blue\">string</span> template =<span style=\"color:#a31515\">&quot;&lt;p&gt;Hello @Model.Name&lt;/p&gt;&lt;p&gt;Time is: @Model.Time&lt;/p&gt;&quot;</span>;\r\n            <span style=\"color:blue\">var</span> model = <span style=\"color:blue\">new</span> {Name = <span style=\"color:#a31515\">&quot;World&quot;</span>, Time = DateTime.Now};\r\n            <span style=\"color:blue\">try</span>\r\n            {\r\n                <span style=\"color:blue\">string</span> result = RazorEngine.Razor.Parse(template, model);\r\n                Assert.IsTrue(result.Contains(<span style=\"color:#a31515\">&quot;Hello World&quot;</span>));\r\n            }\r\n            <span style=\"color:blue\">catch</span> (TemplateCompilationException compilationException)\r\n            {\r\n                <span style=\"color:blue\">foreach</span> (<span style=\"color:blue\">var</span> error <span style=\"color:blue\">in</span> compilationException.Errors)\r\n                {\r\n                    Debug.WriteLine(error.ErrorText);\r\n                }\r\n                <span style=\"color:blue\">throw</span>;\r\n            }\r\n        }\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>&nbsp;</p>\r\n<p>The error collection contains this:</p>\r\n<p></p>\r\n<pre>Predefined type 'Microsoft.CSharp.RuntimeBinder.Binder' is not defined or imported\r\nOne or more types required to compile a dynamic expression cannot be found. Are you missing references to Microsoft.CSharp.dll and System.Core.dll?\r\nOne or more types required to compile a dynamic expression cannot be found. Are you missing references to Microsoft.CSharp.dll and System.Core.dll?\r\nOne or more types required to compile a dynamic expression cannot be found. Are you missing references to Microsoft.CSharp.dll and System.Core.dll?\r\nOne or more types required to compile a dynamic expression cannot be found. Are you missing references to Microsoft.CSharp.dll and System.Core.dll?</pre>\r\n<p></p>\r\n",
+    "PostedDate": "2011-01-20T07:56:55.963-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553058",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>That seems really odd, the Microsoft.CSharp reference issue normally occurs because the compiled assembly doesn't reference that assembly. We got round this by initialising a type from that assembly which forced it to be included in the assembly manifest.\r\n &nbsp;It only seemed to crop up through unit tests, I only tested the fixed issue using NUnit.&nbsp;</p>\r\n<p>Could you send me a copy of your test project along with the assemblies and I'll have a look through and see if there is something I'm still missing? (matt [at] fidelitydesign (dot) net).<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2011-01-21T01:20:03.993-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553218",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I'm having the same problem with version 1.2 I get off of NuGet. Works fine when I run it as a console app, but gives me the Microsoft.CSharp.RuntimeBinder.Binder error when I run it in a nunit test. I can send you a copy of my solution if you like.</p>\r\n",
+    "PostedDate": "2011-01-21T06:25:32.507-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553231",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>Please do, I'll have a look at it over the weekend.<span style=\"white-space:pre\">\r\n</span></p>\r\n<p><span style=\"white-space:pre\"><br>\r\n</span></p>\r\n",
+    "PostedDate": "2011-01-21T06:40:14.65-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553261",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I was able to get the test to pass by adding this line at the beginning of the test</p>\r\n<p><span style=\"font-family:Consolas,'Courier New',Courier,monospace\"><span style=\"white-space:pre\"></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">bool</span> loaded = <span style=\"color:blue\">typeof</span>(Microsoft.CSharp.RuntimeBinder.Binder).Assembly != <span style=\"color:blue\">null</span>;\r\n</pre>\r\n</div>\r\n</span></span>\r\n<p></p>\r\n<p>I guess this does the work of loading the Microsoft.CSharp assembly into the test AppDomain or something? Weird stuff</p>\r\n",
+    "PostedDate": "2011-01-21T07:29:36.403-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553267",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>That *shouln't* be required really. &nbsp;The RazorEngine compiler service loads all the assemblies from the current AppDomain, which includes RazorEngine and any other assemblies referenced by it, including Microsoft.CSharp.<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2011-01-21T07:35:14.917-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553302",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>That worked for me too.</p>\r\n",
+    "PostedDate": "2011-01-21T08:35:57.737-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553431",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I believe the fix I put in place before still doesn't work. &nbsp;The unused variable that references the Microsoft.CSharp assembly is omitted in the compiled assembly (as seen through reflector). To get round this, the v2.1 release will include an internal\r\n stub type that inherits from a Microsoft.CSharp type. &nbsp;This inheritance enforces that the Microsoft.CSharp assembly is referenced and the type cannot be omitted. Check back for the release of v2.1</p>\r\n",
+    "PostedDate": "2011-01-21T13:00:09.577-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560960",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I'm having this same issue on v2.1.</p>\r\n",
+    "PostedDate": "2011-02-04T12:28:01.55-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560968",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>Same here... I downloaded it through NuGet today.</p>\r\n",
+    "PostedDate": "2011-02-04T12:35:31.26-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560983",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>Can you send me a sample project recreating the issue? Send it to matt (at) fidelitydesign (dot) net<span style=\"white-space:pre\">\r\n</span></p>\r\n",
+    "PostedDate": "2011-02-04T13:02:43.55-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561050",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>Sent. I'm using xUnit. Are you, lordeagle?</p>\r\n",
+    "PostedDate": "2011-02-04T15:42:46.14-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561059",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I sent one too. I'm using the VS Unit Tests.</p>\r\n",
+    "PostedDate": "2011-02-04T16:14:39.27-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561093",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>I'm having the same issue still with 2.1 as well. It seems like its not enough to have a type in your assembly that references System.CSharp because the CLR doesn't load it unless code is executed that needs it. Looking at the content of the Output window,\r\n it appears that this assembly has never been loaded.</p>\r\n",
+    "PostedDate": "2011-02-04T17:58:09.313-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561438",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>Curiously, I don't seem to have this issue using the NUnit unit test runner, but mstest and xunit seem to fail. &nbsp;I haven't checked in the change, but you could do:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">protected</span> CompilerServiceBase(RazorCodeLanguage codeLanguage, MarkupParser markupParser)\r\n{\r\n    <span style=\"color:blue\">if</span> (codeLanguage == <span style=\"color:blue\">null</span>)\r\n        <span style=\"color:blue\">throw</span> <span style=\"color:blue\">new</span> ArgumentNullException(<span style=\"color:#a31515\">&quot;codeLanguage&quot;</span>);\r\n\r\n    CodeLanguage = codeLanguage;\r\n    MarkupParser = markupParser ?? <span style=\"color:blue\">new</span> HtmlMarkupParser();\r\n\r\n    <span style=\"color:green\">// Once again... &quot;eugh&quot;...</span>\r\n    <span style=\"color:blue\">string</span> dummy = <span style=\"color:blue\">new</span> MicrosoftCSharpReferenceStub().ToString();\r\n}\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>in Core\\RazorEngine\\Compilation\\CompilerServiceBase.cs</p>\r\n<p>I want to have another review before I check the change in as final.</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-06T04:34:18.417-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "561663",
+    "ThreadId": "242605",
+    "Html": "\r\n<p>That fix works for me using xUnit.</p>\r\n<p>Josh</p>\r\n",
+    "PostedDate": "2011-02-06T17:25:50.65-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "600116",
+    "ThreadId": "242605",
+    "Html": "<p>I'm having the same issue when using RazorEngine inside a windows service. I had to use jkll's hack to force loading the assembly. Any fix for this upcoming?</p>",
+    "PostedDate": "2011-04-19T19:11:14.647-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "600211",
+    "ThreadId": "242605",
+    "Html": "<p>Hi,</p>\r\n<p>We're hoping to roll out a fix through v2.2, but unfortunately I've been so swamped with work I haven't progressed as far as I would have liked with it. Watch this space.</p>",
+    "PostedDate": "2011-04-20T00:35:53.077-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "608330",
+    "ThreadId": "242605",
+    "Html": "<p>It seems that the Microsoft.CSharp.dll is delay-loaded when dynamic is actually used (not declared, but used effectively in the code). When debugging from VS2010 (and probably NUnit is forcing to load it by default?) this assembly is loaded automatically by default.</p>\r\n<p>For example, if you are instantiating and using a dynamic object (through the dynamic keyword) before parsing a template, the assembly Microsoft.CSharp.dll should be loaded when compiling templates.</p>\r\n<p>Forcing RazorEngine to load Microsoft.CSharp.dll, by using jkll's workaround \"<span style=\"color: blue;\">bool</span> loaded = <span style=\"color: blue;\">typeof</span>(Microsoft.CSharp.RuntimeBinder.Binder).Assembly != <span style=\"color: blue;\">null</span>;\" is fixing this.</p>",
+    "PostedDate": "2011-05-06T01:14:51.053-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

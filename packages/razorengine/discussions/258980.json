@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "618155",
+    "ThreadId": "258980",
+    "Html": "\r\n<p>I'm having a bit of trouble using this project. I'm building a prototype of a multi-tenant applications where users can point their own to domain to said application and the software detects what client the request is for and applies some logic to determine\r\n if there are customizations at both the Controller and the View level.</p>\r\n<p>I had a working prototype built in ASP.NET MVC 2.0 and it worked great. I decided to try to port it to MVC 3 using Razor.&nbsp; I have a project for each Client that contains their customizations, call it Clients.{ClientName}. The solutions web project knows\r\n nothing of these Client projects. There are post-build commands to copy the compiled assemblies from the output folder over to the Web project BIN folder.</p>\r\n<p>Anyways, so there is a Clients.Client1.dll in the BIN folder of the web project. When I get to the RazorEngine.Compilation.DirectCompilerServiceBase.Compile method I notice that the list of assemblies includes my DLL in the BIN folder and it also includes\r\n a duplicate of the Clients.Client1.dll in the Temporary Internet Files (&nbsp; &quot;C:\\\\Users\\\\my.name\\\\AppData\\\\Local\\\\Temp\\\\Temporary ASP.NET Files\\\\root\\\\0d4ab9c0\\\\95ec7fae\\\\assembly\\\\dl3\\\\76e65ad6\\\\c44dc2ed_f51acc01\\\\Clients.Client1.DLL&quot;)</p>\r\n<p>If I let the array of strings contain both of these assemblies (even though they are the same assembly) I get the following exception when trying to compile the template:</p>\r\n<p style=\"padding-left:30px\">{error CS1704: An assembly with the same simple name 'Clients.Client1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null has already been imported. Try removing one of the references or sign them to enable side-by-side.}</p>\r\n<p>&nbsp;</p>\r\n<p>I'm not sure what is causing the duplicate assembly in the Temporary Internet Files. What ever is causing it is preventing my from being able to compile my view at run time.</p>\r\n",
+    "PostedDate": "2011-05-25T09:24:36.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

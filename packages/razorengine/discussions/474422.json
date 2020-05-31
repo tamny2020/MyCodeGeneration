@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1137276",
+    "ThreadId": "474422",
+    "Html": "Hi<br />\nI am trying to write a Web Api that will return Json Siren and Html. Using WebApiContrib its been going ok. Content comes back based on the content-type header. However when I try to use @Html in the Razor view I get the following exception. <br />\n  Message=Unable to compile template. The name 'Html' does not exist in the current context<br />\n<br />\nI found a stackoverflow discussion that seemed to be heading down the right road.  (From a comment in the HtmlTemplateBase that I got from WebApiContrib. ) but I have tried a few things based on it with no luck. (I added the SetTemplateService in WebApiConfig) Can anyone point me in the right direction? I suspect its something fairly obvious. I am not a full on C# dev, just getting started. <br />\n<br />\nThe link to the stack discussion is:<br />\n<a href=\"http://stackoverflow.com/questions/8561164/razorengine-issues-with-html/19434112\" rel=\"nofollow\">here</a><br />\n<br />\nAny help will be very much appreciated even if its - go and post in another forum.<br />\ncheers<br />\n",
+    "PostedDate": "2013-12-17T13:49:23.84-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1137584",
+    "ThreadId": "474422",
+    "Html": "I got the <a href=\"mailto:@Html.Label\" rel=\"nofollow\">@Html.Label</a> working by moving my addition of formatters and HtmlTemplate to WebApiConfig. <br />\n<pre><code>            var viewParser = new RazorViewParser(baseTemplateType: typeof(HtmlTemplateBase&lt;&gt;));\n            config.Formatters.Add(new RazorViewFormatter(viewParser: viewParser));\n            config.Formatters.Add(new HtmlMediaTypeViewFormatter());</code></pre>\n\nBut  <a href=\"mailto:@Html.DisplayFor\" rel=\"nofollow\">@Html.DisplayFor</a> still doesn't work - causing an exception. <br />\n",
+    "PostedDate": "2013-12-18T08:10:43.373-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

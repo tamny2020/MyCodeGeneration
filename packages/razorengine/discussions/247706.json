@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "572620",
+    "ThreadId": "247706",
+    "Html": "\r\n<p>Is it possible to create classes within a template? Something like...</p>\r\n<pre style=\"font-family:Consolas; font-size:15px; color:black; background:none repeat scroll 0% 0% white\">@{<br>\tpublic&nbsp;class&nbsp;MyClass&nbsp;{<br>\t\tpublic&nbsp;MyClass()&nbsp;{<br>\t\t\tThree&nbsp;=&nbsp;new&nbsp;List&lt;string&gt;();<br>\t\t}<br> <br>\t\tpublic&nbsp;string&nbsp;One&nbsp;{&nbsp;get;&nbsp;set;&nbsp;}<br>\t\tpublic&nbsp;int&nbsp;Two&nbsp;{&nbsp;get;&nbsp;set;&nbsp;}<br>\t\tpublic&nbsp;List&lt;string&gt;&nbsp;Three&nbsp;{&nbsp;get;&nbsp;set;&nbsp;}<br>\t}<br>}<br></pre>\r\n<p>Currently I get &quot;Unable to compile template. Check the Errors list for details.&quot; when I try to do this. I would like to take XML content and use XmlSerializer to create an instance of MyClass within the template. I can't do the deserialization before hand\r\n and shove it into the model because the classes could vary depending on the template.</p>\r\n",
+    "PostedDate": "2011-02-26T12:25:23.623-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "572709",
+    "ThreadId": "247706",
+    "Html": "<p>Hi,</p>\r\n<p>I'm not sure that is currently possible. When you use codeblocks (@{ }), you're actually writing code within a method, e.g. your above code would do something like:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">public</span> <span style=\"color: blue;\">void</span> Execute()\r\n{\r\n    <span style=\"color: blue;\">this</span>.Clear();\r\n    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> MyClass {\r\n        <span style=\"color: blue;\">public</span> MyClass() {\r\n            Three = <span style=\"color: blue;\">new</span> List&lt;<span style=\"color: blue;\">string</span>&gt;();\r\n        }\r\n\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> One { <span style=\"color: blue;\">get</span>; <span style=\"color: blue;\">set</span>; }\r\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">int</span> Two { <span style=\"color: blue;\">get</span>; <span style=\"color: blue;\">set</span>; }\r\n        <span style=\"color: blue;\">public</span> List&lt;<span style=\"color: blue;\">string</span>&gt; Three { <span style=\"color: blue;\">get</span>; <span style=\"color: blue;\">set</span>;}\r\n    }\r\n}\r\n</pre>\r\n</div>\r\n</p>\r\n<p>...which of course, is not valid C#. The other problem you will face, is that to use xml serialisation/deserialisation, the type must be known, but if you are defining your type within the template itself, how could do deserialise it in the first place?</p>\r\n<p>What you <em>could</em>&nbsp;do, is use a custom base template:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre><span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> CustomTemplateBase&lt;T&gt; : TemplateBase&lt;T&gt;\r\n{\r\n    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">dynamic</span> Instance { <span style=\"color: blue;\">get</span>; <span style=\"color: blue;\">set</span>; }\r\n\r\n    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">dynamic</span> CreateInstance(<span style=\"color: blue;\">string</span> typeName)\r\n    {\r\n        Type type = Type.GetType(typeName);\r\n        \r\n        <span style=\"color: green;\">// You'd to your deserialisation here, I'm going to</span>\r\n        <span style=\"color: green;\">// just cheat and return a new instance.</span>\r\n        <span style=\"color: blue;\">return</span> Activator.CreateInstance(type);\r\n    }\r\n}\r\n</pre>\r\n</div>\r\n</p>\r\n<p>Using a dynamic property and dynamic return type, we've defined a method that will let us create an instance (through activation or deserialisation, etc.) and call member access on it. To use that in a template, you could then do:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>@{\r\n  Instance = CreateInstance(\"ConsoleApplication1.MyClass, ConsoleApplication1\");\r\n  Instance.One = \"Hello World\";\r\n}\r\n<span style=\"color: blue;\">&lt;</span><span style=\"color: #a31515;\">h1</span><span style=\"color: blue;\">&gt;</span>@Instance.One<span style=\"color: blue;\">&lt;/</span><span style=\"color: #a31515;\">h1</span><span style=\"color: blue;\">&gt;</span>\r\n</pre>\r\n</div>\r\nWhere \"MyClass\" is a defined somewhere in my application. The important thing is, I'm creating an instance per template.</p>",
+    "PostedDate": "2011-02-26T23:33:23.963-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "572821",
+    "ThreadId": "247706",
+    "Html": "<p>I hadn't thought of using dynamic but I think this will work nicely. Something like <a href=\"http://www.nikhilk.net/CSharp-Dynamic-Programming-JSON.aspx\">this </a>will be perfect as I won't need to define classes. I am still in design phase and using JSON will actually work out nicer than XML. Thanks</p>",
+    "PostedDate": "2011-02-27T09:01:02.957-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,49 @@
+<div class="wikidoc"><h1>Using Configuration</h1>RazorEngine supports configuration through the standard .NET configuration framework. This page discuss what can be configured.<br />
+<h2>Adding the configuration section.</h2>To start using configuration, you need to add the configSection:<br /><br /><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">&lt;?</span><span style="color:#A31515;">xml</span> <span style="color:Red;">version</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">1.0</span><span style="color:Black;">&quot;</span> <span style="color:Red;">encoding</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">UTF-8</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">?&gt;</span>
+<span style="color:Blue;">&lt;</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">configSections</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">section</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">razorEngine</span><span style="color:Black;">&quot;</span> <span style="color:Red;">type</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Configuration.RazorEngineConfigurationSection, RazorEngine</span><span style="color:Black;">&quot;</span> <span style="color:Red;">requirePermission</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">false</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configSections</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+</pre></div>
+<h2>The &lt;razorEngine&gt; element</h2>The &lt;razorEngine&gt; element is the root of RazorEngine&#39;s configuration. The following attributes are supported:<br /><table><tr><th> Attribute Name </th><th> Required? </th><th> Default </th><th> Purpose </th></tr>
+<tr><td> activator </td><td> false </td><td> RazorEngine.Templating.DefaultActivator </td><td> Sets the default IActivator type for RazorEngine </td></tr>
+<tr><td> factory </td><td> false </td><td> RazorEngine.Compilation.DefaultCompilerServiceFactory </td><td> Sets the ICompilerServiceFactory type for RazorEngine </td></tr></table><br /><br />The &lt;razorEngine&gt; element supports for the following elements:<br /><table><tr><th> Element Name </th><th> Required? </th><th> Default </th><th> Purpose </th></tr>
+<tr><td> namespaces </td><td> false </td><td> </td><td> Defines the global namespace imports used for all templates </td></tr>
+<tr><td> templateServices </td><td> false </td><td> </td><td> Defines configurations for instances of TemplateService </td></tr></table><br /><br />An example configuration could be:<br /><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">razorEngine</span> <span style="color:Red;">activator</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngineSamples.Activators.MySampleActivator, RazorEngineSamples</span><span style="color:Black;">&quot;</span>
+                 <span style="color:Red;">factory</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">RazorEngine.Web.WebCompilerServiceFactory, RazorEngine.Web</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">namespaces</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">add</span> <span style="color:Red;">namespace</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">System.Linq</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">namespaces</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">templateServices</span><span style="color:Blue;">&gt;</span>
+            &lt;add ...
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">templateServices</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">razorEngine</span><span style="color:Blue;">&gt;</span>
+</pre></div>
+<h2>Configuring TemplateService instances.</h2>RazorEngine allows you to pre-configure instances of TemplateService which are then made available to your code.  The &lt;add&gt; element supports the following attributes:<br /><table><tr><th> Attribute Name </th><th> Required? </th><th> Default </th><th> Purpose </th></tr>
+<tr><td> activator </td><td> false </td><td> RazorEngine.Templating.DefaultActivator </td><td> Sets the activator type for the template service </td></tr>
+<tr><td> language </td><td> false </td><td> CSharp </td><td> Sets the code language that the template is to support. This is an enum value of CSharp, VisualBasic. </td></tr>
+<tr><td> markupParser </td><td> false </td><td> System.Web.Razor.Parser.HtmlMarkupParser </td><td> Sets the markup parser type for the template service. The default is <b>HtmlMarkupParser</b> </td></tr>
+<tr><td> name </td><td> true </td><td> </td><td> Sets the name of the template service. </td></tr>
+<tr><td> namespaces </td><td> false </td><td> </td><td> Sets the collection of namespaces imports for this template service. </td></tr>
+<tr><td> strictMode </td><td> false </td><td> false </td><td> Sets whether the template will run in strict mode - this will cause parsing exceptions to be thrown for invalid markup. </td></tr>
+<tr><td> templateBase </td><td> false </td><td> </td><td> Sets the template base type for this template service. </td></tr></table><br />
+<h2>Accessing configured template services</h2>Any template service configured through the &lt;templateServices&gt; element using the Razor.Services property. The Services property is an IDictionarty&lt;string, TemplateService&gt; instance using the configured <i>name</i> as the key.<br /><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">razorEngine</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">templateServices</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">add</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">myCustomTemplateService</span><span style="color:Black;">&quot;</span> <span style="color:Red;">language</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">CSharp</span><span style="color:Black;">&quot;</span> <span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">templateServices</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">razorEngine</span><span style="color:Blue;">&gt;</span>
+</pre></div><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">var</span> service = Razor.Services[<span style="color:#A31515;">&quot;myCustomTemplateService&quot;</span>];
+<span style="color:Blue;">string</span> result = service.Parse(<span style="color:#A31515;">&quot;Hello @Model.Name&quot;</span>, <span style="color:Blue;">new</span> { Name = <span style="color:#A31515;">&quot;World&quot;</span> });
+</pre></div>
+<h2>Setting the default TemplateService</h2>You can change the default TemplateService instance by using the `default` attribute on the &lt;templateServices&gt; element:<br /><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">razorEngine</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">templateServices</span> <span style="color:Red;">default</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">myCustomTemplateService</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+            &lt;add name=&quot;myCustomTemplateService&quot; ...
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">templateServices</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">razorEngine</span><span style="color:Blue;">&gt;</span>
+</pre></div><br />This will enforce that when using calls from the Razor static type, it will use your default template service. If you do not set the default template service, calls to the Razor type methods will use the internal configured default instance, which uses the C# code language and the HtmlMarkupParser.</div><div class="ClearBoth"></div>

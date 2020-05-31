@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "629850",
+    "ThreadId": "261953",
+    "Html": "\r\n<p>I'm just trying to workout how best to implement LayoutPage in child page and have it rendered in the @RenderBody() of the master page?</p>\r\n<p>I understand this isn't the full Razor&#43;MVC implementation we should expect to find in MVC3 but I still want to implement it and am looking for pointers on how best to do this?</p>\r\n",
+    "PostedDate": "2011-06-19T16:39:14.493-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

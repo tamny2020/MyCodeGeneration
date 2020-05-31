@@ -1,0 +1,50 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I keep getting this error no matter what I try. I thought it was because my project was using a client profile but its not. Its set to 4.0. I'm using the 3.0.8.0 beta assembly that I installed using nuget. Is that assembly built using the \"client profile\" or the normal profile?",
+    "LastUpdatedDate": "2013-02-21T17:16:58.493-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2012-04-26T22:03:44.227-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "The type or namespace name 'RazorEngine' could not be found",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 713
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Just downloaded the source and my assumption was correct. the 2.1 version and 3.0 are both using the client profile which was causing this error. Manually compiled both against normal 4.0 framework and all is well now.",
+      "PostedDate": "2012-04-26T23:59:50.563-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:58.493-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

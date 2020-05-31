@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "556447",
+    "ThreadId": "243580",
+    "Html": "\r\n<p>Hello, I have been investigating on the ability to add support for sandboxing. I came out with a nice solution which I would like to discuss if there is enough interest.</p>\r\n<p>Thanks</p>\r\n",
+    "PostedDate": "2011-01-27T11:40:07.747-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "556762",
+    "ThreadId": "243580",
+    "Html": "\r\n<p>By Sandboxing, do you mean to introduce policies to restrict the types that can be used in a template? If so, I have also been considering it. &nbsp;Or are you more leaning towards AppDomain segregation of templates, ala Rick Strahl's implementation:&nbsp;<a href=\"http://www.west-wind.com/weblog/posts/864461.aspx\">http://www.west-wind.com/weblog/posts/864461.aspx</a>?</p>\r\n",
+    "PostedDate": "2011-01-28T02:01:18.967-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "557000",
+    "ThreadId": "243580",
+    "Html": "\r\n<p>I don't think you can restrict the types without using Rick Strahl's approach. But basically the idea is that the template Engine should allow only the minimum access required for presenting the data. See this PDF from Terence Parr (the same guy behind ANTLR)&nbsp;http://www.cs.usfca.edu/~parrt/papers/mvc.templates.pdf</p>\r\n<p>In this way allowing people to download/upload/install templates would be very safe as opposed to an architecture like WP/ASPX pages/pure Razor pages/etc.</p>\r\n",
+    "PostedDate": "2011-01-28T10:33:21.543-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

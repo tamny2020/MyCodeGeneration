@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "650295",
+    "ThreadId": "267227",
+    "Html": "\r\n<p>I am trying to compile a simple template, however I can't to compile because the template engine can't find another assembly.</p>\r\n<p>I keep getting the error message:</p>\r\n<p>{c:\\Windows\\Temp\\1xriutew.0.cs(37,27) : error CS1061: 'Glass.Sitecore.Mapper.FieldTypes.Image' does not contain a definition for 'Url' and no extension method 'Url' accepting a first argument of type 'Glass.Sitecore.Mapper.FieldTypes.Image' could be found\r\n (are you missing a using directive or an assembly reference?)}</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>            Razor.DefaultTemplateService.Namespaces.Add(<span style=\"color:#a31515\">&quot;Glass.Sitecore.Mapper.FieldTypes&quot;</span>);\r\n            \r\n            <span style=\"color:blue\">try</span>\r\n            {\r\n\r\n                <span style=\"color:blue\">string</span> output = Razor.Parse&lt;T&gt;(reader.ReadToEnd(), Model);\r\n                writer.Write(output);\r\n                <span style=\"color:blue\">base</span>.RenderContents(writer);\r\n            }\r\n            <span style=\"color:blue\">catch</span>(RazorEngine.Templating.TemplateCompilationException  ex){\r\n                <span style=\"color:blue\">throw</span> <span style=\"color:blue\">new</span> Exception(ex.Errors.First().ErrorText, ex);\r\n            }\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>It seems like the assembly itself isn't being loaded by the compiler, any ideas?</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-07-31T15:24:59.753-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "650397",
+    "ThreadId": "267227",
+    "Html": "<p>Ignore this, the issue is resolved.</p>",
+    "PostedDate": "2011-08-01T00:34:53.117-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

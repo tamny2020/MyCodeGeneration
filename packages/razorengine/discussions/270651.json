@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "664339",
+    "ThreadId": "270651",
+    "Html": "\r\n<p><span>as</span>&nbsp;<span>I use</span>&nbsp;<span>a</span>&nbsp;<span>razor</span>&nbsp;<span>in</span>&nbsp;<span>asp</span>&nbsp;<span>net</span>&nbsp;<span>site</span><span>?</span><br>\r\n<span>just gives me</span>&nbsp;<span>this error</span><br>\r\n<br>\r\n<strong><span>Method</span>&nbsp;<span>not found</span>:&nbsp;<span>'</span>System.Web.Razor.GeneratorResults<span>System.Web.Razor.RazorTemplateEngine.GenerateCode</span><span>(</span>System.IO.TextReader)'.</strong><br>\r\n<strong><span>The</span>&nbsp;<span>invoked</span>&nbsp;<span>member is</span>&nbsp;<span>not supported</span>&nbsp;<span>in</span>&nbsp;<span>the dynamic</span>&nbsp;<span>assembly.</span></strong><br>\r\n<br>\r\n<span>could</span>&nbsp;<span>someone</span>&nbsp;<span>send me</span>&nbsp;<span>an</span>&nbsp;<span>example?</span></p>\r\n",
+    "PostedDate": "2011-08-27T17:19:48.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

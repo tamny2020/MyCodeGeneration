@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1457028",
+    "ThreadId": "649221",
+    "Html": "I am using razorEngine. to implement dynamic views and layout in my application.\r<br />\n<br />\nwhen i used the below code i am unable to get the output getting error  <strong>&quot; try another modelType (for example 'null' to make the model dynamic).&quot;</strong>\r<br />\n<br />\nLoadedTemplateSource source = new <a href=\"mailto:LoadedTemplateSource(System.IO.File.ReadAllText(@&quot;E:\\layout\\layout2.cshtml&quot;),\" rel=\"nofollow\">LoadedTemplateSource(System.IO.File.ReadAllText(@\"E:\\layout\\layout2.cshtml\"),</a> null);<br />\n<pre><code>        Engine.Razor.AddTemplate(&quot;demo&quot;, source);\n        Engine.Razor.Compile(&quot;demo&quot;, null);\n        string template = &quot;Hello @Html.TextBoxFor(m =&gt; m.Name)&quot;;\n        MyModel model = new MyModel { ModelProperty = &quot;World&quot; };\n        string result = Razor.Parse(template, model);\n\n</code></pre>\n\nPlease help me how to solve the problem<br />\n",
+    "PostedDate": "2015-12-23T18:23:37.783-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

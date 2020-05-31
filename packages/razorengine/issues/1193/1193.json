@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When I use any of the HtmlHelpers in the template I am trying to compile I get errors. \nfor example: @Html.LabelFor(d => d.SomeProperty)\n\n__Error I get:__\n\"\nUnable to compile template. The name 'Html' does not exist in the current context\n\nOther compilation errors may have occurred. Check the Errors property for more information\n\"\n\nRazor I am building:\n----------------------------------\n@model Testing.Models.HomeModel\n@using System.Web.Mvc\n@using System.Web.Mvc.Ajax\n@using System.Web.Mvc.Html\n@using System.Web.Routing\n@using System\n@using System.Collections.Generic\n@using System.IO\n@using System.Linq\n@using System.Net\n@using System.Web\n@using System.Web.Helpers\n@using System.Web.Security\n@using System.Web.UI\n@using System.Web.WebPages\n@using System.Web.WebPages.Html\n\n@{\n    Layout = null;\n}\n\n<!DOCTYPE html>\n<html>\n<head>\n    <meta name=\"\"viewport\"\" content=\"\"width=device-width\"\" />\n    <title>Index</title>\n</head>\n<body>\n\n    @Html.LabelFor(d => d.Name)\n\n</body>\n</html>\n----------------------------------",
+    "LastUpdatedDate": "2014-03-25T07:01:55.8-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-03-24T18:08:33.367-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "(Bug) HtmlHelper Not Working",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1193
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Other @using statements seem to work just fine.  For some reason the context is not being honored for the extensions methods in mvc4.\r\n\r\nCheck it out:\nSystem.Web.Mvc.Html.LabelExtensions.LabelFor(this HtlmHelper<TModel> html .....)\nIt appears that HtmlHelper context is not in scope during/after the compilation of the razor template?\r\n\r\nThe @Html aspect is a static HtmlHelper value that exists in templates you create (when using the default engine).  Is there any way I can get this injected into the template during creation so I can use these helpers?",
+      "PostedDate": "2014-03-25T07:01:55.8-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

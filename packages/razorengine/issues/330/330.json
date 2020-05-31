@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-08-26T07:32:48.027-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The fix put in place for v2 doesn't seem to work for xUnit or MSTEST. Revert back to original method of initialising an instance of a type from the assembly to ensure the Microsoft.CSharp assembly is loaded in the appdomain.",
+    "LastUpdatedDate": "2013-05-16T04:38:19.69-07:00",
+    "PlannedForRelease": "RazorEngine v2.2",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Medium",
+      "Severity": 100,
+      "Id": 2
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-02-11T00:33:32.95-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Correct reference of Microsoft.CSharp assembly.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 330
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This has been corrected in v3. ICompilerService instances now specify exact assembly requirements. The CSharpDirectCompilerService enforces a reference to the Microsoft.CSharp.dll assembly.",
+      "PostedDate": "2011-08-26T07:32:34.49-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-08-26T07:32:48.027-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:05.63-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:19.69-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

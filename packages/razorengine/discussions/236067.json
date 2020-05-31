@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "527105",
+    "ThreadId": "236067",
+    "Html": "\r\n<p>I've got a situation where I'd like to parse Razor templates inside a parallel loop.&nbsp; This causes a collision of course when using the static Razor.Parse methods.&nbsp; I can create an instance of a TemplateService inside my loop and Parse things out\r\n that way and it works fine.&nbsp; However, this is going to cause issues if I want to use the pre-compilation feature down the road.&nbsp; I can see a case where I would want to compile a template once then run it multiple times inside a parallel loop.&nbsp;\r\n Since the template cache is per instance of TemplateService this isn't going to take advantage of pre-compilation.</p>\r\n<p>Just a couple thoughts.&nbsp; Don't know if you have any suggestions as to implementations I can do now for this situation.</p>\r\n<p>BTW, excellent project! Well organized, and I love looking at your source.&nbsp; Some of the best I've seen.</p>\r\n",
+    "PostedDate": "2010-11-25T13:25:19.607-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "527278",
+    "ThreadId": "236067",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>Thanks for the kind comments, I'm especially proud of what we have done so far!</p>\r\n<p>In respect to your issue, would it be beneficial if we changed the caching mechanism to use a concurrent dictionary? &nbsp;The pre-compilation&nbsp;methods Compile and CompileWithAnonymous have been refactored into the TemplateService so pre-compilation\r\n can be done per each instance of the TemplateService. &nbsp;The reason I moved this logic into a service class was to give maximum flexibility when it comes to handling base templates; obviously forcing a single base template through the static class would\r\n mean that you'd be forced to use that as the base template for all parsing. With a concurrent dictionary as the caching container would allow for shared static use without the need for managing our own lock states?</p>\r\n",
+    "PostedDate": "2010-11-26T00:44:14.917-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

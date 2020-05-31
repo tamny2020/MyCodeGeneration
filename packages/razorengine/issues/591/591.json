@@ -1,0 +1,100 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have Windows 7 64 bit, .NET 4.5 (preview) installed and ASP.NET MVC 4 (preview) installed.\nGot following exception: Method not found: System.Collections.Generic.Dictionary`2<System.String,BlockParser> System.Web.Razor.Parser.CSharpCodeParser.get_RazorKeywords()\n \nStack Trace:\n{{{\n[MissingMethodException: Method not found: 'System.Collections.Generic.Dictionary`2<System.String,BlockParser> System.Web.Razor.Parser.CSharpCodeParser.get_RazorKeywords()'.]\n   RazorEngine.Compilation.CSharp.CSharpCodeParser..ctor() +0\n   RazorEngine.Compilation.RazorEngineHost.DecorateCodeParser(ParserBase incomingCodeParser) +138\n   System.Web.Razor.RazorTemplateEngine.CreateParser() +57\n   System.Web.Razor.RazorTemplateEngine.GenerateCodeCore(ITextDocument input, String className, String rootNamespace, String sourceFileName, Nullable`1 cancelToken) +80\n   System.Web.Razor.RazorTemplateEngine.GenerateCode(TextReader input, String className, String rootNamespace, String sourceFileName, Nullable`1 cancelToken) +126\n   System.Web.Razor.RazorTemplateEngine.GenerateCode(TextReader input) +85\n   RazorEngine.Compilation.CompilerServiceBase.GetGeneratorResult(RazorEngineHost host, String template) +187\n   RazorEngine.Compilation.CompilerServiceBase.GetCodeCompileUnit(String className, String template, ISet`1 namespaceImports, Type templateType, Type modelType) +982\n   RazorEngine.Compilation.DirectCompilerServiceBase.Compile(TypeContext context) +442\n   RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context) +189\n   RazorEngine.Templating.TemplateService.CreateTemplateType(String razorTemplate, Type modelType) +1526\n   RazorEngine.Templating.TemplateService.CreateTemplate(String razorTemplate, Type modelType, Object model) +107\n   RazorEngine.Templating.TemplateService.CreateTemplate(String razorTemplate, Object model) +98\n   RazorEngine.Templating.TemplateService.Parse(String razorTemplate, Object model) +94\n   RazorEngine.Razor.Parse(String razorTemplate, Object model) +102\n}}}",
+    "LastUpdatedDate": "2013-12-03T09:43:30.973-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2012-02-07T01:50:45.043-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": ".NET 4.5 / MVC4 compatibility. Method not found exception",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 10,
+    "Id": 591
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Got the same error. Same scenario (win 64). Got it after installing mvc 4, on an MVC 3 app I was working on.",
+      "PostedDate": "2012-07-24T00:38:56.943-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-08-23T01:52:30.5-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "I have the same exact error. I am also running Windows 7, 64 bit. The app is an MVC 3 app. I opened the project in Visual Studio 2012, and it made a bunch of modifications to the project to enable opening in both VS 2010 and VS 2012.",
+      "PostedDate": "2012-09-04T19:32:19.133-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "\r\nMethod not found: 'System.Collections.Generic.Dictionary`2<System.String,BlockParser> System.Web.Razor.Parser.CSharpCodeParser.get_RazorKeywords()'. \r\nDescription: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code. \r\n\r\nException Details: System.MissingMethodException: Method not found: 'System.Collections.Generic.Dictionary`2<System.String,BlockParser> System.Web.Razor.Parser.CSharpCodeParser.get_RazorKeywords()'.\r\n\r\nSource Error: \r\n\r\n\r\n\r\n\r\nAn unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.\r\n\r\n\r\nStack Trace: \r\n\r\n\r\n\r\n\r\n\r\n[MissingMethodException: Method not found: 'System.Collections.Generic.Dictionary`2<System.String,BlockParser> System.Web.Razor.Parser.CSharpCodeParser.get_RazorKeywords()'.]\r\n   System.Web.Mvc.Razor.MvcCSharpRazorCodeParser..ctor() +0\r\n   System.Web.Mvc.Razor.MvcWebPageRazorHost.DecorateCodeParser(ParserBase incomingCodeParser) +44\r\n   System.Web.Razor.RazorTemplateEngine.CreateParser() +57\r\n   System.Web.Razor.RazorTemplateEngine.GenerateCodeCore(ITextDocument input, String className, String rootNamespace, String sourceFileName, Nullable`1 cancelToken) +120\r\n   System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode() +240\r\n   System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType() +31\r\n   System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider) +59\r\n   System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders() +209\r\n   System.Web.Compilation.BuildProvidersCompiler.PerformBuild() +15\r\n   System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath) +9929933\r\n   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate) +299\r\n   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate) +103\r\n   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound) +165\r\n   System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath) +27\r\n   System.Web.Mvc.BuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath) +41\r\n   System.Web.Mvc.VirtualPathProviderViewEngine.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations) +134\r\n   System.Web.Mvc.VirtualPathProviderViewEngine.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations) +286\r\n   System.Web.Mvc.VirtualPathProviderViewEngine.FindView(ControllerContext controllerContext, String viewName, String masterName, Boolean useCache) +130\r\n   System.Web.Mvc.<>c__DisplayClassc.<FindView>b__b(IViewEngine e) +24\r\n   System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths) +137\r\n   System.Web.Mvc.ViewEngineCollection.FindView(ControllerContext controllerContext, String viewName, String masterName) +183\r\n   System.Web.Mvc.ViewResult.FindView(ControllerContext context) +104\r\n   System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context) +116\r\n   System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult) +13\r\n   System.Web.Mvc.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19() +23\r\n   System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation) +245\r\n   System.Web.Mvc.<>c__DisplayClass1e.<InvokeActionResultWithFilters>b__1b() +22\r\n   System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult) +176\r\n   System.Web.Mvc.ControllerActionInvoker.InvokeAction(ControllerContext controllerContext, String actionName) +324\r\n   System.Web.Mvc.Controller.ExecuteCore() +105\r\n   System.Web.Mvc.ControllerBase.Execute(RequestContext requestContext) +87\r\n   System.Web.Mvc.ControllerBase.System.Web.Mvc.IController.Execute(RequestContext requestContext) +10\r\n   System.Web.Mvc.<>c__DisplayClassb.<BeginProcessRequest>b__5() +34\r\n   System.Web.Mvc.Async.<>c__DisplayClass1.<MakeVoidDelegate>b__0() +19\r\n   System.Web.Mvc.Async.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _) +10\r\n   System.Web.Mvc.Async.WrappedAsyncResult`1.End() +55\r\n   System.Web.Mvc.<>c__DisplayClasse.<EndProcessRequest>b__d() +47\r\n   System.Web.Mvc.SecurityUtil.<GetCallInAppTrustThunk>b__0(Action f) +7\r\n   System.Web.Mvc.SecurityUtil.ProcessInApplicationTrust(Action action) +23\r\n   System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +59\r\n   System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result) +9\r\n   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +9629708\r\n   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) +155\r\n \r\n",
+      "PostedDate": "2012-09-04T19:33:01.843-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-09-07T02:33:06.293-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-09-14T08:37:32.61-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-09-26T04:51:04.753-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-10-31T20:29:11.953-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Check this link http://www.asp.net/whitepapers/mvc4-release-notes#_Toc303253815 and look at the \"Installing ASP.NET MVC 4  breaks ASP.NET MVC 3 RTM applications\" section. This problem seems to be caused by VS2012 referencing the wrong versions of certain libraries. In particular, MVC 3 uses Razor 1 and MVC 4 uses Razor 2. If this is not explicitly specified in the csproj, .NET references the latest version by default. I had the same problem and as well as modifying the csproj as per the above link, I also changed System.Web.WebPages, System.Web.Helpers, System.Web.Razor and System.Web.WebPages.Razor to use version 1 in the web.config. Now my MVC 3 site works correctly.",
+      "PostedDate": "2012-11-19T07:35:19.42-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Check this link http://www.asp.net/whitepapers/mvc4-release-notes#_Toc303253815 and look at the \"Installing ASP.NET MVC 4  breaks ASP.NET MVC 3 RTM applications\" section. This problem seems to be caused by VS2012 referencing the wrong versions of certain libraries. In particular, MVC 3 uses Razor 1 and MVC 4 uses Razor 2. If this is not explicitly specified in the csproj, .NET references the latest version by default. I had the same problem and as well as modifying the csproj as per the above link, I also changed System.Web.WebPages, System.Web.Helpers, System.Web.Razor and System.Web.WebPages.Razor to use version 1 in the web.config. Now my MVC 3 site works correctly.",
+      "PostedDate": "2012-11-19T07:36:51.003-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.017-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-12-03T09:43:30.973-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

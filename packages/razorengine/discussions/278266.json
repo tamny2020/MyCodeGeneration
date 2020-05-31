@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "693541",
+    "ThreadId": "278266",
+    "Html": "\r\n<p>Passing a dynamic object without a property that template is expecting gives the following error : 'System.Dynamic.DynamicObject' does not contain a definition for '<em><strong>PropertyName</strong></em>'.<br>\r\nIs there a way to have Razor disregard the properties that's not in the dynamic object?</p>\r\n<p>&nbsp;</p>\r\n<p>Below is the example.</p>\r\n<p><strong>template = @&quot;</strong>This is standard Email Template.<br>\r\nName:@Model.FullName<br>\r\n<br>\r\n&lt;strong&gt;By:@Model.Author.&lt;/strong&gt;<br>\r\n@Model.PropertyName&quot;</p>\r\n<p><strong>Parse Method:<br>\r\n</strong><strong>&nbsp;</strong>Razor.Parse(template, new { FullName=&quot;F - name&quot;, Author=&quot;author..&quot; })</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-11-03T13:26:10.403-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

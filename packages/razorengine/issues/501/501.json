@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I get the same error whether using F# Interactive or running within my application. I've tried using a standard class, an immutable class with constructor parameters, and a F# record. The easiest way to repro is to run the following script in F# Interactive:\n \n#if INTERACTIVE\n#r \"System.Web\"\n#r @\"..\\packages\\RazorEngine.2.1\\lib\\.NetFramework 4.0\\System.Web.Razor.dll\"\n#r @\"..\\packages\\RazorEngine.2.1\\lib\\.NetFramework 4.0\\RazorEngine.dll\"\n#endif\n \nopen RazorEngine\n \ntype Model() =\n  let mutable name = \"\"\n  member x.Name with get() = name and set(v) = name <- v\nlet model = new Model()\nmodel.Name <- \"test\"\nlet template = \"Hello @Model.Name!\"\nlet result = Razor.Parse(template, model)\nprintfn \"%s\" result\n \nThe results are:\n \nRazorEngine.Templating.TemplateCompilationException: Unable to compile template. Check the Errors list for details.\n   at RazorEngine.Compilation.DirectCompilerServiceBase.CompileType(TypeContext context)\n   at RazorEngine.Templating.TemplateService.CreateTemplate(String template, Type modelType)\n   at RazorEngine.Templating.TemplateService.GetTemplate(String template, Type modelType, String name)\n   at RazorEngine.Templating.TemplateService.Parse[T](String template, T model, String name)\n   at <StartupCode$FSI_0008>.$FSI_0008.main@() in C:\\Users\\ryan\\dev\\nocco\\Focco\\Test.fsx:line 15\nStopped due to error",
+    "LastUpdatedDate": "2013-02-21T17:16:59.94-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-09-28T00:22:03.127-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Error when attempting to parse in F#",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 501
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I just reproduced this in a C# console application, as well.",
+      "PostedDate": "2011-09-28T00:27:42.32-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2011-09-28T00:31:35.213-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Tried this on another machine, and all works fine. Please close this case.",
+      "PostedDate": "2011-09-29T08:59:46.07-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:16:59.94-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

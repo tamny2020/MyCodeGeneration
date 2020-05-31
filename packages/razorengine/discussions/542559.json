@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1235163",
+    "ThreadId": "542559",
+    "Html": "Thought I'd share this, as it may be of use to someone else.\r<br />\n<br />\nI have an email notification project that uses RazorEngine to generate email content.  All of my templates and fragments are kept in a collection of .cshtml files in my project. Through posts I'd found elsewhere, I'd been able to get Intellisense working, but Intellisense will only complain about errors while the file is open in VS. No good for our build server.\r<br />\n<br />\nIn ASP.NET projects, building views at compile time is triggered through a &lt;Aspnetcompiler&gt; task in the project file.  To do the same for my email notifier, I added the following under &lt;PropertySettings&gt; for my 'Release' configuration:<br />\n<pre><code>&lt;MvcBuildViews&gt;true&lt;/MvcBuildViews&gt;</code></pre>\n\nI then skipped down to the bottom of my .csproj file and found the 'AfterBuild' target, which I replaced with the following:<br />\n<pre><code>&lt;Target Name=&quot;AfterBuild&quot; Condition=&quot;'$(MvcBuildViews)'=='true'&quot;&gt;\n    &lt;AspNetCompiler VirtualPath=&quot;temp&quot; PhysicalPath=&quot;$(ProjectDir)\\..\\$(ProjectName)&quot; /&gt;\n&lt;/Target&gt;</code></pre>\n\nGreat! Now I was getting build errors for broken views.  Unfortunately for me, this introduced another problem. All of my views inherit from RazorEngine.Templating.TemplateBase&lt;T&gt;.  The classes that the ASP.NET compiler auto-generates assume that each view is going to be a System.Web.Mvc.WebViewPage, and contain references to the 'Context' property for that class. This caused additional build errors to pop up when I compiled. To get around this, I created a new base class to use for templating:<br />\n<pre><code>using System;\nusing System.Web;\nusing RazorEngine.Templating;\n\nnamespace My.Notifications\n{\n    public class MyTemplateBase&lt;T&gt; : TemplateBase&lt;T&gt;\n    {\n        public HttpContextBase Context { get; set; }\n    }\n}</code></pre>\n\nVoila. Happy builds.<br />\n",
+    "PostedDate": "2014-04-17T11:55:40.09-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

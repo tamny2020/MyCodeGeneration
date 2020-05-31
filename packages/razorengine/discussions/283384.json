@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "713938",
+    "ThreadId": "283384",
+    "Html": "\r\n<p>Hi.</p>\r\n<p>Assume that I have a Widget class with two string columns: &quot;HTML&quot;, and &quot;JSON&quot;.</p>\r\n<p>HTML might contain something link: &quot;&lt;div class='haha'&gt;&lt;h2&gt;@Model.Title&lt;/h2&gt;&lt;p&gt;@Model.Text&lt;/p&gt;&quot;</p>\r\n<p>And, correspondingly, in this particular example, JSON will contain the values but in JSON format: { &quot;Title&quot;:&quot;Some Title&quot;, &quot;Text&quot;:&quot;Some Text&quot; }</p>\r\n<p>My goal is to return a string that will use the template in the HTML column and populate it with values from the JSON field.</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><br></pre>\r\n<pre>            var model = ////what do I do here with w.JSON?///\r\n\r\n            <span style=\"color:blue\">string</span> result = Razor.Parse(w.HTML, model);\r\n\r\n            <span style=\"color:blue\">return</span> result;\r\n</pre>\r\n<pre><br></pre>\r\n<pre>Thanks!</pre>\r\n</div>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-12-18T13:09:59.92-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "715179",
+    "ThreadId": "283384",
+    "Html": "<p>You can use the JavaScriptSerializer (System.Web.Extensions) to achieve this with either a strongly typed class or a dynamic object such as:</p>\r\n<p>class Program<br />&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static void Main(string[] args)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var template = \"&lt;div class='haha'&gt;&lt;h2&gt;@Model.Title&lt;/h2&gt;&lt;p&gt;@Model.Text&lt;/p&gt;\";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var json = \"{ \\\"Title\\\":\\\"Some Title\\\", \\\"Text\\\":\\\"Some Text\\\" }\";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var ser = new JavaScriptSerializer();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var model = ser.Deserialize&lt;MyClass&gt;(json);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var obj = ser.Deserialize&lt;dynamic&gt;(json);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var result = RazorEngine.Razor.Parse(template, model);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(result);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = RazorEngine.Razor.Parse(template, new {Title = obj[\"Title\"], Text = obj[\"Text\"]});<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.WriteLine(result);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Console.ReadLine();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />&nbsp;&nbsp;&nbsp; }<br /><br />&nbsp;&nbsp;&nbsp; public class MyClass<br />&nbsp;&nbsp;&nbsp; {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string Title { get; set; }<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public string Text { get; set; }<br />&nbsp;&nbsp;&nbsp; }</p>",
+    "PostedDate": "2011-12-20T17:55:39.623-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "715182",
+    "ThreadId": "283384",
+    "Html": "<p>Thing is that I don't know the parameter names to expect. (Title/Text). The template should be totally flexible, having any number of properties with any names, and the JSON should supply values for them.</p>\r\n<p>Anyway, I found the solution on StackOverflow:</p>\r\n<p><a href=\"http://stackoverflow.com/questions/3142495/deserialize-json-into-c-sharp-dynamic-object\">http://stackoverflow.com/questions/3142495/deserialize-json-into-c-sharp-dynamic-object</a></p>\r\n<p>&nbsp;</p>\r\n<p>Thanks!</p>",
+    "PostedDate": "2011-12-20T17:59:17.167-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

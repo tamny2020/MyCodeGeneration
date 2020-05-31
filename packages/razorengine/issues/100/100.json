@@ -1,0 +1,66 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2010-11-12T11:57:45.117-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Running unit tests with Razor in the NUnit test runner will cause NotSupportedException to be thrown from RazorCompiler.AddReferences() method:\n \nSystem.NotSupportedException : The invoked member is not supported in a dynamic assembly.\nat System.Reflection.Emit.InternalAssemblyBuilder.get_Location()\nat RazorEngine.Compilation.RazorCompiler.<AddReferences>b__5(Assembly a)\nat System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()\nat RazorEngine.Compilation.RazorCompiler.AddReferences(CompilerParameters parameters)\nat RazorEngine.Compilation.RazorCompiler.CompileTemplate(String className, String template, Type modelType)\nat RazorEngine.Compilation.RazorCompiler.CreateTemplate(String template, Type modelType)\nat RazorEngine.Templating.TemplateService.GetTemplate(String template, Type modelType, String name)\nat RazorEngine.Templating.TemplateService.Parse[T](String template, T model, String name)\nat RazorEngine.Razor.Parse[T](String template, T model, String name)\n \nI've created a patch that adds references only to non-dynamic assemblies.",
+    "LastUpdatedDate": "2013-05-16T04:38:20.577-07:00",
+    "PlannedForRelease": "Razor Template Engine v1.1",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2010-11-12T03:32:00.037-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Fix for referencing dynamic assemblies",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 100
+  },
+  "FileAttachments": [
+    {
+      "FileId": 11,
+      "FileName": "Razor Dynamic Assemblies.patch",
+      "DownloadUrl": ".\\11"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "Resolved with changeset 2618.",
+      "PostedDate": "2010-11-12T11:57:45.117-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2010-11-12T12:14:39.667-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:06.36-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:20.577-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

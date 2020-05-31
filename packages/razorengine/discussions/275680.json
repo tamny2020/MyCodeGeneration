@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "683481",
+    "ThreadId": "275680",
+    "Html": "\r\n<p>I have &nbsp;been using the following: @using Omu.ValueInjecter without any problems but I just tried to run my templates and now any of my references to this namespace acts as if it can't find it at runtime? &nbsp;Has anyone ran into this? &nbsp;How can\r\n I force this custom assembly to be loaded with the template?</p>\r\n",
+    "PostedDate": "2011-10-12T19:21:34.737-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

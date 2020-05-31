@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "720546",
+    "ThreadId": "285013",
+    "Html": "\r\n<p>Hi All,</p>\r\n<p>&nbsp;</p>\r\n<p>I am receiving the following error while calling Razor.Parse Method.&nbsp;&quot;The type initializer for 'RazorEngine.Razor' threw an exception.&quot;</p>\r\n<p>I have created a project which references the razorengine.dll and System.Web.Razor.dll.&nbsp;</p>\r\n<p>Any ideas please?</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks,</p>\r\n<p>Sree</p>\r\n",
+    "PostedDate": "2012-01-04T15:19:03.52-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "722811",
+    "ThreadId": "285013",
+    "Html": "<p>You should be able to look at the inner exception to figure out what the problem is?</p>",
+    "PostedDate": "2012-01-09T15:14:49.737-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

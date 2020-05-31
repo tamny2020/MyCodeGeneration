@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1320568",
+    "ThreadId": "571693",
+    "Html": "I am using RazorEngine to render out some basic content. It works great until I include any @Url syntax into markup.\r<br />\n<br />\nIf the markup contains an @Url I get the following error\r<br />\n<br />\n<strong>Unable to compile template. The name 'Url' does not exist in the current context</strong>\r<br />\n<br />\n<strong>Other compilation errors may have occurred. Check the Errors property for more information.</strong>\r<br />\n<br />\ntemplate = &quot;Hello <a href=\"mailto:@Model.Name\" rel=\"nofollow\">@Model.Name</a>! <a href=\"mailto:@Url.Action(\\&quot;Preview\\&quot;,\" rel=\"nofollow\">@Url.Action(\\\"Preview\\\",</a> \\&quot;Topics\\&quot;) Welcome to Razor!&quot;; \r<br />\nstring result = RazorEngine.Razor.Parse(template, new { Name = &quot;World&quot; }); \r<br />\n<br />\nWhat am I doing wrong?<br />\n",
+    "PostedDate": "2014-11-10T06:21:34.567-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

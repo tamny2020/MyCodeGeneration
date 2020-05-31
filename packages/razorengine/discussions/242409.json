@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "551895",
+    "ThreadId": "242409",
+    "Html": "\r\n<p>I'm having a problem getting the inline helper example working. I get a TemplateCompilationException and the Errors list contains the following:</p>\r\n<p>{c:\\Users\\dev\\AppData\\Local\\Temp\\cyfsewxw.0.cs(25,18) : error CS1002: ; expected}</p>\r\n<p>My References are as follows:</p>\r\n<p>Microsoft.CSharp, RazorEngine.Core, RazorEngine.Templates, System, System.Core, System.Data, System.Data.DataSetExtensions, System.Web.Razor, System.Xml, System.Xml.Linq</p>\r\n<p>Here's the code...</p>\r\n<pre><div style=\"color:black; background-color:white\"><pre><span style=\"color:blue\">    using</span> System;\r\n    <span style=\"color:blue\">using</span> RazorEngine;\r\n \r\n    <span style=\"color:blue\">class</span> Program\r\n    {\r\n        <span style=\"color:blue\">static</span> <span style=\"color:blue\">void</span> Main(<span style=\"color:blue\">string</span>[] args)\r\n        {\r\n \r\n            <span style=\"color:blue\">string</span> template =\r\n  <span style=\"color:#a31515\">@&quot;@helper MyMethod(string name) {\r\n      Hello @name\r\n  }\r\n  @MyMethod(Model.Name)! Welcome to Razor!&quot;</span>;\r\n \r\n            <span style=\"color:blue\">string</span> result = Razor.Parse(template, <span style=\"color:blue\">new</span> { Name = <span style=\"color:#a31515\">&quot;World&quot;</span> });\r\n \r\n            Console.WriteLine(result);\r\n \r\n            Console.ReadLine();\r\n        }\r\n    }\r\n\r\n</pre>\r\n</div>\r\n<br></pre>\r\n",
+    "PostedDate": "2011-01-19T05:50:25.167-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "551908",
+    "ThreadId": "242409",
+    "Html": "\r\n<p>Can you try:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:#a31515\">@&quot;helper MyMethod(string name) {\r\n    &lt;text&gt;Hello @name&lt;/text&gt;\r\n}\r\n@MyMethod(Model.Name)! Welcome to Razor!&quot;</span>;\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>The Razor parser can't define between a code block and a markup block if there are no markup tags present at the beginning of the markup section. The &lt;text&gt; element allows it to switch to &quot;markup&quot; mode for that section, and the &lt;text&gt; tags are\r\n automatically removed for you.</p>\r\n",
+    "PostedDate": "2011-01-19T06:12:01.23-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "551993",
+    "ThreadId": "242409",
+    "Html": "\r\n<p>That did it. Thanks!</p>\r\n",
+    "PostedDate": "2011-01-19T08:45:13.037-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553438",
+    "ThreadId": "242409",
+    "Html": "\r\n<p>I've upgraded to v2.0 and the inline helper no longer works. I get a TemplateCompilationException with the following message in the errors collection:</p>\r\n<p>{c:\\Users\\dev\\AppData\\Local\\Temp\\v5ureqby.0.cs(23,20) : error CS0234: The type or namespace name 'Template' does not exist in the namespace 'RazorEngine' (are you missing an assembly reference?)}</p>\r\n<p>The code is exactly the same as above with the inclusion of the &lt;text&gt; tag.</p>\r\n",
+    "PostedDate": "2011-01-21T13:20:39.953-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "553451",
+    "ThreadId": "242409",
+    "Html": "\r\n<p>Ah, that'll be corrected in 2.1<span style=\"white-space:pre\"> </span></p>\r\n",
+    "PostedDate": "2011-01-21T14:04:20.763-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

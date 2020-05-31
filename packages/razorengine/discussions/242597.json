@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "552604",
+    "ThreadId": "242597",
+    "Html": "\r\n<p>I noticed the home page for this project still has the following note at the bottom.</p>\r\n<p style=\"padding-left:30px\"><strong>Note</strong>: This project is based on the pre-release Razor codebase and is subject to change.</p>\r\n<p>&nbsp;</p>\r\n<p>Is this still the case, or is version 2.0 working of the official Razor RTW?</p>\r\n",
+    "PostedDate": "2011-01-20T07:10:33.423-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "552627",
+    "ThreadId": "242597",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>v2 is indeed using the RTM (RTW) of the Razor codebase. &nbsp;There will be some updated to this codeplex project site over the coming days to introduce some of the new features. Thanks :)</p>\r\n",
+    "PostedDate": "2011-01-20T07:48:59.357-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

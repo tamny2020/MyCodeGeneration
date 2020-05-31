@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "637309",
+    "ThreadId": "263903",
+    "Html": "\r\n<p>Hello Team!</p>\r\n<p>Could you help me with my problem:</p>\r\n<p>I am trying to set new line in my file template but it doesn't work.</p>\r\n<p>The template should generate a e-mail as text.</p>\r\n<p>Here is my mail template</p>\r\n<p>Dear @Model.Customer,&nbsp;<br>\r\nYour periods are:<br>\r\n@foreach (var period in Model.Periods) {<span> </span>@(period &#43; &quot;\\n&quot;) }</p>\r\n<p><br>\r\nTo view the schedule in detail, please to go: @Model.ScheduleLink</p>\r\n<p>&nbsp;</p>\r\n<p>Thanks, in advance.</p>\r\n",
+    "PostedDate": "2011-07-05T00:19:21.97-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "637320",
+    "ThreadId": "263903",
+    "Html": "<p>Also I tried \"\\r\\n\" it also doesn't work :(</p>",
+    "PostedDate": "2011-07-05T00:37:11.527-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "638296",
+    "ThreadId": "263903",
+    "Html": "<p>Have you tried simply:</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>@<span style=\"color: blue;\">foreach</span> (<span style=\"color: blue;\">var</span> period <span style=\"color: blue;\">in</span> Model.Periods) { @period\r\n}\r\n</pre>\r\n</div>\r\n</p>",
+    "PostedDate": "2011-07-06T11:43:58.457-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

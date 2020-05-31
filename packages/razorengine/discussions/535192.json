@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1214290",
+    "ThreadId": "535192",
+    "Html": "Hi,\r<br />\n<br />\nI'd like to be able to find out which C# version razor uses to compile my cshtml templates. The reason why I want this, is <a href=\"http://ericlippert.com/2009/11/12/closing-over-the-loop-variable-considered-harmful-part-one/\" rel=\"nofollow\">this breaking change</a>.\r<br />\n<br />\nWe had a lambda in a foreach statement that worked fine on our local dev machines but produced a bug on our test environment (which doesn't have C# 5 installed). This bug was VERY hard to debug (we even copied all the test environment DLLs and databases and were still not able to reproduce the bug). After having tested all the underlying code we started to debug the cshtml files and found the bug.\r<br />\n<br />\nSo to prevent this dev/test difference in the future I would like to know if there's a way to specify the C# version that razor should be using to compile cshtml files. It would also be nice if I could check the C# version that razor uses (by printing it).<br />\n",
+    "PostedDate": "2014-02-25T00:33:15.967-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

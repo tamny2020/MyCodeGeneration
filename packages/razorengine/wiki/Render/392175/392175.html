@@ -1,0 +1,23 @@
+<div class="wikidoc"><h1>Quick Start Guide</h1>
+To get started using the Razor Templating Engine, add a reference to RazorEngine.dll to your project (it requires System.Web.Razor.dll, included in the release).  Once you&#39;ve added the reference, you can start parsing templates.<br />
+<h2>Simple Template Parsing</h2><div style="color:Black;background-color:White;"><pre>
+  <span style="color:Blue;">string</span> template = <span style="color:#A31515;">&quot;Hello @Model.Name! Welcome to Razor!&quot;</span>
+  <span style="color:Blue;">string</span> result = Razor.Parse(template, <span style="color:Blue;">new</span> { Name = <span style="color:#A31515;">&quot;World&quot;</span> });
+</pre></div><br />In the above example, I am using an anonymous object to populate the Model property of the base template.<br />
+<h2>Inline Helper Support</h2><div style="color:Black;background-color:White;"><pre>
+  <span style="color:Blue;">string</span> template = 
+  <span style="color:#A31515;">@&quot;@helper MyMethod(string name) {
+      Hello @name
+  }
+  @MyMethod(Model.Name)! Welcome to Razor!&quot;</span>;
+  <span style="color:Blue;">string</span> result = Razor.Parse(template, <span style="color:Blue;">new</span> { Name = <span style="color:#A31515;">&quot;World&quot;</span> });
+</pre></div><br />Inline helpers are particularly useful for repeating complex subtemplates within a large template.<br />
+<h2>Precompiling Templates</h2>You can precompile your templates before use if you have any really nontrivial views to compile.<br /><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">string</span> template = <span style="color:#A31515;">&quot;Some really complex template that will take time to parse&quot;</span>;
+    
+    Razor.Compile(template, <span style="color:#A31515;">&quot;complex&quot;</span>);
+    Razor.Run(<span style="color:#A31515;">&quot;complex&quot;</span>);
+</pre></div><br />If your template requires a model you can pass in your model type or, if your type is anonymous, you can call the CompileWithAnonymous() method. It is not necessary to pass in your Anonymous type.<br /><div style="color:Black;background-color:White;"><pre>
+    Razor.Compile(template, <span style="color:Blue;">typeof</span>(SomeModel), <span style="color:#A31515;">&quot;complex&quot;</span>);
+    Razor.CompileWithAnonymous(template, <span style="color:#A31515;">&quot;complex&quot;</span>);
+</pre></div></div><div class="ClearBoth"></div>

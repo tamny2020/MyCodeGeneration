@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "912928",
+    "ThreadId": "395619",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>I have a view in a class library and I need to load it to parse with RazorEngine.</p>\r\n<p>Is it possible to do it without loading the file? I am having a few problems with it.</p>\r\n<p>And I am using RazorGenerator so the views are compiled.</p>\r\n<p>Thank You,</p>\r\n<p>Miguel</p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2012-09-14T18:12:00.293-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

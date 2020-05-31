@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "994982",
+    "ThreadId": "431620",
+    "Html": "Hi\r<br />\n<br />\nHow do i use a shared helper within a razor view that's compiled by RazorEngine? i have a helper located in App_Code that contains some common markup, but when i call the helper i get a string representation, not raw html.\r<br />\n<br />\nthanks<br />\n",
+    "PostedDate": "2013-01-31T18:27:01.16-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

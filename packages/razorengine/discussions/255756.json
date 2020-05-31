@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "605066",
+    "ThreadId": "255756",
+    "Html": "\r\n<p>Hi,<br>\r\nI have the following code in my template, with razorengine it process successfully:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre>@<span style=\"color:blue\">if</span> (Model.List.Count &gt; 0){\r\n\t&lt;ol&gt;\r\n\t\t@<span style=\"color:blue\">foreach</span>(<span style=\"color:blue\">var</span> item <span style=\"color:blue\">in</span> Model.List){\t\r\n\t\t\t&lt;li&gt;@item.Name&lt;/li&gt;\r\n\t\t}\r\n\t&lt;/ol&gt;\r\n}\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>The if statement is required because the Model has two more lists and the template renders different h1 depending of what list is present.<br>\r\nbut testing this code inside an asp.net mvc web application with Razor views it throws the following exception when compiling the view:&nbsp;</p>\r\n<p>Unexpected &nbsp;&quot;foreach&quot; keyword after &quot;@&quot; character. &nbsp;Once inside code, you do not &nbsp;need to prefix constructs like &quot;foreach&quot; with &quot;@&quot;.</p>\r\n<p>Is RazorEngine using a different syntax than Razor View Engine?</p>\r\n",
+    "PostedDate": "2011-04-29T14:50:05.547-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "605855",
+    "ThreadId": "255756",
+    "Html": "<p>Technically the razor engine here is the base razor engine that is used by mvc, however mvc has added more features (@model, @helper, and other such directives).</p>\r\n<p>However, what you've posted is compatible with the base razor parser so it should work just fine in both engines. A quick test shows that the above code works. Perhaps the foreach also exists somewhere else? SubSection maybe?</p>",
+    "PostedDate": "2011-05-02T07:13:25.01-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "605878",
+    "ThreadId": "255756",
+    "Html": "<p>Yes, foreach appears more than once in my templates, the model has three lists.</p>",
+    "PostedDate": "2011-05-02T07:34:21.953-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "605896",
+    "ThreadId": "255756",
+    "Html": "<p>Could you post the code for each foreach?</p>",
+    "PostedDate": "2011-05-02T08:06:28.323-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "This problem occured on one of clients machine. Our wpf application referenced to\n* RazorEngine.dll\n* System.Web.Razor.dll\n\nShortly:\nWhy the versions of System.Web.Razor.dll have the same version even if they have the different declarations of GenerateCode method?\n\n\nFull description\nBoth of them were in app directory but for unknown reason caused that error. Finally we've found the issue:\n\nOn client's machine ASP Web Pages was installed. It goes with System.Web.Razor.dll which was of older version. This very dll was registered in GAC and had the next signature.\n\n```\n// Assembly System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\n// MVID: a2214120-9454-4baa-b86b-4496105131a8\n// References: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n// References: System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n// References: System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n\n[assembly: SecurityTransparent]\n[assembly: NeutralResourcesLanguage( \"en-US\")]\n[assembly: AssemblyFileVersion( \"1.0.10930.6\")]\n[assembly: CLSCompliant(true)]\n[assembly: Debuggable(DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]\n[assembly: CompilationRelaxations(8)]\n[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]\n[assembly: Extension]\n[assembly: TargetFramework(\".NETFramework,Version=v4.0,Profile=Client\", FrameworkDisplayName = \".NET Framework 4 Client Profile\" )]\n[assembly: AssemblyTitle(\"System.Web.Razor\")]\n[assembly: AssemblyDescription( \"\")]\n........\n[assembly: AssemblyCompany(\"Microsoft Corporation\")]\n[assembly: AssemblyProduct(\"Microsoft ASP.Net WebPages\")]\n[assembly: AssemblyCopyright(\"© Microsoft Corporation. All rights reserved.\")]\n[assembly: AssemblyConfiguration( \"\")]\n[assembly: AssemblyTrademark(\"\")]\n[assembly: ComVisible(false)]\n[assembly: AssemblyVersion(\"1.0.0.0\")]\n\n```\n\nand this is signature for the our dll \n\n```\n// Assembly System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\n// MVID: 4bd0a470-bf76-47e7-ad90-c1bec3cd0a71\n// References: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n// References: System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n// References: System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\n\n[assembly: CLSCompliant(true)]\n[assembly: TargetFramework(\".NETFramework,Version=v4.0,Profile=Client\", FrameworkDisplayName = \".NET Framework 4 Client Profile\" )]\n[assembly: AssemblyTitle(\"System.Web.Razor\")]\n[assembly: AssemblyFileVersion( \"1.0.20105.407\")]\n[assembly: NeutralResourcesLanguage( \"en-US\")]\n[assembly: Debuggable(DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]\n[assembly: CompilationRelaxations(8)]\n[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]\n[assembly: Extension]\n[assembly: SecurityTransparent]\n[assembly: AssemblyDescription( \"\")]\n........\n[assembly: AssemblyCompany(\"Microsoft Corporation\")]\n[assembly: AssemblyProduct(\"Microsoft ASP.Net WebPages\")]\n[assembly: AssemblyCopyright(\"© Microsoft Corporation. All rights reserved.\")]\n[assembly: AssemblyConfiguration( \"\")]\n[assembly: AssemblyTrademark(\"\")]\n[assembly: ComVisible(false)]\n[assembly: AssemblyVersion(\"1.0.0.0\")]\n```\n\nAs far as you can see they have identical public key and the same assembly version, but different file version.  The rule is: .Net looks firstly in GAC and after that in app directory (actually it's more complicated algorithm, but anyway). Therefore .net took the dll from GAC, the older one.\n\nIn the older version, signature of GenerateCode method was next:\n\n```\n    public GeneratorResults GenerateCode(TextReader input, string className = null, string rootNamespace = null, string sourceFileName = null, CancellationToken? cancelToken = null)\n    {\n      return this .GenerateCodeCore((LookaheadTextReader) new BufferingTextReader(input), className, rootNamespace, sourceFileName, cancelToken);\n    }\n```\n\nbut in the new one \n\n```\n    public GeneratorResults GenerateCode(TextReader input)\n    {\n      return this .GenerateCode(input, (string) null, (string ) null, ( string) null , new CancellationToken?());\n    }\n\n    public GeneratorResults GenerateCode(TextReader input, CancellationToken? cancelToken)\n    {\n      return this .GenerateCode(input, (string) null, (string ) null, ( string) null , cancelToken);\n    }\n\n    public GeneratorResults GenerateCode(TextReader input, string className, string rootNamespace, string sourceFileName)\n    {\n      return this .GenerateCode(input, className, rootNamespace, sourceFileName, new CancellationToken?());\n    }\n\n    public GeneratorResults GenerateCode(TextReader input, string className, string rootNamespace, string sourceFileName, CancellationToken? cancelToken)\n    {\n      return this .GenerateCodeCore((LookaheadTextReader) new BufferingTextReader(input), className, rootNamespace, sourceFileName, cancelToken);\n    }\n```",
+    "LastUpdatedDate": "2013-07-30T02:23:31.483-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2013-07-30T02:23:31.483-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Method not found: 'System.Web.Razor.GeneratorResults System.Web.Razor.RazorTemplateEngine.GenerateCode(System.IO.TextReader)'",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1030
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

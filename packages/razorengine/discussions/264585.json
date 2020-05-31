@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "640097",
+    "ThreadId": "264585",
+    "Html": "\r\n<p>It will be cool it u will add new method TryParse that will get out string param and will &nbsp;return try or false if parse success</p>\r\n<p>Cuz if something wrong with my template i will get yellow screen of dead:&nbsp;http://my.jetscreenshot.com/2777/20110710-hane-146kb.jpg</p>\r\n<p>Of cause i can use try and catch but still it will be cool to have it option</p>\r\n<p>What do u think about?</p>\r\n",
+    "PostedDate": "2011-07-10T07:37:31.043-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "642530",
+    "ThreadId": "264585",
+    "Html": "<p>Should it return a bool? Or a collection of errors?</p>\r\n<p>&nbsp;&nbsp;&nbsp; if (Razor.TryParse(x, y, result).Count!=0) //something went wrong</p>",
+    "PostedDate": "2011-07-14T11:41:58.693-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "642585",
+    "ThreadId": "264585",
+    "Html": "I think bool, cuz u wanna try parse and not just a parse<br>\r\n<br>\r\ni will like datetime, DateTime.TryParse with out param?<br>\r\n<br>\r\n-----Original message-----<br>\r\nFrom: grauenwolf<br>\r\nSent: 14/07/2011, 9:42 pm<br>\r\nTo: [email removed]<br>\r\nSubject: Re: why not to add TryParse method [razorengine:264585]<br>\r\n<br>\r\n<br>\r\nFrom: grauenwolf<br>\r\n<br>\r\nShould it return a bool? Or a collection of errors? if (Razor.TryParse(x, y, result).Count!=0) //something went wrong\r\n<br>\r\n<br>\r\n",
+    "PostedDate": "2011-07-14T12:43:08.323-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "642645",
+    "ThreadId": "264585",
+    "Html": "<p>By convention it should return a bool as to whether or not it was compiled as all TryParse methods I can think of return a bool.</p>\r\n<p>You could have two overrides one that provides errors and one that doesn't</p>\r\n<p>\r\n<pre>bool result = Razor.TryParse(code, out textResult, out errors);\r\nbool result = Razor.TryParse(code, out textResult);</pre>\r\n</p>\r\n<p>The idea sounds ok, but I think a try/catch/finally would probably be better suited and it's not hard to add. We'll have to get the next version of the RazorEngine out first because there are major changes coming.</p>",
+    "PostedDate": "2011-07-14T14:38:19.127-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "1012984",
+    "ThreadId": "436068",
+    "Html": "Hi,\r<br />\n<br />\nI noticed that if I use a base template for my razor views, the views don't get cached and are always begin parsed from scratch.\r<br />\n<br />\nThis is the code i am using:<br />\n<pre><code>// Set razor engine base template\n                    var config = new RazorEngine.Configuration.TemplateServiceConfiguration\n                    {\n                        BaseTemplateType = typeof(MyTemplateBase&lt;&gt;)\n                    };\n\n                    using (var service = new TemplateService(config))\n                    {\n                        RazorEngine.Razor.SetTemplateService(service);\n                        // Parse the template and also save it to cache\n                        m_content.Text = RazorEngine.Razor.Parse(myTemplate, myModel, myCacheName);\n                    }</code></pre>\n\nThis code runs on every request, and I think that is the problem.\r<br />\n<br />\nCan someone point me in the right direction?\r<br />\n<br />\nThanks,\r<br />\nRobert<br />\n",
+    "PostedDate": "2013-03-10T11:59:47.013-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "1013208",
+    "ThreadId": "436068",
+    "Html": "I found the solution, I just moved the code that sets the template service to App_Start in global.asax and now everything works great :)<br />\n",
+    "PostedDate": "2013-03-11T05:25:44.38-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

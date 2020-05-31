@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2010-11-12T12:10:17.187-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi,\n \nwould it be possible to add strong name to assemblies in Razor Engine? Our projects are signed and we cannot reference Razor Engine.\n \nThanks in advance.",
+    "LastUpdatedDate": "2013-05-16T04:38:20.76-07:00",
+    "PlannedForRelease": "Razor Template Engine v1.1",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2010-11-12T03:00:18.077-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Strong name for Razor Engine libraries",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 99
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "This can probably be done.  I need to verify that System.Web.Razor.dll is signed first, but I would expect it to be.",
+      "PostedDate": "2010-11-12T05:17:19.48-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Yes, System.Web.Razor.dll is signed.",
+      "PostedDate": "2010-11-12T08:20:01.597-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "Resolved with changeset 2619.",
+      "PostedDate": "2010-11-12T12:10:17.187-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2010-11-12T12:14:28.607-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:06.547-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:20.76-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

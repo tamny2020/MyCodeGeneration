@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "812501",
+    "ThreadId": "349182",
+    "Html": "\r\n<p>I found a following post on SO:</p>\r\n<p><a href=\"http://stackoverflow.com/questions/6444277/using-razorengine-to-parse-razor-templates-concurrently\">http://stackoverflow.com/questions/6444277/using-razorengine-to-parse-razor-templates-concurrently</a></p>\r\n<p>&nbsp;</p>\r\n<p>The result of this discussion is: RazorEngine is not thread safe?</p>\r\n<p>&nbsp;</p>\r\n<p>May you please confirm that the authors of this library &nbsp;are aware that the code is not thread safe, (or write something undernith SO post, so people will see your point of view).</p>\r\n<p>&nbsp;</p>\r\n<p>If the code is not thread safe, users should be notified about it.</p>\r\n",
+    "PostedDate": "2012-03-19T06:58:24.893-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "812519",
+    "ThreadId": "349182",
+    "Html": "<p><span style=\"font-size: 10pt;\" lang=\"EN-US\">I just saw a comment by a current PM of this project - Matthew Abbott, sorry, I haven't seen this comment before on SO post, by default it is hidden (one needs to hit 'show more comments'). Basically it answers the question - devs are aware that the code is not thread safe, and are going to address a problem in a next release.</span></p>",
+    "PostedDate": "2012-03-19T07:44:54.287-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "897901",
+    "ThreadId": "349182",
+    "Html": "<p>Any news on a fix for this issue? I'm trying to use RazorEngine in a WebAPI project and only the first request works! All future requests try and use the template from the first request, and fail because the model is the wrong type.</p>",
+    "PostedDate": "2012-08-09T23:44:20.977-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

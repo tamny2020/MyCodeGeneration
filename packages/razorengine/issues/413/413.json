@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "RazorEngine.Templating.TemplateWriter should implement System.Web.Mvc.IHtmlString to match the way System.Web.Mvc.WebViewPage handles objects by passing them through HTML encoding.",
+    "LastUpdatedDate": "2013-02-21T17:17:02.747-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-05-12T20:55:37.277-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "TemplateWriter and IHtmlString",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 413
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Considering that razor is not html/mvc specific I'm not sure this is a good idea. Rather than the base implementation implement IHtmlString it should be a custom implementation that does it. This allows for usages outside of areas that require encoding.",
+      "PostedDate": "2011-05-16T07:45:03.427-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "HTML will be the most common use-case though.  The IHtmlString interface doesn't tie it to HTML, but provides a built-in code path for specifying how the string value should be handled when in the context of HTML.  After all, it only needs to do:\r\n     string IHtmlString.ToHtmlString(){ return this.ToString(); }\r\n\r\nThis issue came up when I wrote my own basepage based on how the MVC Razor ViewPage class works, and I found that in addition to checking for IHtmlString in my write methods, I had to check for TemplateWriter to make sure the HTML wasn't double-encoded.",
+      "PostedDate": "2011-05-16T08:15:17.707-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "v3 now has a similar model for handling string encoding, and provides by default two models (although you can add your own). This is based around the new IEncodedString interface which is essentially synonymous with IHtmlString. We can't use IHtmlString itself as this would require adding a dependency on System.Web. The default encoding model is Html, using the HtmlEncodedString class, but you can specify no-encoding using RawString. There will be a blog post detailing these changes as well as a variety of other v3 changes soon.\r\n\r\nShould we release Web-specific compatible templates, we'll consider having automatic translation from IHtmlString to IEncodedString if it is required.",
+      "PostedDate": "2011-08-26T08:22:00.397-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:02.747-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

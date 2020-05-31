@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "926601",
+    "ThreadId": "399363",
+    "Html": "\r\n<p>Hello.</p>\r\n<p>Can you help me?<br>\r\nI have a BaseTemplateType:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">public</span> <span style=\"color:blue\">class</span> MessageTemplateBase&lt;T&gt; : RazorEngine.Templating.TemplateBase&lt;T&gt;\r\n\t{\r\n\t\t<span style=\"color:blue\">protected</span> <span style=\"color:blue\">string</span> Subject { <span style=\"color:blue\">get</span>; <span style=\"color:blue\">set</span>; }\r\n\t\t<span style=\"color:blue\">protected</span> <span style=\"color:blue\">string</span> Body { <span style=\"color:blue\">get</span>; <span style=\"color:blue\">set</span>; }\r\n\t}<br><br> <br></pre>\r\n</div>\r\n<p></p>\r\n<p>I can Set this class to razor:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">var</span> service = <span style=\"color:blue\">new</span> TemplateService(<span style=\"color:blue\">new</span> TemplateServiceConfiguration\r\n\t\t\t{\r\n\t\t\t\tBaseTemplateType = <span style=\"color:blue\">typeof</span>(MessageTemplateBase&lt;&gt;)\r\n\t\t\t});\r\n</pre>\r\n</div>\r\n<p></p>\r\n<p>Also I have model.</p>\r\n<p>How I can get parsed Subject amd Body <span id=\"result_box\" lang=\"en\"><span>separately</span></span>?</p>\r\n",
+    "PostedDate": "2012-10-15T02:32:45.437-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

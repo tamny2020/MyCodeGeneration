@@ -1,0 +1,55 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2011-03-18T13:33:43.277-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Currently the Compile/CompileWithAnonymous methods are making an internal call to GetTemplate which checks the cache first. If we want to redefine a compiled template, we need to ensure that we are not checking the cache but writing over the existing template.",
+    "LastUpdatedDate": "2013-05-16T04:38:19.5-07:00",
+    "PlannedForRelease": "RazorEngine v2.2",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Medium",
+      "Severity": 100,
+      "Id": 2
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2011-02-11T00:39:01.713-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Disable caching check when using Compile/CompileWithAnonymous",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 331
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Resolved with changeset 7976.",
+      "PostedDate": "2011-03-18T13:33:43.277-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T17:17:05.437-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T04:38:19.5-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

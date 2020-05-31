@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have created my own MvcWebRazorHostFactory so that I can drive NamespaceImports and such but the code never fires when I use this engine.  It does when I use the default engine.\n\n__Code:__\nnamespace Testing\n{\n    public class CustomWebRazorostFactory : MvcWebRazorHostFactory\n    {\n        public override WebPageRazorHost CreateHost(string virtualPath, string physicalPath)\n        {\n            WebPageRazorHost host = base.CreateHost(virtualPath, physicalPath);\n            host.NamespaceImports.Clear();\n            return host;\n        }\n    }\n}\n\n__Web.Config:__\n<system.web.webPages.razor>\n    <host factoryType=\"Testing.CustomWebRazorostFactory, Testing\" />\n</system.web.webPages.razor>",
+    "LastUpdatedDate": "2014-03-24T18:11:14.62-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-03-24T18:11:14.62-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "(Bug) MvcWebRazorHostFactory not executing",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1194
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

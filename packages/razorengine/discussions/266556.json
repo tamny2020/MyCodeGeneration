@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "647539",
+    "ThreadId": "266556",
+    "Html": "\r\n<p>Hi team,</p>\r\n<p>I'm looking for a way to shorten the syntax for accessing properties in the Model object. i.e. instead of using @Model.Name, I want to omit the @Model syntax, and leave &quot;@Name&quot; only. If the Name property does not present in the Template class, I want the\r\n CodeGenerator to automatically resolve the property from the Model object. Is there an easy way to achieve this?</p>\r\n<p>Cheers,</p>\r\n<p>Qi</p>\r\n",
+    "PostedDate": "2011-07-25T23:31:52.767-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "647783",
+    "ThreadId": "266556",
+    "Html": "<p>The simplest way would probably be to create your own BaseTemplate with a property - let's call it M that is a reference to the model. The Shortest you could get it then is @M.Name. Or, you could create a base template for *all* your different models and  have all the model properties as properties on the base template and each of those properties would reference the model property of the same name.</p>\n<p>Since the RazorParser converts directly to code it wouldn't be very easy to override any specific translation without writing hooks into the parser  - not an easy task to be sure.</p>\n<p>Take a look at the patch <span id=\"patchId3\">8914 uploaded by me that gives the project `@model` support. You could probably extend that to do what you want. (though looking at it i don't think it's that feasible)<br /> </span></p>",
+    "PostedDate": "2011-07-26T08:11:28.747-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "648047",
+    "ThreadId": "266556",
+    "Html": "<p>Thank you for your reply and @model example. I guess I will use customized templates to resolve my problem at hand for now.</p>\r\n<p>I will post code examples if I figure out a way to hack the code generator.</p>",
+    "PostedDate": "2011-07-26T18:52:46.19-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

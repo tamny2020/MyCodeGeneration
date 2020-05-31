@@ -1,0 +1,66 @@
+[
+  {
+    "Id": "560249",
+    "ThreadId": "244527",
+    "Html": "\r\n<p>Hi!</p>\r\n<p>Firstly, thanks for the great project!</p>\r\n<p>We decided to use it in our last project as a template engine but faced a problem.<br>\r\nIn a few words: there are a set of email templates which may be changed, we compile each of them by using of Razor.Compile method. But if template was changed we need to re-compile it. I tried to use this method with the same template name and another template\r\n body but unsuccessfully:&nbsp;<br>\r\n</p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">string</span> template1 = <span style=\"color:#a31515\">&quot;this is a new template, @Model.Name&quot;</span>;\r\n<span style=\"color:blue\">string</span> template2 = <span style=\"color:#a31515\">&quot;this is a very new template, @Model.Name&quot;</span>;\r\n\r\nRazor.Compile(template1, <span style=\"color:#a31515\">&quot;test&quot;</span>);\r\nRazor.Compile(template2, <span style=\"color:#a31515\">&quot;test&quot;</span>);\r\n\r\n<span style=\"color:blue\">string</span> result = Razor.Run(<span style=\"color:blue\">new</span> { Name = <span style=\"color:#a31515\">&quot;John Dow&quot;</span> }, <span style=\"color:#a31515\">&quot;test&quot;</span> ); <span style=\"color:green\">// this will return &quot;this is a new template, John Dow&quot;</span>\r\n</pre>\r\n</div>\r\n<br>\r\nThe thing is, I can use another template name for the changed template but I also don't want to leave the previous one in the cache. So I'm looking for a possibility to remove/replace compiled template.<br>\r\nIs it possible in the current (2.1) release?&nbsp;\r\n<p></p>\r\n<p>Thanks in advance!</p>\r\n",
+    "PostedDate": "2011-02-03T09:23:14.943-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560299",
+    "ThreadId": "244527",
+    "Html": "\r\n<p>Hi,</p>\r\n<p>You've actually uncovered a bug in the Compile function. Internally it is using the GetTemplate method which actually calls the compiler to create the template, unfortunately the GetTemplate method also checks the cache first and returns the existing compiled\r\n template. I'll have a look to fixing this in the next release (v2.2). &nbsp;In the meanwhile, if you wanted this functionality now, you could download the source, and make the following change:</p>\r\n<p></p>\r\n<div style=\"color:black; background-color:white\">\r\n<pre><span style=\"color:blue\">public</span> <span style=\"color:blue\">void</span> Compile(<span style=\"color:blue\">string</span> template, Type modelType, <span style=\"color:blue\">string</span> name)\r\n{\r\n    <span style=\"color:blue\">if</span> (<span style=\"color:blue\">string</span>.IsNullOrEmpty(name))\r\n        <span style=\"color:blue\">throw</span> <span style=\"color:blue\">new</span> ArgumentNullException(<span style=\"color:#a31515\">&quot;Pre-compiled templates must have a name&quot;</span>, <span style=\"color:#a31515\">&quot;name&quot;</span>);\r\n\r\n    <span style=\"color:blue\">var</span> instance = CreateTemplate(template, modelType);\r\n\r\n    <span style=\"color:blue\">if</span> (templateCache.ContainsKey(name))\r\n        templateCache[name] = instance;\r\n    <span style=\"color:blue\">else</span>\r\n        templateCache.Add(name, instance);\r\n}\r\n</pre>\r\n</div>\r\nin \\Core\\RazorEngine\\Templating\\TemplateService.cs\r\n<p></p>\r\n<p>&nbsp;</p>\r\n",
+    "PostedDate": "2011-02-03T10:29:00.19-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "560320",
+    "ThreadId": "244527",
+    "Html": "\r\n<p>Awesome, thanks!</p>\r\n",
+    "PostedDate": "2011-02-03T10:58:37.15-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "580942",
+    "ThreadId": "244527",
+    "Html": "<p>Bump :)</p>",
+    "PostedDate": "2011-03-15T13:05:27.77-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "581012",
+    "ThreadId": "244527",
+    "Html": "<p>2.2 isn't out - why the bump? :)</p>",
+    "PostedDate": "2011-03-15T14:53:53.023-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "581016",
+    "ThreadId": "244527",
+    "Html": "<p><span style=\"color: #1f497d; font-size: 11pt;\">I should have said Bump for wanting this feature in V2.2 and wanting to have V2.2 released.&nbsp; :)</span></p>",
+    "PostedDate": "2011-03-15T15:03:26.66-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "680747",
+    "ThreadId": "244527",
+    "Html": "<p>I love this project - thank you!&nbsp; Wonderly elegant API.</p>\r\n<p>This bug is a big deal for us as we effectively can't use Compile (templates change - that's the point).&nbsp; Any plans for a V2.2 release?</p>\r\n<p>Anything I can do to help get it out the door?</p>",
+    "PostedDate": "2011-10-06T05:24:28.643-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "683237",
+    "ThreadId": "244527",
+    "Html": "<p>Hi,</p>\r\n<p>I'm looking to push v3 onto GitHub real soon (pending free time outside work). There will be a blog post when this happens, and hopefully in the next few weeks.<span style=\"white-space: pre;\"> </span></p>\r\n<p><span style=\"white-space: pre;\"><br /></span></p>",
+    "PostedDate": "2011-10-12T09:47:17.783-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

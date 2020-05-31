@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "in Console Application it works greate \n\nbut, with WCF it casue an error \n\n1. Solution stuructor \n  1) MVC Web project \n  2) WCF Service Project \n\n2. What i did \n 1)  in Wcf Service i add reference RazorEngin and in service i write \n  some code to get template \n\n  string template = \"Hello @Model.Name! Welcome to Razor!\";\n  string result = Razor.Parse(template, new { Name = \"World\" });\n\n 2) in MVC Web i add WCf service \n 3)  I called that service No 1) \n\n\n3. Result \n - Error occure, but  i did same way in Console program and it works fine \n  only When i Called that service from MVC Project...",
+    "LastUpdatedDate": "2014-07-11T15:46:27.123-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "razorengine",
+    "ReportedDate": "2014-07-11T15:46:27.123-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "in WCF Service using RazorEngin",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 1268
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

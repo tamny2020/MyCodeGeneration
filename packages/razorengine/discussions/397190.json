@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "918571",
+    "ThreadId": "397190",
+    "Html": "\r\n<p>Hello,</p>\r\n<p>We are using RazorEngine to&nbsp;perform&nbsp;substitutions into HTML emails using dynamic objects via Razor.Parse(). However,&nbsp;I've noticed that any substitution placeholders without a corresponding property in the object are simply replaced by empty\r\n string. This is unacceptable as we need to know about any values that were missed by the substitution process so that we can decide weather to send the e-mail or not.</p>\r\n<p>I need a means of validating that the template and the object align and that all placeholders present in the template have been replaced by an actual value from the object.</p>\r\n<p>Thanks,</p>\r\n<p>Evan</p>\r\n",
+    "PostedDate": "2012-09-27T09:10:31.817-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "920642",
+    "ThreadId": "397190",
+    "Html": "<p>Why not validate your model before injecting it into the template using RazorEngine?</p>\r\n<p><a href=\"http://weblogs.asp.net/scottgu/archive/2010/01/15/asp-net-mvc-2-model-validation.aspx\">http://weblogs.asp.net/scottgu/archive/2010/01/15/asp-net-mvc-2-model-validation.aspx</a></p>",
+    "PostedDate": "2012-10-02T08:22:34.38-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "920647",
+    "ThreadId": "397190",
+    "Html": "<p>Because I am using dynamic objects populated from JSON for my model. The entire reason I am using the RazorEngine is so that I don't need the MVC and all of it's accompanying overhead in my e-mail processor.</p>",
+    "PostedDate": "2012-10-02T08:31:49.333-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "921161",
+    "ThreadId": "397190",
+    "Html": "<p>Hi Evan,</p>\r\n<p>Post your query on the Github site for RazorEngine:&nbsp;<a href=\"https://github.com/Antaris/RazorEngine\">https://github.com/Antaris/RazorEngine</a></p>\r\n<p>I'm not sure I understand how you're handling your data on the server side, but these guys will know if you post some code it might help.</p>\r\n<p>&nbsp;</p>\r\n<p>Mark&nbsp;</p>",
+    "PostedDate": "2012-10-03T03:30:29.37-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

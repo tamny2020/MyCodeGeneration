@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "788758",
+    "ThreadId": "335528",
+    "Html": "<p>&nbsp;</p>\n<div style=\"color: black; background-color: white;\">\n<pre>I have a web application written in razor MVC3.<br /><span id=\"result_box\" lang=\"en\"><span>I'm</span> <span>trying to create a</span> <span>dynamic</span> <span>css</span><span>,</span> <span>when I add the</span> <span>second parameter</span> <span>(model</span><span>)</span> <span>I get</span> <span>the error</span><span>:</span> <br /><span>The</span> <span>model</span> <span>inherits</span> <span>or</span> <span>keywords</span> <span>can</span> <span>only</span> <span>Appear</span> <span>once</span><span>.</span></span><br /><br />This is the controller:<br /><br />    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> StyleController : Controller\n    {\n        <span style=\"color: green;\">//</span>\n        <span style=\"color: green;\">// GET: /Style/</span>\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> css1280x1024()\n        {\n            StyleModel myStyleModel = <span style=\"color: blue;\">new</span> StyleModel();\n\n            Response.ContentType = <span style=\"color: #a31515;\">\"text/css\"</span>;\n            <span style=\"color: blue;\">return</span> Razor.Parse(System.IO.File.ReadAllText(Server.MapPath(<span style=\"color: #a31515;\">\"/Content/style1280x1024.css\"</span>)), myStyleModel);\n        }\n    }\n<br /><br />This is StyleModel class:<br /><br /><div style=\"color: black; background-color: white;\"><pre>    <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">class</span> StyleModel\n    {\n        <span style=\"color: blue;\">public</span> <span style=\"color: blue;\">string</span> colore = <span style=\"color: #a31515;\">\"#ff0000\"</span>;\n    }\n</pre>\n</div>\n<br />And <span style=\"color: #a31515;\">style1280x1024.css<span style=\"color: #000000;\"> start with this line:<br /><br /></span></span>\n<pre>@model NAMESPACE.Models.StyleModel</pre>\n<br />Anyone know where is the problem?</pre>\n</div>",
+    "PostedDate": "2012-02-21T02:14:27.723-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "788860",
+    "ThreadId": "335528",
+    "Html": "<div id=\"gt-res-content\" class=\"almost_half_cell\">\r\n<div dir=\"ltr\"><span id=\"result_box\" lang=\"en\"><span class=\"hps\">I</span> <span class=\"hps\">found the problem, it</span> <span class=\"hps\">was</span> <span class=\"hps\">my mistake</span><span>.</span> <span class=\"hps\">In</span> the <span class=\"hps\">css</span> <span class=\"hps\">there was</span> <span class=\"hps\">a </span></span><span id=\"result_box\" lang=\"en\"><span class=\"hps\"> line saying: </span></span><span id=\"result_box\" lang=\"en\"><span class=\"hps\">@model.colore</span></span></div>\r\n<div dir=\"ltr\"><span lang=\"en\"><span class=\"hps\">I removed it and it work! :-)<br /></span></span></div>\r\n</div>",
+    "PostedDate": "2012-02-21T02:37:55.437-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

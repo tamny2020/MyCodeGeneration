@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "1144829",
+    "ThreadId": "479370",
+    "Html": "Is there any trick to getting VS debugging working in my cshtml files that are rendered this way?\r<br />\n<br />\nMy breakpoints never get hit, I am hoping there is a way to be able to use the debugger in these files.<br />\n",
+    "PostedDate": "2014-01-02T14:54:21.823-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "546748",
+    "ThreadId": "241161",
+    "Html": "\r\n<p>One thing I've started doing recently is writing all my Razor templates in a .cshtml file so that I can get full Intellisense support and Syntax Highlighting. However, one problem with this is lack of @Model.Whatever support.</p>\r\n<p>I've added @model ModelType support to the default parser but since you pass the model type in as part of the parameters it doesn't really make sense to use it to override the passed in model (which is what i'm currently doing). I'm thinking the best way\r\n to proceed is to actually ignore @model declaration and skip over it when parsing but allow it so that Intellisense works.</p>\r\n<p>Thoughts?</p>\r\n",
+    "PostedDate": "2011-01-10T07:50:56.15-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "547658",
+    "ThreadId": "241161",
+    "Html": "\r\n<p>I'm not convinced that the Razor view engine actually does any parsing of the @inherits or @model lines. &nbsp;I'd have to check but I would hazard a guess that the view engine reads forward into the file and picks out those declarations and only considers\r\n the remainder of the file as the content to parse. &nbsp;Those initial lines would configure the Razor host to use either a specific model (@model), or a specific base type (@inherits).</p>\r\n<p>My only concern with how the project is evolving is that we'll actually end up with Razor itself, instead of the simplistic template engine we set out to build. We could add some ParseFrom and CompileFrom methods which could read from a file stream, that\r\n way they can take advantage of the declarative syntax for @models, otherwise its still got to be done in code.</p>\r\n<p>Does that make sense?<span style=\"white-space:pre\"> </span></p>\r\n<p><span style=\"white-space:pre\"><br>\r\n</span></p>\r\n",
+    "PostedDate": "2011-01-11T15:41:55.97-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "547672",
+    "ThreadId": "241161",
+    "Html": "\r\n<p>Actually the @model declaration and @inherits is parsed by the Razor Engine in MVC. Not the base parser itself. The only reason I want to add it is just for Intellisense support when editing views.</p>\r\n<p>My version of the parser just skips over it unlike the real MVC parser and it's *only* used for .cshtml in design mode files.</p>\r\n<p>I don't know...I think it's still the simplistic engine, I don't see why we can't add features for editing support. I don't know...It's just annoying to edit razor files without Intellisense. :)</p>\r\n<p>&nbsp;</p>\r\n<p>Edit: We could also possibly add support for model checking to make sure you're passing in the right model type if you use @model...i don't know...too many thoughts! :)</p>\r\n",
+    "PostedDate": "2011-01-11T16:24:55.707-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "592421",
+    "ThreadId": "241161",
+    "Html": "<p>Sound great! I also tried to use intellisense and a way to ignore the \"@model\" line is&nbsp;exactly what I've been looking for.</p>\r\n<p>Unfortunately, the following code doesn't seem to work (yet):</p>\r\n<p>\r\n<div style=\"color: black; background-color: white;\">\r\n<pre>\t\t\t<span style=\"color: blue;\">string</span> template = <span style=\"color: #a31515;\">\"@model MyModel\\n Hallo @Model.Name\"</span>;\r\n\t\t\t<span style=\"color: blue;\">string</span> result = Razor.Parse(template, <span style=\"color: blue;\">new</span> MyModel{ Name=<span style=\"color: #a31515;\">\"World\"</span> });\r\n</pre>\r\n</div>\r\n</p>\r\n<p>Have you&nbsp;committed&nbsp;your changes yet?</p>",
+    "PostedDate": "2011-04-05T15:03:59.263-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "592786",
+    "ThreadId": "241161",
+    "Html": "<p>It was uploaded as a patch until we figure out how to best integrate it.</p>",
+    "PostedDate": "2011-04-06T07:17:54.34-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]
